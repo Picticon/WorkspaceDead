@@ -1,0 +1,17 @@
+{
+  "replace": false,
+  "values": [
+    "workspacedead:deadlog",
+    "workspacedead:deadlog_stripped",
+    "workspacedead:deadwood",
+    "workspacedead:deadwood_stripped",
+    "workspacedead:deadplanks",
+    "workspacedead:burntplanks",
+    "workspacedead:deadtrapdoor",
+    "workspacedead:burnttrapdoor",
+    "workspacedead:deadslab",
+    "workspacedead:burntslab",
+    "workspacedead:deaddoor",
+    "workspacedead:burntdoor"
+  ]
+}

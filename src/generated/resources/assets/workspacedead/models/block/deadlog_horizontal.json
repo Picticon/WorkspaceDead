@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column_horizontal",
+  "textures": {
+    "side": "workspacedead:block/deadlog",
+    "end": "workspacedead:block/deadlog_top"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "side": "workspacedead:block/carvedpoopblock_side",
+    "front": "workspacedead:block/carvedpoopblock_front",
+    "top": "workspacedead:block/carvedpoopblock_top"
+  }
+}

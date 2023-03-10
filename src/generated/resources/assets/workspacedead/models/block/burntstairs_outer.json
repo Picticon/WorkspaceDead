@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "side": "workspacedead:block/burntplanks",
+    "bottom": "workspacedead:block/burntplanks",
+    "top": "workspacedead:block/burntplanks"
+  }
+}

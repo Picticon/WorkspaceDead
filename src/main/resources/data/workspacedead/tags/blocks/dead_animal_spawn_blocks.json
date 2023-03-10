@@ -1,0 +1,11 @@
+{
+    "replace": false,
+    "values": [
+        "workspacedead:deadsand",
+        "workspacedead:deaddirt",
+        "workspacedead:deadstone",
+        "workspacedead:deadgravel",
+        "workspacedead:deadslate",
+        "workspacedead:deadclay"
+    ]
+}

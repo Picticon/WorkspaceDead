@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "EEE",
+    "EEE"
+  ],
+  "key": {
+    "E": {
+      "item": "workspacedead:deadplanks"
+    }
+  },
+  "result": {
+    "item": "workspacedead:deadtrapdoor",
+    "count": 2
+  }
+}

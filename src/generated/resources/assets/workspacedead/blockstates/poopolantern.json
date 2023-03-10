@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "workspacedead:block/poopolantern"
+    },
+    "facing=south": {
+      "model": "workspacedead:block/poopolantern",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "workspacedead:block/poopolantern",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "workspacedead:block/poopolantern",
+      "y": 90
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "workspacedead:block/deadslab_top"
+    },
+    "type=bottom": {
+      "model": "workspacedead:block/deadslab"
+    },
+    "type=double": {
+      "model": "workspacedead:block/deadplanks"
+    }
+  }
+}

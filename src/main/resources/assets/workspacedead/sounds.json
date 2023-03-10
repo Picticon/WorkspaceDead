@@ -1,0 +1,44 @@
+{
+    "purify": {
+        "subtitle": "sounds.workspacedead.purify",
+        "sounds": [
+            "workspacedead:purify"
+        ]
+    },
+    "skeletoncow_attack": {
+        "subtitle": "sounds.workspacedead.skeletoncow_attack",
+        "sounds": [
+            "workspacedead:skeletoncow_attack"
+        ]
+    },
+    "skeletonchicken_attack": {
+        "subtitle": "sounds.workspacedead.skeletonchicken_attack",
+        "sounds": [
+            "workspacedead:skeletonchicken_attack"
+        ]
+    },
+    "skeletonsheep_attack": {
+        "subtitle": "sounds.workspacedead.skeletonsheep_attack",
+        "sounds": [
+            "workspacedead:skeletonsheep_attack"
+        ]
+    },
+    "skeletonpig_attack": {
+        "subtitle": "sounds.workspacedead.skeletonpig_attack",
+        "sounds": [
+            "workspacedead:skeletonpig_attack"
+        ]
+    },
+    "skeletonslime_attack": {
+        "subtitle": "sounds.workspacedead.skeletonslime_attack",
+        "sounds": [
+            "workspacedead:skeletonslime_attack"
+        ]
+    },
+    "skeletonspider_attack": {
+        "subtitle": "sounds.workspacedead.skeletonspider_attack",
+        "sounds": [
+            "workspacedead:skeletonspider_attack"
+        ]
+    }
+}

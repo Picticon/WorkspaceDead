@@ -1,0 +1,9 @@
+{
+    "required": true,
+    "package": "workspacedead.mixin.mixins",
+    "compatibilityLevel": "JAVA_17",
+    "refmap": "workspacedead.mixins.refmap.json",
+    "mixins": [
+        "ItemEntityMixin"
+    ]
+}

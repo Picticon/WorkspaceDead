@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "workspacedead:block/deadwood_stripped_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "workspacedead:block/deadwood_stripped"
+    },
+    "axis=z": {
+      "model": "workspacedead:block/deadwood_stripped_horizontal",
+      "x": 90
+    }
+  }
+}

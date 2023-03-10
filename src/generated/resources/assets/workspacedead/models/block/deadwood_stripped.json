@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "side": "workspacedead:block/deadwood_stripped",
+    "end": "workspacedead:block/deadwood_top_stripped"
+  }
+}

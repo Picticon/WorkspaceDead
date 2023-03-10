@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "workspacedead:block/burntslab_top"
+    },
+    "type=bottom": {
+      "model": "workspacedead:block/burntslab"
+    },
+    "type=double": {
+      "model": "workspacedead:block/burntplanks"
+    }
+  }
+}
