@@ -13,6 +13,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import workspacedead.WorkspaceDead;
 import workspacedead.entity.mob.SkeletonSheep;
 
+// 2023
+
 @OnlyIn(Dist.CLIENT)
 public class SkeletonSheepRenderer extends MobRenderer<SkeletonSheep, SkeletonSheepModel<SkeletonSheep>> {
     private static final ResourceLocation SHEEP_LOCATION = new ResourceLocation(WorkspaceDead.MOD_ID, "textures/entity/mob/skeletonsheep.png");
