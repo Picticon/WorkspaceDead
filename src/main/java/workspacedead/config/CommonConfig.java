@@ -6,6 +6,8 @@ import java.util.List;
 
 import net.minecraftforge.common.ForgeConfigSpec;
 
+// 2023
+
 public final class CommonConfig {
     public static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
     public static final ForgeConfigSpec SPEC;
