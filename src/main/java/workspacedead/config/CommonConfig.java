@@ -12,6 +12,8 @@ public final class CommonConfig {
     public static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
     public static final ForgeConfigSpec SPEC;
 
+    public static final ForgeConfigSpec.ConfigValue<String> nether_opener;
+
     public static final ForgeConfigSpec.ConfigValue<List<? extends String>> purify_mobs;
     public static final ForgeConfigSpec.ConfigValue<List<? extends String>> purify_blocks;
     public static final ForgeConfigSpec.ConfigValue<List<? extends String>> weak_purify_mobs;
@@ -30,24 +32,25 @@ public final class CommonConfig {
         purifyBlocks.add("workspacedead:deadgravel:minecraft:gravel");
         purifyBlocks.add("workspacedead:deadslate:minecraft:slate");
 
+        nether_opener = BUILDER.comment("id of item used to open Nether Portal. Blank = default fire.")
+                .define("Nether Portal Opening Item", "");
+
         purify_blocks = BUILDER
                 .comment("List of blocks to purify (strong), from:to, e.g. minecraft:sand:minecraft:stone")
-                .defineList("Purify Crystal Block Transforms", Collections.emptyList(),
-                        o -> true);
+                .defineList("Purify Crystal Block Transforms", Collections.emptyList(), o -> true);
 
         weak_purify_blocks = BUILDER
                 .comment("List of blocks to purify (weak), from:to, e.g. minecraft:sand:minecraft:stone")
-                .defineList("Weak Purify Crystal Block Transforms", purifyBlocks,
-                        o -> true);
+                .defineList("Weak Purify Crystal Block Transforms", purifyBlocks, o -> true);
 
         var purifyMobs = new ArrayList<String>();
         purifyMobs.add("workspacedead:skeletonspider:minecraft:spider");
         purifyMobs.add("workspacedead:skeletonslime:minecraft:slime");
 
         purify_mobs = BUILDER
-                .comment("List of living entities to purify (strong), from:to, e.g. minecraft:skeleton:minecraft:zombie")
-                .defineList("Purify Crystal Entity Transforms", purifyMobs,
-                        o -> true);
+                .comment(
+                        "List of living entities to purify (strong), from:to, e.g. minecraft:skeleton:minecraft:zombie")
+                .defineList("Purify Crystal Entity Transforms", purifyMobs, o -> true);
 
         var purifyMobsWeak = new ArrayList<String>();
         purifyMobsWeak.add("workspacedead:skeletoncow:minecraft:cow");
@@ -57,8 +60,7 @@ public final class CommonConfig {
 
         weak_purify_mobs = BUILDER
                 .comment("List of living entities to purify (weak), from:to, e.g. minecraft:chicken:minecraft:cow")
-                .defineList("Weak Purify Crystal Entity Transforms", purifyMobsWeak,
-                        o -> true);
+                .defineList("Weak Purify Crystal Entity Transforms", purifyMobsWeak, o -> true);
 
         var poopMobs = new ArrayList<String>();
         poopMobs.add("minecraft:skeleton:workspacedead:skeletonpoop");
@@ -75,10 +77,9 @@ public final class CommonConfig {
         poopMobs.add("minecraft:slime:workspacedead:slimepoop");
         poopMobs.add("workspacedead:draconicblaze:workspacedead:dragonpoop");
 
-        poop_mobs = BUILDER
-                .comment("List of living entities and poop types, from:to, e.g. minecraft:chicken:workspacedead:chickenpoop")
-                .defineList("Poop Sources", poopMobs,
-                        o -> true);
+        poop_mobs = BUILDER.comment(
+                "List of living entities and poop types, from:to, e.g. minecraft:chicken:workspacedead:chickenpoop")
+                .defineList("Poop Sources", poopMobs, o -> true);
 
         BUILDER.pop();
         SPEC = BUILDER.build();
