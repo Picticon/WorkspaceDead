@@ -1,0 +1,30 @@
+{
+    "variants": {
+        "": [
+            {
+                "model": "workspacedead:block/potato_block",
+                "weight": 6
+            },
+            {
+                "model": "workspacedead:block/potato_block4",
+                "weight": 6
+            },
+            {
+                "model": "workspacedead:block/potato_block5",
+                "weight": 6
+            },
+            {
+                "model": "workspacedead:block/potato_block1",
+                "weight": 1
+            },
+            {
+                "model": "workspacedead:block/potato_block2",
+                "weight": 1
+            },
+            {
+                "model": "workspacedead:block/potato_block3",
+                "weight": 1
+            }
+        ]
+    }
+}

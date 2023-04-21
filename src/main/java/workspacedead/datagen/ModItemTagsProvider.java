@@ -41,6 +41,7 @@ public class ModItemTagsProvider extends ItemTagsProvider {
 
         this.tag(POOP)//
                 .add(ModItems.POOP.get())//
+                .add(ModItems.SEEDED_POOP.get())//
                 .add(ModItems.ENDER_POOP.get())//
                 .add(ModItems.SKELETON_POOP.get())//
                 .add(ModItems.ZOMBIE_POOP.get())//

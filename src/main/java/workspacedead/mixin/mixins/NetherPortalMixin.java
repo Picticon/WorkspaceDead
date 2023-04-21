@@ -15,9 +15,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.portal.PortalShape;
 import net.minecraftforge.registries.ForgeRegistries;
 import workspacedead.config.CommonConfig;
@@ -46,7 +44,7 @@ public abstract class NetherPortalMixin {
                 if (nearestPlayer != null) {
                     if (!nearestPlayer.getInventory().contains(new ItemStack(item))) {
                         level.playSound(null, bottomLeft, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 1.0f, 0.75f);
-                        nearestPlayer.displayClientMessage(new TextComponent("You need to have "
+                        nearestPlayer.displayClientMessage(new TextComponent("You need to have a "
                                 + item.getDescription().getString() + " in your inventory to light the portal."), true);
                         info.cancel();
                     }

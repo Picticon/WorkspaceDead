@@ -34,14 +34,17 @@ public class ModBlocksStateProvider extends BlockStateProvider {
         // ALL CUSTOM CALLS START WITH "make"
 
         // simpleBlock(ModBlocks.BIOMASS.get());
-        simpleBlock(ModBlocks.BIOMASS_BLOCK.get(), new ModelFile.UncheckedModelFile(new ResourceLocation(WorkspaceDead.MOD_ID, "block/biomass_block")));
+        simpleBlock(ModBlocks.BIOMASS_BLOCK.get(),
+                new ModelFile.UncheckedModelFile(new ResourceLocation(WorkspaceDead.MOD_ID, "block/biomass_block")));
         itemBlock(ModBlocks.BIOMASS_BLOCK.get());
 
-        doorBlock((DoorBlock) ModBlocks.DEADDOOR.get(), new ResourceLocation(WorkspaceDead.MOD_ID, "block/deaddoor_bottom"), //
+        doorBlock((DoorBlock) ModBlocks.DEADDOOR.get(),
+                new ResourceLocation(WorkspaceDead.MOD_ID, "block/deaddoor_bottom"), //
                 new ResourceLocation(WorkspaceDead.MOD_ID, "block/deaddoor_top"));
         itemGenerated(ModBlocks.DEADDOOR);
 
-        doorBlock((DoorBlock) ModBlocks.BURNTDOOR.get(), new ResourceLocation(WorkspaceDead.MOD_ID, "block/burntdoor_bottom"), //
+        doorBlock((DoorBlock) ModBlocks.BURNTDOOR.get(),
+                new ResourceLocation(WorkspaceDead.MOD_ID, "block/burntdoor_bottom"), //
                 new ResourceLocation(WorkspaceDead.MOD_ID, "block/burntdoor_top"));
         itemGenerated(ModBlocks.BURNTDOOR);
 
@@ -55,13 +58,16 @@ public class ModBlocksStateProvider extends BlockStateProvider {
         logBlock((RotatedPillarBlock) ModBlocks.DEADLOG.get());
 
         itemBlock(ModBlocks.DEADWOOD);
-        axisBlock((RotatedPillarBlock) ModBlocks.DEADWOOD.get(), blockTexture(ModBlocks.DEADLOG.get()), blockTexture(ModBlocks.DEADLOG.get()));
+        axisBlock((RotatedPillarBlock) ModBlocks.DEADWOOD.get(), blockTexture(ModBlocks.DEADLOG.get()),
+                blockTexture(ModBlocks.DEADLOG.get()));
 
         itemBlock(ModBlocks.DEADLOG_STRIPPED);
-        axisBlock((RotatedPillarBlock) ModBlocks.DEADLOG_STRIPPED.get(), new ResourceLocation(WorkspaceDead.MOD_ID, "block/deadlog_stripped"), //
+        axisBlock((RotatedPillarBlock) ModBlocks.DEADLOG_STRIPPED.get(),
+                new ResourceLocation(WorkspaceDead.MOD_ID, "block/deadlog_stripped"), //
                 new ResourceLocation(WorkspaceDead.MOD_ID, "block/deadlog_top_stripped"));
 
-        axisBlock((RotatedPillarBlock) ModBlocks.DEADWOOD_STRIPPED.get(), new ResourceLocation(WorkspaceDead.MOD_ID, "block/deadwood_stripped"), //
+        axisBlock((RotatedPillarBlock) ModBlocks.DEADWOOD_STRIPPED.get(),
+                new ResourceLocation(WorkspaceDead.MOD_ID, "block/deadwood_stripped"), //
                 new ResourceLocation(WorkspaceDead.MOD_ID, "block/deadwood_top_stripped"));
         itemBlock(ModBlocks.DEADWOOD_STRIPPED);
 
@@ -85,7 +91,8 @@ public class ModBlocksStateProvider extends BlockStateProvider {
         itemFromBlock(ModBlocks.POOP_O_LANTERN);
 
         // inv item is simpleitem
-        simpleBlock(ModBlocks.DEADSAPLING.get(), models().cross(ModBlocks.DEADSAPLING.get().getRegistryName().getPath(), blockTexture(ModBlocks.DEADSAPLING.get())));
+        simpleBlock(ModBlocks.DEADSAPLING.get(), models().cross(ModBlocks.DEADSAPLING.get().getRegistryName().getPath(),
+                blockTexture(ModBlocks.DEADSAPLING.get())));
         itemGenerated(ModBlocks.DEADSAPLING);
 
         slabBlock(ModBlocks.DEADSLAB, ModBlocks.DEADPLANKS);
@@ -104,31 +111,43 @@ public class ModBlocksStateProvider extends BlockStateProvider {
         itemFromBlock(ModBlocks.DEADSTAIRS);
         stairsBlock(ModBlocks.BURNTSTAIRS, ModBlocks.BURNTPLANKS);
         itemFromBlock(ModBlocks.BURNTSTAIRS);
+
+        // makeSimpleBlockAndItem(ModBlocks.POTATOBLOCK.get());
+        // simpleBlock(ModBlocks.POTATOBLOCK.get(), (a) -> {
+        // return "";
+        // });
+        // itemBlock(ModBlocks.POTATOBLOCK.get());
     }
 
     private <T extends Block> void makeFacingBlock(RegistryObject<Block> regBlock) {
         // // EXAMPLE_BLOCK_2: Has Property BlockStateProperties#HORIZONTAL_FACING
         // this.getVariantBuilder(regBlock.get()) // Get variant builder
-        //         .forAllStates(state -> // For all possible states
-        //         ConfiguredModel.builder() // Creates configured model builder
-        //                 .modelFile(modelFile(regBlock.get())) // Can show 'modelFile'
-        //                 .rotationY((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot()) // Rotates 'modelFile' on the Y axis depending on the property
-        //                 .build() // Creates the array of configured models
-        //         );
+        // .forAllStates(state -> // For all possible states
+        // ConfiguredModel.builder() // Creates configured model builder
+        // .modelFile(modelFile(regBlock.get())) // Can show 'modelFile'
+        // .rotationY((int)
+        // state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot()) // Rotates
+        // 'modelFile' on the Y axis depending on the property
+        // .build() // Creates the array of configured models
+        // );
         this.horizontalBlock(regBlock.get(), //
-                new ResourceLocation(regBlock.getId().getNamespace(), "block/" + regBlock.getId().getPath()+"_side"), //
-                new ResourceLocation(regBlock.getId().getNamespace(), "block/" + regBlock.getId().getPath() + "_front" ), //
-                new ResourceLocation(regBlock.getId().getNamespace(), "block/" + regBlock.getId().getPath()+"_top") );
+                new ResourceLocation(regBlock.getId().getNamespace(), "block/" + regBlock.getId().getPath() + "_side"), //
+                new ResourceLocation(regBlock.getId().getNamespace(), "block/" + regBlock.getId().getPath() + "_front"), //
+                new ResourceLocation(regBlock.getId().getNamespace(), "block/" + regBlock.getId().getPath() + "_top"));
     }
 
-    private <T extends Block, U extends Block> void parentBlockWithTexture(RegistryObject<T> registeredBlock, String parent, String layername, RegistryObject<U> textureblock) {
-        this.itemModels().getBuilder(registeredBlock.get().getRegistryName().getPath()).parent(new ModelFile.UncheckedModelFile(parent)) //
-                .texture(layername, new ResourceLocation(textureblock.getId().getNamespace(), "block/" + textureblock.getId().getPath()));
+    private <T extends Block, U extends Block> void parentBlockWithTexture(RegistryObject<T> registeredBlock,
+            String parent, String layername, RegistryObject<U> textureblock) {
+        this.itemModels().getBuilder(registeredBlock.get().getRegistryName().getPath())
+                .parent(new ModelFile.UncheckedModelFile(parent)) //
+                .texture(layername, new ResourceLocation(textureblock.getId().getNamespace(),
+                        "block/" + textureblock.getId().getPath()));
     }
 
     /// Creates an item model using a block model
     private <T extends Block> void itemFromBlock(RegistryObject<T> registeredBlock) {
-        makeItemFromParent(registeredBlock, WorkspaceDead.MOD_ID + ":block/" + registeredBlock.get().getRegistryName().getPath());
+        makeItemFromParent(registeredBlock,
+                WorkspaceDead.MOD_ID + ":block/" + registeredBlock.get().getRegistryName().getPath());
     }
 
     // private <T extends Block> void itemFromBlock(RegistryObject<T>
@@ -139,7 +158,8 @@ public class ModBlocksStateProvider extends BlockStateProvider {
 
     // Makes a model entry from the given parent
     private <T extends Block> void makeItemFromParent(RegistryObject<T> registeredBlock, String parent) {
-        this.itemModels().getBuilder(registeredBlock.get().getRegistryName().getPath()).parent(new ModelFile.UncheckedModelFile(parent));
+        this.itemModels().getBuilder(registeredBlock.get().getRegistryName().getPath())
+                .parent(new ModelFile.UncheckedModelFile(parent));
     }
 
     // This makes a simple BLOCK MODEL AND ITEM for a BLOCK
@@ -159,8 +179,10 @@ public class ModBlocksStateProvider extends BlockStateProvider {
 
     // This makes FLAT/GENERATED ITEM MODEL for a BLOCK
     private <T extends Block> void itemGenerated(RegistryObject<T> registeredBlock) {
-        this.itemModels().getBuilder(registeredBlock.get().getRegistryName().getPath()).parent(new ModelFile.UncheckedModelFile("item/generated"))//
-                .texture("layer0", new ResourceLocation(registeredBlock.getId().getNamespace(), "item/" + registeredBlock.getId().getPath()));
+        this.itemModels().getBuilder(registeredBlock.get().getRegistryName().getPath())
+                .parent(new ModelFile.UncheckedModelFile("item/generated"))//
+                .texture("layer0", new ResourceLocation(registeredBlock.getId().getNamespace(),
+                        "item/" + registeredBlock.getId().getPath()));
     }
 
     // This makes BLOCK, BLOCKSTATE, and ITEM(BLOCK)
@@ -177,7 +199,8 @@ public class ModBlocksStateProvider extends BlockStateProvider {
         }
     }
 
-    private <T extends Block> void fenceGateBlock(RegistryObject<T> gateBlockObj, RegistryObject<Block> textureBlockObj) {
+    private <T extends Block> void fenceGateBlock(RegistryObject<T> gateBlockObj,
+            RegistryObject<Block> textureBlockObj) {
         if (gateBlockObj.get() instanceof FenceGateBlock gateBlock) {
             fenceGateBlock(gateBlock, modLoc("block/%s".formatted(textureBlockObj.getId().getPath())));
         } else {
@@ -195,7 +218,8 @@ public class ModBlocksStateProvider extends BlockStateProvider {
 
     private <T extends Block> void slabBlock(RegistryObject<T> slabObj, RegistryObject<Block> fullBlockObj) {
         if (slabObj.get() instanceof SlabBlock slabBlock) {
-            slabBlock(slabBlock, models().getExistingFile(fullBlockObj.getId()).getLocation(), modLoc("block/%s".formatted(fullBlockObj.getId().getPath())));
+            slabBlock(slabBlock, models().getExistingFile(fullBlockObj.getId()).getLocation(),
+                    modLoc("block/%s".formatted(fullBlockObj.getId().getPath())));
         } else {
             throw new IllegalArgumentException("%s is not an instance of SlabBlock".formatted(slabObj.get()));
         }

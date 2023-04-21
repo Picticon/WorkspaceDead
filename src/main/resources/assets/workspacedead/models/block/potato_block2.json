@@ -1,0 +1,11 @@
+{
+    "parent": "minecraft:block/cube",
+    "textures": {
+        "up": "workspacedead:block/potato_block",
+        "down": "workspacedead:block/potato_block",
+        "north": "workspacedead:block/potato_block_eye",
+        "south": "workspacedead:block/potato_block_eye",
+        "east": "workspacedead:block/potato_block",
+        "west": "workspacedead:block/potato_block"
+    }
+}

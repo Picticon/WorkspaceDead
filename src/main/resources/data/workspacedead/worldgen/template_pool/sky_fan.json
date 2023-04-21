@@ -1,0 +1,15 @@
+{
+    "name": "repurposed_structures:sky_fan",
+    "fallback": "minecraft:empty",
+    "elements": [
+        {
+            "weight": 1,
+            "element": {
+                "location": "workspacedead:sky_fan",
+                "processors": "workspacedead:randomize_stonebrick",
+                "projection": "rigid",
+                "element_type": "minecraft:single_pool_element"
+            }
+        }
+    ]
+}

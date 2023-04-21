@@ -40,5 +40,23 @@
         "sounds": [
             "workspacedead:skeletonspider_attack"
         ]
+    },
+    "grassypotato_ambient": {
+        "subtitle": "sounds.workspacedead.grassypotato_ambient",
+        "sounds": [
+            "workspacedead:grassypotato_ambient"
+        ]
+    },
+    "grassypotato_hurt": {
+        "subtitle": "sounds.workspacedead.grassypotato_hurt",
+        "sounds": [
+            "workspacedead:grassypotato_hurt"
+        ]
+    },
+    "grassypotato_death": {
+        "subtitle": "sounds.workspacedead.grassypotato_death",
+        "sounds": [
+            "workspacedead:grassypotato_death"
+        ]
     }
 }

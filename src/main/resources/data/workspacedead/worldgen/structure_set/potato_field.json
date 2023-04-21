@@ -1,0 +1,14 @@
+{
+    "structures": [
+        {
+            "structure": "workspacedead:potato_field",
+            "weight": 1
+        }
+    ],
+    "placement": {
+        "salt": 1357924680,
+        "spacing": 2,
+        "separation": 1,
+        "type": "minecraft:random_spread"
+    }
+}

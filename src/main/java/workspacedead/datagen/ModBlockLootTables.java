@@ -20,7 +20,8 @@ public class ModBlockLootTables extends BlockLoot {
 
     @Override
     protected void addTables() {
-        this.add(ModBlocks.DEADLEAVES.get(), (block) -> createLeavesDrops(block, ModBlocks.DEADSAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+        this.add(ModBlocks.DEADLEAVES.get(),
+                (block) -> createLeavesDrops(block, ModBlocks.DEADSAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
         this.dropSelf(ModBlocks.DEADSAPLING.get());
         this.dropSelf(ModBlocks.DEADLOG.get());
         this.dropSelf(ModBlocks.DEADWOOD.get());
@@ -43,6 +44,8 @@ public class ModBlockLootTables extends BlockLoot {
         this.dropSelf(ModBlocks.DEADSTAIRS.get());
         this.dropSelf(ModBlocks.BURNTSTAIRS.get());
 
+        this.dropSelf(ModBlocks.POTATOBLOCK.get());
+
         this.dropSelf(ModBlocks.DEADSTONE.get());
         this.dropSelf(ModBlocks.DEADDIRT.get());
         this.dropSelf(ModBlocks.DEADGRAVEL.get());
@@ -59,7 +62,8 @@ public class ModBlockLootTables extends BlockLoot {
 
         LootItemCondition.Builder lootitemcondition$builder = //
                 LootItemBlockStatePropertyCondition.hasBlockStateProperties(ModBlocks.GRASSYPOTATO_PLANT.get())//
-                        .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(GrassyPotatoPlantBlock.AGE, 7));
+                        .setProperties(StatePropertiesPredicate.Builder.properties()
+                                .hasProperty(GrassyPotatoPlantBlock.AGE, 7));
 
         // this.dropOther(ModBlocks.GRASSYPOTATO_PLANT.get(),
         // ModItems.GRASSYPOTATO_SEEDS.get());

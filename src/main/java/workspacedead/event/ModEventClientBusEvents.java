@@ -10,11 +10,13 @@ import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import software.bernie.geckolib3.renderers.geo.GeoArmorRenderer;
 import workspacedead.WorkspaceDead;
 import workspacedead.block.ModBlockEntities;
 import workspacedead.block.ModBlocks;
 //import workspacedead.block.animatedblock.AnimatedBlockRenderer;
 import workspacedead.block.BioMass.BioMassBlockRenderer;
+import workspacedead.client.armor.PotatoArmorRenderer;
 import workspacedead.client.renderer.mob.BoneGolemRenderer;
 import workspacedead.client.renderer.mob.DraconicBlazeModel;
 import workspacedead.client.renderer.mob.DraconicBlazeRenderer;
@@ -29,6 +31,7 @@ import workspacedead.client.renderer.projectile.DeadArrowRenderer;
 import workspacedead.client.renderer.projectile.DirtyArrowRenderer;
 import workspacedead.entity.ModEntityTypes;
 import workspacedead.fluid.ModFluids;
+import workspacedead.item.custom.PotatoArmorItem;
 import workspacedead.particle.ModParticles;
 import workspacedead.particle.custom.PurifyParticles;
 import workspacedead.util.ModItemProperties;
@@ -72,15 +75,15 @@ public class ModEventClientBusEvents {
     @SuppressWarnings({ "resource" }) // Minecraft.getInstance returns a singleton.... we don't close it.
     @SubscribeEvent
     public static void registerParticleFactories(final ParticleFactoryRegisterEvent event) {
-        Minecraft.getInstance().particleEngine.register(ModParticles.PURIFY_PARTICLES.get(), PurifyParticles.Factory::new);
+        Minecraft.getInstance().particleEngine.register(ModParticles.PURIFY_PARTICLES.get(),
+                PurifyParticles.Factory::new);
     }
 
     @SubscribeEvent
-    public static void registerLayer(EntityRenderersEvent.RegisterLayerDefinitions event)
-    {
+    public static void registerLayer(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(DraconicBlazeModel.LAYER_LOCATION, DraconicBlazeModel::createBodyLayer);
     }
-    
+
     @SubscribeEvent
     public static void registerRenderers(final EntityRenderersEvent.RegisterRenderers event) {
         event.registerBlockEntityRenderer(ModBlockEntities.BIOMASS_BLOCK_ENTITY.get(), BioMassBlockRenderer::new);
@@ -90,4 +93,8 @@ public class ModEventClientBusEvents {
         // AnimatedBlockRenderer::new);
     }
 
+    @SubscribeEvent
+    public static void registerArmorRenderers(final EntityRenderersEvent.AddLayers event) {
+        GeoArmorRenderer.registerArmorRenderer(PotatoArmorItem.class, () -> new PotatoArmorRenderer());
+    }
 }

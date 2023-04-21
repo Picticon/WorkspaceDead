@@ -7,7 +7,6 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -48,10 +47,13 @@ import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 import software.bernie.geckolib3.util.GeckoLibUtil;
 import workspacedead.particle.ModParticles;
+import workspacedead.sound.ModSounds;
 
 public class GrassyPotato extends TamableAnimal implements IAnimatable {
-    private static final EntityDataAccessor<Float> SCALESIZE = SynchedEntityData.defineId(GrassyPotato.class, EntityDataSerializers.FLOAT);
-    public static final EntityDataAccessor<Boolean> CHANNELING = SynchedEntityData.defineId(GrassyPotato.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Float> SCALESIZE = SynchedEntityData.defineId(GrassyPotato.class,
+            EntityDataSerializers.FLOAT);
+    public static final EntityDataAccessor<Boolean> CHANNELING = SynchedEntityData.defineId(GrassyPotato.class,
+            EntityDataSerializers.BOOLEAN);
 
     public GrassyPotato(EntityType<? extends TamableAnimal> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
@@ -207,7 +209,8 @@ public class GrassyPotato extends TamableAnimal implements IAnimatable {
                 var x = pos.getX() + 0.5d + Math.cos(i) * .9;
                 var y = pos.getY() + .5 + yoffset;
                 var z = pos.getZ() + 0.5d + Math.sin(i) * .9;
-                level.addParticle(ModParticles.PURIFY_PARTICLES.get(), true, x, y, z, Math.cos(i) * -0.11d, -0.05d, Math.sin(i) * -0.11d);
+                level.addParticle(ModParticles.PURIFY_PARTICLES.get(), true, x, y, z, Math.cos(i) * -0.11d, -0.05d,
+                        Math.sin(i) * -0.11d);
             }
         }
     }
@@ -232,19 +235,23 @@ public class GrassyPotato extends TamableAnimal implements IAnimatable {
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
 
         if (this.isInSittingPose()) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.grassypotato.sit", ILoopType.EDefaultLoopTypes.LOOP));
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.grassypotato.sit",
+                    ILoopType.EDefaultLoopTypes.LOOP));
             return PlayState.CONTINUE;
         }
         if (this.isChanneling()) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.grassypotato.channel", ILoopType.EDefaultLoopTypes.LOOP));
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.grassypotato.channel",
+                    ILoopType.EDefaultLoopTypes.LOOP));
             return PlayState.CONTINUE;
         }
         if (event.isMoving()) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.grassypotato.walk", ILoopType.EDefaultLoopTypes.LOOP));
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.grassypotato.walk",
+                    ILoopType.EDefaultLoopTypes.LOOP));
             return PlayState.CONTINUE;
         }
 
-        event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.grassypotato.idle", ILoopType.EDefaultLoopTypes.LOOP));
+        event.getController().setAnimation(
+                new AnimationBuilder().addAnimation("animation.grassypotato.idle", ILoopType.EDefaultLoopTypes.LOOP));
         return PlayState.CONTINUE;
     }
 
@@ -296,7 +303,8 @@ public class GrassyPotato extends TamableAnimal implements IAnimatable {
                 if (!pPlayer.getAbilities().instabuild) {
                     itemstack.shrink(1);
                 }
-                if (this.random.nextInt(1) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, pPlayer)) {
+                if (this.random.nextInt(1) == 0
+                        && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, pPlayer)) {
                     this.tame(pPlayer);
                     this.navigation.stop();
                     this.setTarget((LivingEntity) null);
@@ -329,19 +337,19 @@ public class GrassyPotato extends TamableAnimal implements IAnimatable {
     }
 
     protected void playStepSound(BlockPos pos, BlockState blockIn) {
-        this.playSound(SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, 0.15F, 1.0F);
+        // this.playSound(ModSoundEvents., 0.15F, 1.0F);
     }
 
     protected SoundEvent getAmbientSound() {
-        return SoundEvents.CAT_STRAY_AMBIENT;
+        return ModSounds.GRASSYPOTATO_AMBIENT.get();
     }
 
     protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-        return SoundEvents.DOLPHIN_HURT;
+        return ModSounds.GRASSYPOTATO_HURT.get();
     }
 
     protected SoundEvent getDeathSound() {
-        return SoundEvents.DOLPHIN_DEATH;
+        return ModSounds.GRASSYPOTATO_DEATH.get();
     }
 
     protected float getSoundVolume() {

@@ -40,8 +40,10 @@ import workspacedead.particle.ModParticles;
 import workspacedead.potion.ModPotions;
 import workspacedead.sound.ModSounds;
 import workspacedead.util.WDServer;
+import workspacedead.world.ModDimensions;
 import workspacedead.world.feature.ModConfiguredFeatures;
 import workspacedead.world.feature.ModPlacedFeatures;
+import workspacedead.world.structure.ModStructures;
 
 import org.slf4j.Logger;
 
@@ -81,6 +83,8 @@ public class WorkspaceDead {
 
         ModPlacedFeatures.register(eventBus);
         ModConfiguredFeatures.register(eventBus);
+        ModDimensions.register();
+        ModStructures.register(eventBus);
 
         GeckoLib.initialize();
 
@@ -94,12 +98,18 @@ public class WorkspaceDead {
 
     private void setup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
-            SpawnPlacements.register(ModEntityTypes.SKELETONCOW.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, AngryAnimals::checkAnimalSpawnRules);
-            SpawnPlacements.register(ModEntityTypes.SKELETONCHICKEN.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, AngryAnimals::checkAnimalSpawnRules);
-            SpawnPlacements.register(ModEntityTypes.SKELETONSHEEP.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, AngryAnimals::checkAnimalSpawnRules);
-            SpawnPlacements.register(ModEntityTypes.SKELETONPIG.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, AngryAnimals::checkAnimalSpawnRules);
-            SpawnPlacements.register(ModEntityTypes.SKELETONSLIME.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, SkeletonSlime::checkSlimeSpawnRules2);
-            SpawnPlacements.register(ModEntityTypes.SKELETONSPIDER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules);
+            SpawnPlacements.register(ModEntityTypes.SKELETONCOW.get(), SpawnPlacements.Type.ON_GROUND,
+                    Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, AngryAnimals::checkAnimalSpawnRules);
+            SpawnPlacements.register(ModEntityTypes.SKELETONCHICKEN.get(), SpawnPlacements.Type.ON_GROUND,
+                    Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, AngryAnimals::checkAnimalSpawnRules);
+            SpawnPlacements.register(ModEntityTypes.SKELETONSHEEP.get(), SpawnPlacements.Type.ON_GROUND,
+                    Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, AngryAnimals::checkAnimalSpawnRules);
+            SpawnPlacements.register(ModEntityTypes.SKELETONPIG.get(), SpawnPlacements.Type.ON_GROUND,
+                    Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, AngryAnimals::checkAnimalSpawnRules);
+            SpawnPlacements.register(ModEntityTypes.SKELETONSLIME.get(), SpawnPlacements.Type.ON_GROUND,
+                    Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, SkeletonSlime::checkSlimeSpawnRules2);
+            SpawnPlacements.register(ModEntityTypes.SKELETONSPIDER.get(), SpawnPlacements.Type.ON_GROUND,
+                    Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules);
 
             ComposterBlock.COMPOSTABLES.put(ModItems.POOP.get().asItem(), .5f);
             ComposterBlock.COMPOSTABLES.put(ModItems.COW_POOP.get().asItem(), .75f);

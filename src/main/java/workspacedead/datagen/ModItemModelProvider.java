@@ -58,6 +58,11 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.DIRTY_ARROW.get());
         simpleItem(ModItems.DEAD_ARROW.get());
 
+        simpleItem(ModItems.POTATO_BOOTS.get());
+        simpleItem(ModItems.POTATO_CHESTPLATE.get());
+        simpleItem(ModItems.POTATO_HELMET.get());
+        simpleItem(ModItems.POTATO_LEGGING.get());
+
         simpleItem(ModItems.GRASSYPOTATO_SEEDS.get());
 
         simpleEgg(SpawnEggs.SKELETONCHICKEN_SPAWNEGG.get());

@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:village",
+    "config": {
+        "start_pool": "workspacedead:potato_field",
+        "size": 1
+    },
+    "biomes": "workspacedead:potatofields",
+    "xbiomes": "#workspacedead:has_structure/has_potato_fields",
+    "adapt_noise": true,
+    "spawn_overrides": {
+        "monster": {
+            "bounding_box": "piece",
+            "spawns": [
+                {
+                    "type": "workspacedead:grassypotato",
+                    "weight": 5,
+                    "minCount": 1,
+                    "maxCount": 3
+                }
+            ]
+        }
+    }
+}
