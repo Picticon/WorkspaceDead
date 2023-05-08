@@ -49,6 +49,15 @@ public class ModEntityLootTables extends EntityLoot {
         this.add(ModEntityTypes.SKELETONSLIME.get(), bones);
         this.add(ModEntityTypes.BONE_GOLEM.get(), bones);
 
+        var rottenpotato = LootTable.lootTable()//
+                .withPool(LootPool.lootPool()//
+                        .setRolls(ConstantValue.exactly(1.0F))//
+                        .add(LootItem.lootTableItem(Items.POISONOUS_POTATO)
+                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0F, 2.0F)))
+                                .apply(LootingEnchantFunction
+                                        .lootingMultiplier(UniformGenerator.between(0.0F, 1.0F)))));
+        this.add(ModEntityTypes.ROTTENPOTATO.get(), rottenpotato);
+
         var potatoes = LootTable.lootTable()//
                 .withPool(LootPool.lootPool()//
                         .setRolls(ConstantValue.exactly(1.0F))//

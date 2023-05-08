@@ -2,6 +2,7 @@ package workspacedead.config;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 import net.minecraftforge.common.ForgeConfigSpec;
@@ -20,6 +21,7 @@ public final class CommonConfig {
     public static final ForgeConfigSpec.ConfigValue<List<? extends String>> weak_purify_blocks;
 
     public static final ForgeConfigSpec.ConfigValue<List<? extends String>> poop_mobs;
+    public static HashMap<String, String[]> poop_mobs_cache;
 
     static {
         BUILDER.push("WorkspaceDead Config");
@@ -72,9 +74,11 @@ public final class CommonConfig {
         poopMobs.add("minecraft:sheep:workspacedead:sheeppoop");
         poopMobs.add("minecraft:pig:workspacedead:pigpoop");
         poopMobs.add("minecraft:iron_golem:workspacedead:golempoop");
+        poopMobs.add("minecraft:witch:workspacedead:witchpoop");
         poopMobs.add("minecraft:spider:workspacedead:spiderpoop");
         poopMobs.add("minecraft:villager:workspacedead:villagerpoop");
         poopMobs.add("minecraft:slime:workspacedead:slimepoop");
+        poopMobs.add("workspacedead:blaze:workspacedead:blazepoop");
         poopMobs.add("workspacedead:draconicblaze:workspacedead:dragonpoop");
 
         poop_mobs = BUILDER.comment(
@@ -85,4 +89,17 @@ public final class CommonConfig {
         SPEC = BUILDER.build();
     }
 
+    public static void buildCaches() {
+        var list = CommonConfig.poop_mobs.get();
+        if (list != null) {
+            poop_mobs_cache = new HashMap<String, String[]>();
+            for (var idx = 0; idx < list.size(); idx++) {
+                var t = list.get(idx);
+                var arr = t.split(":");
+                if (arr.length == 4) {
+                    poop_mobs_cache.put(arr[0] + ":" + arr[1], new String[] { arr[0], arr[1], arr[2], arr[3] });
+                }
+            }
+        }
+    }
 }

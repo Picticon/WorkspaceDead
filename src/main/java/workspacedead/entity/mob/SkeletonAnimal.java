@@ -1,7 +1,11 @@
 package workspacedead.entity.mob;
 
+import java.util.Random;
+
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.Difficulty;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
@@ -12,12 +16,24 @@ import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
+import workspacedead.block.ModBlocks;
 
 public class SkeletonAnimal extends Monster {
 
     protected SkeletonAnimal(EntityType<? extends Monster> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
+    }
+
+    public static boolean checkAnimalSpawnRules(EntityType<? extends Monster> pType, LevelAccessor pLevel,
+            MobSpawnType pSpawnType, BlockPos pPos, Random pRandom) {
+        return ((pLevel.getBlockState(pPos.below()).is(ModBlocks.DEADDIRT.get()) || //
+                pLevel.getBlockState(pPos.below()).is(ModBlocks.DEADSAND.get()) || //
+                pLevel.getBlockState(pPos.below()).is(ModBlocks.DEADSTONE.get()) || //
+                pLevel.getBlockState(pPos.below()).is(ModBlocks.DEADCLAY.get()))  //
+                && pLevel.getDifficulty() != Difficulty.PEACEFUL
+                && checkMobSpawnRules(pType, pLevel, pSpawnType, pPos, pRandom));
     }
 
     @Override

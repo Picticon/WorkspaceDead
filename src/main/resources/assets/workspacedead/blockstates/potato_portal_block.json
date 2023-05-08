@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "axis=z": {
+            "model": "workspacedead:block/potato_portal_block_ew"
+        },
+        "axis=x": {
+            "model": "workspacedead:block/potato_portal_block_ns"
+        }
+    }
+}

@@ -17,6 +17,7 @@ import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.event.config.ModConfigEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
@@ -32,19 +33,23 @@ import workspacedead.config.CommonConfig;
 import workspacedead.datagen.ModItemTagsProvider;
 import workspacedead.effect.ModEffects;
 import workspacedead.entity.ModEntityTypes;
-import workspacedead.entity.mob.AngryAnimals;
+import workspacedead.entity.mob.SkeletonAnimal;
 import workspacedead.entity.mob.SkeletonSlime;
 import workspacedead.fluid.ModFluids;
 import workspacedead.item.ModItems;
 import workspacedead.particle.ModParticles;
 import workspacedead.potion.ModPotions;
 import workspacedead.sound.ModSounds;
-import workspacedead.util.WDServer;
+import workspacedead.util.Chatter;
 import workspacedead.world.ModDimensions;
+import workspacedead.world.ModPOIs;
 import workspacedead.world.feature.ModConfiguredFeatures;
 import workspacedead.world.feature.ModPlacedFeatures;
 import workspacedead.world.structure.ModStructures;
 
+import java.util.List;
+
+import org.apache.logging.log4j.core.config.ConfigurationFileWatcher;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -81,6 +86,8 @@ public class WorkspaceDead {
         ModEntityTypes.register(eventBus); // needs to go before "Items", because Items registers spawn eggs.
         ModBlockEntities.register(eventBus);
 
+        ModPOIs.register(eventBus);
+
         ModPlacedFeatures.register(eventBus);
         ModConfiguredFeatures.register(eventBus);
         ModDimensions.register();
@@ -99,13 +106,13 @@ public class WorkspaceDead {
     private void setup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
             SpawnPlacements.register(ModEntityTypes.SKELETONCOW.get(), SpawnPlacements.Type.ON_GROUND,
-                    Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, AngryAnimals::checkAnimalSpawnRules);
+                    Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, SkeletonAnimal::checkAnimalSpawnRules);
             SpawnPlacements.register(ModEntityTypes.SKELETONCHICKEN.get(), SpawnPlacements.Type.ON_GROUND,
-                    Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, AngryAnimals::checkAnimalSpawnRules);
+                    Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, SkeletonAnimal::checkAnimalSpawnRules);
             SpawnPlacements.register(ModEntityTypes.SKELETONSHEEP.get(), SpawnPlacements.Type.ON_GROUND,
-                    Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, AngryAnimals::checkAnimalSpawnRules);
+                    Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, SkeletonAnimal::checkAnimalSpawnRules);
             SpawnPlacements.register(ModEntityTypes.SKELETONPIG.get(), SpawnPlacements.Type.ON_GROUND,
-                    Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, AngryAnimals::checkAnimalSpawnRules);
+                    Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, SkeletonAnimal::checkAnimalSpawnRules);
             SpawnPlacements.register(ModEntityTypes.SKELETONSLIME.get(), SpawnPlacements.Type.ON_GROUND,
                     Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, SkeletonSlime::checkSlimeSpawnRules2);
             SpawnPlacements.register(ModEntityTypes.SKELETONSPIDER.get(), SpawnPlacements.Type.ON_GROUND,
@@ -149,7 +156,8 @@ public class WorkspaceDead {
     // You can use SubscribeEvent and let the Event Bus discover methods to call
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
-        WDServer.staticServer = event.getServer();
+        Chatter.staticServer = event.getServer();
+        CommonConfig.buildCaches();
         // Do something when the server starts
         // LOGGER.info("HELLO from server starting");
     }
@@ -175,6 +183,13 @@ public class WorkspaceDead {
             if (tag.contains(item))
                 event.getEntity().setInvulnerable(true);
 
+        }
+    }
+
+    @SubscribeEvent
+    static void onFileChange(final ModConfigEvent.Reloading configEvent) {
+        if (configEvent.getConfig().getSpec() == CommonConfig.SPEC) {
+            CommonConfig.buildCaches();
         }
     }
 }

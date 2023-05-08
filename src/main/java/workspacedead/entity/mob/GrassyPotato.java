@@ -5,12 +5,15 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
@@ -46,6 +49,7 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 import software.bernie.geckolib3.util.GeckoLibUtil;
+import workspacedead.entity.ModEntityTypes;
 import workspacedead.particle.ModParticles;
 import workspacedead.sound.ModSounds;
 
@@ -314,6 +318,27 @@ public class GrassyPotato extends TamableAnimal implements IAnimatable {
                     this.level.broadcastEntityEvent(this, (byte) 6);
                 }
 
+                return InteractionResult.SUCCESS;
+            } else if (itemstack.is(Items.ROTTEN_FLESH)) {
+                if (!pPlayer.getAbilities().instabuild) {
+                    itemstack.shrink(1);
+                }
+                var newent = ModEntityTypes.ROTTENPOTATO.get();
+                if (newent != null) {
+                    var heyhey = newent.create(pPlayer.level);
+                    if (heyhey != null) {
+                        heyhey.moveTo(this.blockPosition(), this.getYRot(), this.getXRot());
+                        if (heyhey instanceof LivingEntity) {
+                            ((LivingEntity) heyhey).addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 120));
+                            ((LivingEntity) heyhey).addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 120));
+                            ((LivingEntity) heyhey).setSpeed(0);
+                        }
+                        pPlayer.level.addFreshEntity(heyhey);
+                        heyhey.setXRot(this.getXRot());
+                        heyhey.setYRot(this.getYRot());
+                        this.discard();
+                    }
+                }
                 return InteractionResult.SUCCESS;
             }
             return super.mobInteract(pPlayer, pHand);

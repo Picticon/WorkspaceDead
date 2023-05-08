@@ -5,6 +5,7 @@ import org.jetbrains.annotations.NotNull;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.world.level.block.FenceBlock;
 import net.minecraft.world.level.block.FenceGateBlock;
@@ -85,6 +86,11 @@ public class ModBlocksStateProvider extends BlockStateProvider {
         // makeSimpleBlockAndItem(ModBlocks.CARVED_POOPBLOCK.get());
         // makeSimpleBlockAndItem(ModBlocks.POOP_O_LANTERN.get());
 
+        // makeSimpleBlockAndItem(ModBlocks.DEAD_FARMLAND.get());
+        cubeColumn(ModBlocks.DEAD_FARMLAND.get(), blockTexture(Blocks.DIRT),
+                new ResourceLocation(WorkspaceDead.MOD_ID, "block/deadfarmland"));
+        itemBlock(ModBlocks.DEAD_FARMLAND);
+
         makeFacingBlock(ModBlocks.CARVED_POOPBLOCK);
         itemFromBlock(ModBlocks.CARVED_POOPBLOCK);
         makeFacingBlock(ModBlocks.POOP_O_LANTERN);
@@ -162,7 +168,7 @@ public class ModBlocksStateProvider extends BlockStateProvider {
                 .parent(new ModelFile.UncheckedModelFile(parent));
     }
 
-    // This makes a simple BLOCK MODEL AND ITEM for a BLOCK
+    // This makes a simple ITEM/MODEL FROM A BLOCK
     private void itemBlock(RegistryObject<Block> registeredBlock) {
         itemBlock(registeredBlock.get());
     }
@@ -171,6 +177,10 @@ public class ModBlocksStateProvider extends BlockStateProvider {
     private void itemBlock(Block block) {
         itemModels().getBuilder(block.getRegistryName().getPath()).parent(modelFile(block));
         // simpleBlockItem(block, cubeAll(block));
+    }
+
+    private void cubeColumn(Block block, ResourceLocation side, ResourceLocation end) {
+        simpleBlock(block, models().cubeColumn(block.getRegistryName().getPath(), side, end));
     }
 
     private ModelFile modelFile(Block block) {

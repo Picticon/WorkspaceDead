@@ -5,6 +5,7 @@
     "refmap": "workspacedead.mixins.refmap.json",
     "mixins": [
         "ItemEntityMixin",
-        "NetherPortalMixin"
+        "NetherPortalMixin",
+        "CropBlockMixin"
     ]
 }

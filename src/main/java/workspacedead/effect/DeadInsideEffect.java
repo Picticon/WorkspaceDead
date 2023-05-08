@@ -30,24 +30,22 @@ public class DeadInsideEffect extends MobEffect {
         if (!pLivingEntity.level.isClientSide()) {
             if (pLivingEntity.level.random.nextDouble() < .05) {
                 var itemToDrop = ModItems.POOP.get(); // default poop
-                var list = CommonConfig.poop_mobs.get();
-                if (list != null) {
-                    for (var idx = 0; idx < list.size(); idx++) {
-                        var t = list.get(idx);
-                        var arr = t.split(":");
-                        if (arr.length == 4) {
-                            var ent = ForgeRegistries.ENTITIES.getValue(new ResourceLocation(arr[0], arr[1]));
-                            if (ent != null && pLivingEntity.getType() == ent) {
-                                var testitem = ForgeRegistries.ITEMS.getValue(new ResourceLocation(arr[2], arr[3]));
-                                if (testitem != null) {
-                                    itemToDrop = testitem;
-                                }
-                            }
+                if (CommonConfig.poop_mobs_cache == null)
+                    return;
+                var entry = CommonConfig.poop_mobs_cache.get(pLivingEntity.getType().getRegistryName().toString());
+                if (entry != null) {
+                    var ent = ForgeRegistries.ENTITIES.getValue(new ResourceLocation(entry[0], entry[1]));
+                    if (ent != null && pLivingEntity.getType() == ent) {
+                        var testitem = ForgeRegistries.ITEMS.getValue(new ResourceLocation(entry[2], entry[3]));
+                        if (testitem != null) {
+                            itemToDrop = testitem;
                         }
                     }
                 }
-                //var c = pLivingEntity.getClass().toString();
-                if (pLivingEntity instanceof Player) {
+                // var c = pLivingEntity.getClass().toString();
+                if (pLivingEntity instanceof Player)
+
+                {
                     if (pLivingEntity.level.random.nextDouble() < .05) {
                         itemToDrop = ModItems.SEEDED_POOP.get();
                     }
@@ -55,6 +53,7 @@ public class DeadInsideEffect extends MobEffect {
                 pLivingEntity.spawnAtLocation(itemToDrop);
                 pLivingEntity.hurt(DamageSource.MAGIC, 0.5f);
             }
+
             // pLivingEntity.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0);
             // var entity=EntityType.create()
             // var itemEntity = pLivingEntity.level.addFreshEntity(())

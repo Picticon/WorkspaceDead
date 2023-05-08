@@ -59,4 +59,11 @@
             "workspacedead:grassypotato_death"
         ]
     }
+    ,
+    "pop": {
+        "subtitle": "sounds.workspacedead.pop",
+        "sounds": [
+            "workspacedead:pop"
+        ]
+    }
 }

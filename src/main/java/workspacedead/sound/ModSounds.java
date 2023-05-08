@@ -24,6 +24,8 @@ public class ModSounds {
     public static RegistryObject<SoundEvent> GRASSYPOTATO_HURT = registerSoundEvent("grassypotato_hurt");
     public static RegistryObject<SoundEvent> GRASSYPOTATO_AMBIENT = registerSoundEvent("grassypotato_ambient");
     public static RegistryObject<SoundEvent> GRASSYPOTATO_DEATH = registerSoundEvent("grassypotato_death");
+    
+    public static RegistryObject<SoundEvent> POP = registerSoundEvent("pop");
 
     private static RegistryObject<SoundEvent> registerSoundEvent(String name) {
         return SOUND_EVENTS.register(name, () -> new SoundEvent(new ResourceLocation(WorkspaceDead.MOD_ID, name)));

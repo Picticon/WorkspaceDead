@@ -122,6 +122,12 @@ public class ModItems {
             () -> new PotatoArmorItem(ModArmorMaterials.POTATO, EquipmentSlot.FEET,
                     new Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB)));
 
+    public static final RegistryObject<Item> KUBE_WAND = ITEMS.register("kube_wand",
+            () -> new KubeWand(new Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB)));
+
+    public static final RegistryObject<PotatoPortalCatalystItem> POTATO_PORTAL_CATALYST = ITEMS
+            .register("potato_portal_catalyst", PotatoPortalCatalystItem::new);
+
     // public static final RegistryObject<Item> ANIMATED_BLOCK_ITEM =
     // ITEMS.register("animated_block",
     // () -> new AnimatedBlockItem(ModBlocks.ANIMATED_BLOCK.get(),

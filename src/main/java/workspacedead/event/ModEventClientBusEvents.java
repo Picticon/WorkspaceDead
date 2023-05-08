@@ -21,6 +21,7 @@ import workspacedead.client.renderer.mob.BoneGolemRenderer;
 import workspacedead.client.renderer.mob.DraconicBlazeModel;
 import workspacedead.client.renderer.mob.DraconicBlazeRenderer;
 import workspacedead.client.renderer.mob.GrassyPotatoRenderer;
+import workspacedead.client.renderer.mob.RottenPotatoRenderer;
 import workspacedead.client.renderer.mob.SkeletonChickenRenderer;
 import workspacedead.client.renderer.mob.SkeletonCowRenderer;
 import workspacedead.client.renderer.mob.SkeletonPigRenderer;
@@ -54,6 +55,8 @@ public class ModEventClientBusEvents {
 
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.GRASSYPOTATO_PLANT.get(), RenderType.cutout());
 
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.POTATOPORTALBLOCK.get(), RenderType.translucent());
+
         ModItemProperties.addCustomItemProperties();
     }
 
@@ -68,6 +71,7 @@ public class ModEventClientBusEvents {
         EntityRenderers.register(ModEntityTypes.SKELETONSLIME.get(), SkeletonSlimeRenderer::new);
         EntityRenderers.register(ModEntityTypes.SKELETONSPIDER.get(), SkeletonSpiderRenderer::new);
         EntityRenderers.register(ModEntityTypes.GRASSYPOTATO.get(), GrassyPotatoRenderer::new);
+        EntityRenderers.register(ModEntityTypes.ROTTENPOTATO.get(), RottenPotatoRenderer::new);
         EntityRenderers.register(ModEntityTypes.BONE_GOLEM.get(), BoneGolemRenderer::new);
         EntityRenderers.register(ModEntityTypes.DRACONICBLAZE.get(), DraconicBlazeRenderer::new);
     }

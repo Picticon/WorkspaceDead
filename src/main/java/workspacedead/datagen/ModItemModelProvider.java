@@ -45,6 +45,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.PIG_POOP.get());
         simpleItem(ModItems.GOLEM_POOP.get());
         simpleItem(ModItems.VILLAGER_POOP.get());
+        simpleItem(ModItems.POTATO_PORTAL_CATALYST.get());
 
         simpleItem(ModItems.ENDER_ROD.get());
 
@@ -63,6 +64,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.POTATO_HELMET.get());
         simpleItem(ModItems.POTATO_LEGGING.get());
 
+        simpleItem(ModItems.KUBE_WAND.get());
+
         simpleItem(ModItems.GRASSYPOTATO_SEEDS.get());
 
         simpleEgg(SpawnEggs.SKELETONCHICKEN_SPAWNEGG.get());
@@ -72,6 +75,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleEgg(SpawnEggs.SKELETONSLIME_SPAWNEGG.get());
         simpleEgg(SpawnEggs.SKELETONSPIDER_SPAWNEGG.get());
         simpleEgg(SpawnEggs.GRASSYPOTATO_SPAWN_EGG.get());
+        simpleEgg(SpawnEggs.ROTTENPOTATO_SPAWN_EGG.get());
         simpleEgg(SpawnEggs.BONE_GOLEM_SPAWNEGG.get());
         simpleEgg(SpawnEggs.DRACONICBLAZE_SPAWNEGG.get());
     }

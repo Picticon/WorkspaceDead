@@ -8,7 +8,8 @@ import workspacedead.effect.ModEffects;
 
 @Mod.EventBusSubscriber()
 public class ModMobs {
-    // if an entity is trying to teleport with the DEADINSIDE effect, cancel the
+    // if an entity is trying to teleport with the DEADINSIDE or DOOMED effect,
+    // cancel the
     // teleport.
     @SubscribeEvent
     public static void onEnderTeleport(EntityTeleportEvent.EnderEntity event) {
@@ -17,6 +18,9 @@ public class ModMobs {
         if (event.getEntity() instanceof LivingEntity) {
             var livingEntity = (LivingEntity) event.getEntity();
             if (livingEntity.hasEffect(ModEffects.DEADINSIDE.get())) {
+                event.setCanceled(true);
+            }
+            if (livingEntity.hasEffect(ModEffects.DOOMED.get())) {
                 event.setCanceled(true);
             }
         }

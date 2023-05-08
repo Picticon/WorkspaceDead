@@ -7,6 +7,7 @@ import workspacedead.WorkspaceDead;
 import workspacedead.entity.ModEntityTypes;
 import workspacedead.entity.mob.BoneGolem;
 import workspacedead.entity.mob.GrassyPotato;
+import workspacedead.entity.mob.RottenPotato;
 import workspacedead.entity.mob.SkeletonChicken;
 import workspacedead.entity.mob.SkeletonCow;
 import workspacedead.entity.mob.SkeletonPig;
@@ -27,6 +28,7 @@ public class ModEventBusEvents {
         event.put(ModEntityTypes.SKELETONSLIME.get(), SkeletonSlime.setAttributes());
         event.put(ModEntityTypes.SKELETONSPIDER.get(), SkeletonSpider.setAttributes());
         event.put(ModEntityTypes.GRASSYPOTATO.get(), GrassyPotato.setAttributes());
+        event.put(ModEntityTypes.ROTTENPOTATO.get(), RottenPotato.setAttributes());
         event.put(ModEntityTypes.BONE_GOLEM.get(), BoneGolem.setAttributes());
         event.put(ModEntityTypes.DRACONICBLAZE.get(), BoneGolem.setAttributes());
     }

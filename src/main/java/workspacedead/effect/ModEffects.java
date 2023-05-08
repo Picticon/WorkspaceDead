@@ -14,6 +14,9 @@ public class ModEffects {
 
     public static final RegistryObject<MobEffect> DEADINSIDE = MOD_EFFECTS.register("deadinside",
             () -> new DeadInsideEffect(MobEffectCategory.HARMFUL, 0x334466));
+    
+            public static final RegistryObject<MobEffect> DOOMED = MOD_EFFECTS.register("doomed",
+            () -> new DoomedEffect(MobEffectCategory.HARMFUL, 0x334466));
 
     public static void register(IEventBus eventBus) {
         MOD_EFFECTS.register(eventBus);

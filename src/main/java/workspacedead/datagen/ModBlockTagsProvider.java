@@ -8,12 +8,17 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import workspacedead.WorkspaceDead;
 import workspacedead.block.ModBlocks;
+import workspacedead.util.ModTags;
 
 public class ModBlockTagsProvider extends BlockTagsProvider {
 
-    public ModBlockTagsProvider(DataGenerator pGenerator, String modId, @Nullable ExistingFileHelper existingFileHelper) {
+    public ModBlockTagsProvider(DataGenerator pGenerator, String modId,
+            @Nullable ExistingFileHelper existingFileHelper) {
         super(pGenerator, modId, existingFileHelper);
     }
 
@@ -36,7 +41,8 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
         this.tag(BlockTags.PLANKS).add(ModBlocks.BURNTPLANKS.get(), ModBlocks.DEADPLANKS.get());
         this.tag(BlockTags.STAIRS).add(ModBlocks.BURNTSTAIRS.get(), ModBlocks.DEADSTAIRS.get());
 
-        this.tag(BlockTags.LOGS).add(ModBlocks.DEADLOG.get(), ModBlocks.DEADLOG_STRIPPED.get(), ModBlocks.DEADWOOD.get(), ModBlocks.DEADWOOD_STRIPPED.get());
+        this.tag(BlockTags.LOGS).add(ModBlocks.DEADLOG.get(), ModBlocks.DEADLOG_STRIPPED.get(),
+                ModBlocks.DEADWOOD.get(), ModBlocks.DEADWOOD_STRIPPED.get());
         this.tag(BlockTags.LOGS_THAT_BURN).add(ModBlocks.DEADLOG.get(), ModBlocks.DEADLOG_STRIPPED.get());
         this.tag(BlockTags.MINEABLE_WITH_AXE).add(ModBlocks.DEADLOG.get(), ModBlocks.DEADLOG_STRIPPED.get());
         this.tag(BlockTags.MINEABLE_WITH_AXE).add(ModBlocks.DEADWOOD.get(), ModBlocks.DEADWOOD_STRIPPED.get());
@@ -52,12 +58,17 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
         this.tag(BlockTags.MINEABLE_WITH_SHOVEL).add(ModBlocks.DEADCLAY.get());
         this.tag(BlockTags.MINEABLE_WITH_SHOVEL).add(ModBlocks.POOP_O_LANTERN.get(), ModBlocks.CARVED_POOPBLOCK.get());
         this.tag(BlockTags.MINEABLE_WITH_SHOVEL).add(ModBlocks.POOPBLOCK.get(), ModBlocks.POOPBLOCK2X.get());
+        this.tag(BlockTags.MINEABLE_WITH_SHOVEL).add(ModBlocks.DEAD_FARMLAND.get());
         this.tag(BlockTags.SAPLINGS).add(ModBlocks.DEADSAPLING.get());
         this.tag(BlockTags.LEAVES).add(ModBlocks.DEADLEAVES.get());
-        //this.tag(SUPERMAN).add(ModBlocks.POOPBLOCK2X.get());
+
+        this.tag(ModTags.Blocks.POTATO_PORTAL_FRAME).add(ModBlocks.POTATOBLOCK.get());
+
+        // this.tag(SUPERMAN).add(ModBlocks.POOPBLOCK2X.get());
     }
 
     protected Path getPath(ResourceLocation p_126514_) {
-        return this.generator.getOutputFolder().resolve("data/" + p_126514_.getNamespace() + "/tags/blocks/" + p_126514_.getPath() + ".json");
+        return this.generator.getOutputFolder()
+                .resolve("data/" + p_126514_.getNamespace() + "/tags/blocks/" + p_126514_.getPath() + ".json");
     }
 }

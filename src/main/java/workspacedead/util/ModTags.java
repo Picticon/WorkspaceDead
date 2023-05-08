@@ -25,7 +25,9 @@ public class ModTags {
         // tag("dowsing_rod_valuables");
         // public static final TagKey<Block> PORTAL_FRAME_BLOCKS =
         // tag("portal_frame_blocks");
-        public static final TagKey<Block> DEAD_ANIMAL_SPAWN_BLOCKS = tag("workspacedead:dead_animal_spawn_blocks");
+        public static final TagKey<Block> DEAD_ANIMAL_SPAWN_BLOCKS = tag("dead_animal_spawn_blocks");
+        public static TagKey<Block> POTATO_PORTAL_FRAME = BlockTags
+                .create(new ResourceLocation(WorkspaceDead.MOD_ID, "potato_portal_frame"));
 
         private static TagKey<Block> tag(String name) {
             return BlockTags.create(new ResourceLocation(WorkspaceDead.MOD_ID, name));

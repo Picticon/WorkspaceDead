@@ -48,6 +48,13 @@ public class ModBlocks {
             () -> new Block(BlockBehaviour.Properties.of(Material.CACTUS).strength(.9f).sound(SoundType.CROP)),
             ModCreativeModeTab.ITEMS_TAB);
 
+    public static final RegistryObject<Block> POTATOPORTALBLOCK = registerBlockWithoutBlockItem("potato_portal_block",
+            PotatoPortalBlock::new);
+
+    public static final RegistryObject<Block> DEAD_FARMLAND = registerBlock("deadfarmland",
+            () -> new DeadFarmland(BlockBehaviour.Properties.of(Material.DIRT).strength(.9f).sound(SoundType.GRAVEL)),
+            ModCreativeModeTab.ITEMS_TAB);
+
     public static final RegistryObject<Block> DEADSTONE = registerBlock("deadstone",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE).strength(.9f).sound(SoundType.STONE)),
             ModCreativeModeTab.ITEMS_TAB);
@@ -67,12 +74,28 @@ public class ModBlocks {
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE).strength(1.25f).sound(SoundType.STONE)),
             ModCreativeModeTab.ITEMS_TAB);
 
-    public static final RegistryObject<Block> POOPBLOCK2X = registerBlock("poopblock2x", //
-            () -> new Block(BlockBehaviour.Properties.of(Material.SPONGE).strength(1).sound(SoundType.SLIME_BLOCK)),
+    public static final RegistryObject<Block> DEADLOG = registerBlock("deadlog",
+            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG)),
+            ModCreativeModeTab.ITEMS_TAB);
+    public static final RegistryObject<Block> DEADWOOD = registerBlock("deadwood",
+            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WOOD)),
+            ModCreativeModeTab.ITEMS_TAB);
+
+    public static final RegistryObject<Block> DEADLOG_STRIPPED = registerBlock("deadlog_stripped",
+            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_LOG)),
+            ModCreativeModeTab.ITEMS_TAB);
+    public static final RegistryObject<Block> DEADWOOD_STRIPPED = registerBlock("deadwood_stripped",
+            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_WOOD)),
+            ModCreativeModeTab.ITEMS_TAB);
+    public static final RegistryObject<Block> DEADSAPLING = registerBlock("deadsapling",
+            () -> new DeadSaplingBlock(new DeadTreeGrower(), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)),
             ModCreativeModeTab.ITEMS_TAB);
 
     public static final RegistryObject<Block> POOPBLOCK = registerBlock("poopblock",
             () -> new PoopBlock(BlockBehaviour.Properties.of(Material.SPONGE).strength(1).sound(SoundType.SLIME_BLOCK)),
+            ModCreativeModeTab.ITEMS_TAB);
+    public static final RegistryObject<Block> POOPBLOCK2X = registerBlock("poopblock2x", //
+            () -> new Block(BlockBehaviour.Properties.of(Material.SPONGE).strength(1).sound(SoundType.SLIME_BLOCK)),
             ModCreativeModeTab.ITEMS_TAB);
     public static final RegistryObject<Block> CARVED_POOPBLOCK = registerBlock("carvedpoopblock",
             () -> new CarvedPoopBlock(
@@ -85,22 +108,6 @@ public class ModBlocks {
                     })),
             ModCreativeModeTab.ITEMS_TAB);
 
-    public static final RegistryObject<Block> DEADLOG = registerBlock("deadlog",
-            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG)),
-            ModCreativeModeTab.ITEMS_TAB);
-    public static final RegistryObject<Block> DEADWOOD = registerBlock("deadwood",
-            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WOOD)),
-            ModCreativeModeTab.ITEMS_TAB);
-    public static final RegistryObject<Block> DEADLOG_STRIPPED = registerBlock("deadlog_stripped",
-            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_LOG)),
-            ModCreativeModeTab.ITEMS_TAB);
-    public static final RegistryObject<Block> DEADWOOD_STRIPPED = registerBlock("deadwood_stripped",
-            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_WOOD)),
-            ModCreativeModeTab.ITEMS_TAB);
-    public static final RegistryObject<Block> DEADSAPLING = registerBlock("deadsapling",
-            () -> new DeadSaplingBlock(new DeadTreeGrower(), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)),
-            ModCreativeModeTab.ITEMS_TAB);
-
     public static final RegistryObject<DoorBlock> DEADDOOR = registerBlock("deaddoor",
             () -> new DoorBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(5f).noOcclusion()),
             ModCreativeModeTab.ITEMS_TAB);
@@ -110,32 +117,12 @@ public class ModBlocks {
     public static final RegistryObject<SlabBlock> DEADSLAB = registerBlock("deadslab",
             () -> new SlabBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(5f).noOcclusion()),
             ModCreativeModeTab.ITEMS_TAB);
-
-    public static final RegistryObject<DoorBlock> BURNTDOOR = registerBlock("burntdoor",
-            () -> new DoorBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(5f).noOcclusion()),
-            ModCreativeModeTab.ITEMS_TAB);
-    public static final RegistryObject<TrapDoorBlock> BURNTTRAPDOOR = registerBlock("burnttrapdoor",
-            () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(5f).noOcclusion()),
-            ModCreativeModeTab.ITEMS_TAB);
-    public static final RegistryObject<SlabBlock> BURNTSLAB = registerBlock("burntslab",
-            () -> new SlabBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(5f).noOcclusion()),
-            ModCreativeModeTab.ITEMS_TAB);
-
     public static final RegistryObject<FenceBlock> DEADFENCE = registerBlock("deadfence",
             () -> new FenceBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(5f).noOcclusion()),
             ModCreativeModeTab.ITEMS_TAB);
     public static final RegistryObject<FenceGateBlock> DEADFENCE_GATE = registerBlock("deadfence_gate",
             () -> new FenceGateBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(5f).noOcclusion()),
             ModCreativeModeTab.ITEMS_TAB);
-    public static final RegistryObject<FenceBlock> BURNTFENCE = registerBlock("burntfence",
-            () -> new FenceBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(5f).noOcclusion()),
-            ModCreativeModeTab.ITEMS_TAB);
-    public static final RegistryObject<FenceGateBlock> BURNTFENCE_GATE = registerBlock("burntfence_gate",
-            () -> new FenceGateBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(5f).noOcclusion()),
-            ModCreativeModeTab.ITEMS_TAB);
-    public static final RegistryObject<Block> GRASSYPOTATO_PLANT = registerBlockWithoutBlockItem("grassypotato_plant",
-            () -> new GrassyPotatoPlantBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).noOcclusion()));
-
     public static final RegistryObject<Block> DEADPLANKS = registerBlock("deadplanks",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)) {
                 @Override
@@ -153,6 +140,22 @@ public class ModBlocks {
                     return 5;
                 }
             }, ModCreativeModeTab.ITEMS_TAB);
+
+    public static final RegistryObject<DoorBlock> BURNTDOOR = registerBlock("burntdoor",
+            () -> new DoorBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(5f).noOcclusion()),
+            ModCreativeModeTab.ITEMS_TAB);
+    public static final RegistryObject<TrapDoorBlock> BURNTTRAPDOOR = registerBlock("burnttrapdoor",
+            () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(5f).noOcclusion()),
+            ModCreativeModeTab.ITEMS_TAB);
+    public static final RegistryObject<SlabBlock> BURNTSLAB = registerBlock("burntslab",
+            () -> new SlabBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(5f).noOcclusion()),
+            ModCreativeModeTab.ITEMS_TAB);
+    public static final RegistryObject<FenceBlock> BURNTFENCE = registerBlock("burntfence",
+            () -> new FenceBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(5f).noOcclusion()),
+            ModCreativeModeTab.ITEMS_TAB);
+    public static final RegistryObject<FenceGateBlock> BURNTFENCE_GATE = registerBlock("burntfence_gate",
+            () -> new FenceGateBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(5f).noOcclusion()),
+            ModCreativeModeTab.ITEMS_TAB);
 
     public static final RegistryObject<Block> BURNTPLANKS = registerBlock("burntplanks",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)) {
@@ -198,6 +201,9 @@ public class ModBlocks {
                     return 30;
                 }
             }, ModCreativeModeTab.ITEMS_TAB);
+
+    public static final RegistryObject<Block> GRASSYPOTATO_PLANT = registerBlockWithoutBlockItem("grassypotato_plant",
+            () -> new GrassyPotatoPlantBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).noOcclusion()));
 
     // public static final RegistryObject<Block> ANIMATED_BLOCK =
     // registerBlockWithoutBlockItem("animated_block",

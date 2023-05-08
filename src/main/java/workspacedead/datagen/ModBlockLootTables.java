@@ -59,6 +59,7 @@ public class ModBlockLootTables extends BlockLoot {
         this.dropSelf(ModBlocks.CARVED_POOPBLOCK.get());
 
         this.dropSelf(ModBlocks.BIOMASS_BLOCK.get());
+        this.dropSelf(ModBlocks.DEAD_FARMLAND.get());
 
         LootItemCondition.Builder lootitemcondition$builder = //
                 LootItemBlockStatePropertyCondition.hasBlockStateProperties(ModBlocks.GRASSYPOTATO_PLANT.get())//
