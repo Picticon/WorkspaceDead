@@ -27,6 +27,7 @@ public class PoopBlock extends Block {
         super(blockProps);
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public InteractionResult use(BlockState pBlockState, Level pLevel, BlockPos blockPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHitResult) {
         ItemStack itemstack = pPlayer.getItemInHand(pHand);

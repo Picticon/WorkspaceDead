@@ -70,6 +70,7 @@ public final class CommonConfig {
         poopMobs.add("minecraft:zombie:workspacedead:zombiepoop");
         poopMobs.add("minecraft:enderman:workspacedead:enderpoop");
         poopMobs.add("minecraft:cow:workspacedead:cowpoop");
+        poopMobs.add("minecraft:phantom:workspacedead:phantompoop");
         poopMobs.add("minecraft:chicken:workspacedead:chickenpoop");
         poopMobs.add("minecraft:sheep:workspacedead:sheeppoop");
         poopMobs.add("minecraft:pig:workspacedead:pigpoop");

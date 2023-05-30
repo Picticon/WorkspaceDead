@@ -1,4 +1,4 @@
-package workspacedead.block.GrassyPotatoPlant;
+package workspacedead.block;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -35,6 +35,7 @@ public class GrassyPotatoPlantBlock extends CropBlock {
         potatoman.spawnAnim();
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public void spawnAfterBreak(BlockState blockState, ServerLevel level, BlockPos pos, ItemStack itemStack) {
         if (this.getAge(blockState) >= getMaxAge())

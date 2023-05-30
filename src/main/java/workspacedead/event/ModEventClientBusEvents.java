@@ -16,6 +16,7 @@ import workspacedead.block.ModBlockEntities;
 import workspacedead.block.ModBlocks;
 //import workspacedead.block.animatedblock.AnimatedBlockRenderer;
 import workspacedead.block.BioMass.BioMassBlockRenderer;
+import workspacedead.block.MrHanky.MrHankyBlockRenderer;
 import workspacedead.client.armor.PotatoArmorRenderer;
 import workspacedead.client.renderer.mob.BoneGolemRenderer;
 import workspacedead.client.renderer.mob.DraconicBlazeModel;
@@ -54,6 +55,7 @@ public class ModEventClientBusEvents {
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.BURNTTRAPDOOR.get(), RenderType.cutout());
 
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.GRASSYPOTATO_PLANT.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.SPAWNEGG_PLANT.get(), RenderType.cutout());
 
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.POTATOPORTALBLOCK.get(), RenderType.translucent());
 
@@ -91,10 +93,7 @@ public class ModEventClientBusEvents {
     @SubscribeEvent
     public static void registerRenderers(final EntityRenderersEvent.RegisterRenderers event) {
         event.registerBlockEntityRenderer(ModBlockEntities.BIOMASS_BLOCK_ENTITY.get(), BioMassBlockRenderer::new);
-        // event.registerEntityRenderer(ModEntityTypes.DRACONICBLAZE.get(),
-        // DraconicBlazeRenderer::new);
-        // event.registerBlockEntityRenderer(ModBlockEntities.ANIMATED_BLOCK_ENTITY.get(),
-        // AnimatedBlockRenderer::new);
+        event.registerBlockEntityRenderer(ModBlockEntities.MRHANKY_BLOCK_ENTITY.get(), MrHankyBlockRenderer::new);
     }
 
     @SubscribeEvent

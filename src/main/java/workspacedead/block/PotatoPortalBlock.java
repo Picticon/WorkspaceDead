@@ -12,6 +12,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -97,6 +98,7 @@ public class PotatoPortalBlock extends Block {
         }
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn,
             BlockPos currentPos, BlockPos facingPos) {
@@ -114,6 +116,10 @@ public class PotatoPortalBlock extends Block {
             if (entity.isOnPortalCooldown()) {
                 entity.setPortalCooldown();
             } else {
+                if (entity instanceof Player)
+                {
+                    
+                }
                 if (!entity.level.isClientSide && !pos.equals(entity.portalEntrancePos)) {
                     entity.portalEntrancePos = pos.immutable();
                 }

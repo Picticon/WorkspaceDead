@@ -1,14 +1,7 @@
 package workspacedead.item.custom;
 
 import java.util.HashMap;
-import java.util.Optional;
-
-import com.google.gson.JsonObject;
-
 import net.minecraft.client.Minecraft;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.Container;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
@@ -16,14 +9,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
-import net.minecraft.world.item.crafting.CraftingRecipe;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.Hopper;
-import net.minecraft.world.level.block.entity.HopperBlockEntity;
-import net.minecraftforge.fml.ModList;
 import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.IItemHandler;
 import workspacedead.util.Chatter;
 import workspacedead.util.NBTHelper;
 
@@ -45,7 +32,7 @@ public class KubeWand extends Item {
         if (player == null || !player.mayUseItemAt(pos.relative(facing), facing, stack))
             return InteractionResult.PASS;
 
-        if (!level.isClientSide()) {
+        if (level.isClientSide()) {
             var tile = level.getBlockEntity(pos);
             var inv = tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, facing);
             if (inv.isPresent()) {
@@ -86,30 +73,20 @@ public class KubeWand extends Item {
                         continue;
                     Append(i, map, recipe, items[i]);
                 }
-                // var type = NBTHelper.getString(stack, "Type");
-                // var inventorySize = ((Container) tile).getContainerSize();
-                // var container = (IItemHandler) tile;
-                // var block = tile instanceof CraftingRecipe;
-
-                String string = "";
+                String s = "";
                 var offhand = player.getOffhandItem().getItem().getRegistryName().toString();
                 if (player.getOffhandItem().getCount() > 1) {
                     offhand = player.getOffhandItem().getCount() + "x " + offhand;
                 }
-                string = isShapeless(stack) ? //
-                        makeShapelessDatapackTableRecipe(offhand, map, recipe)
-                        : makeShapedDatapackTableRecipe(offhand, map, recipe);
-
-                if ("TOO MANY ITEMS".equals(string)) {
-                    player.sendMessage(new TextComponent("Error"), null);
-                    // player.sendSystemMessage(Localizable.of("message.extendedcrafting.max_unique_items_exceeded")
-                    // .args(KEYS.length).build());
-                    return InteractionResult.SUCCESS;
+                if (isShapeless(stack)) {
+                    s = makeShapelessDatapackTableRecipe(offhand, map, recipe);
+                    setClipboard(s);
+                    Chatter.sendToPlayer(player, "Copied shapeless recipe to clipboard.");
+                } else {
+                    s = makeShapedDatapackTableRecipe(offhand, map, recipe);
+                    setClipboard(s);
+                    Chatter.sendToPlayer(player, "Copied shaped recipe to clipboard.");
                 }
-
-                setClipboard(string);
-                Chatter.sendToPlayer(player, "Copied recipe to clipboard.");
-                // player.sendSystemMessage(Localizable.of("message.extendedcrafting.copied_recipe").build());
             }
 
             return InteractionResult.SUCCESS;
@@ -200,22 +177,20 @@ public class KubeWand extends Item {
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         if (player.isCrouching()) {
             var stack = player.getItemInHand(hand);
-            // var stackitem = ItemStackJS.of("");
             NBTHelper.flipBoolean(stack, "Shapeless");
             if (level.isClientSide()) {
                 if (NBTHelper.getBoolean(stack, "Shapeless"))
                     Chatter.chat("Mode changed to Shapeless.");
                 else
                     Chatter.chat("Mode changed to Shaped.");
-                // player.sendSystemMessage(Localizable.of("message.extendedcrafting.changed_mode").args(getModeString(stack)).build());
             }
         }
         return super.use(level, player, hand);
     }
 
-    private static String getModeString(ItemStack stack) {
-        return isShapeless(stack) ? "Shapeless" : "Shaped";
-    }
+    // private static String getModeString(ItemStack stack) {
+    // return isShapeless(stack) ? "Shapeless" : "Shaped";
+    // }
 
     private static boolean isShapeless(ItemStack stack) {
         return NBTHelper.getBoolean(stack, "Shapeless");

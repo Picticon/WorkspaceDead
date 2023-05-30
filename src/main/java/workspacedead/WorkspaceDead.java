@@ -2,11 +2,18 @@ package workspacedead;
 
 import com.mojang.logging.LogUtils;
 
+import net.minecraft.core.Position;
+import net.minecraft.core.dispenser.AbstractProjectileDispenseBehavior;
 import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.ComposterBlock;
+import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
@@ -25,6 +32,7 @@ import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
 import software.bernie.geckolib3.GeckoLib;
+import workspacedead.advancement.ModCriteriaTriggers;
 import workspacedead.block.ModBlockEntities;
 //import workspacedead.advancement.ModCriteriaTriggers;
 //import workspacedead.advancement.ModAdvancements;
@@ -32,9 +40,12 @@ import workspacedead.block.ModBlocks;
 import workspacedead.config.CommonConfig;
 import workspacedead.datagen.ModItemTagsProvider;
 import workspacedead.effect.ModEffects;
+import workspacedead.effect.ModEnchantments;
 import workspacedead.entity.ModEntityTypes;
 import workspacedead.entity.mob.SkeletonAnimal;
 import workspacedead.entity.mob.SkeletonSlime;
+import workspacedead.entity.projectile.DeadArrow;
+import workspacedead.entity.projectile.DirtyArrow;
 import workspacedead.fluid.ModFluids;
 import workspacedead.item.ModItems;
 import workspacedead.particle.ModParticles;
@@ -47,9 +58,6 @@ import workspacedead.world.feature.ModConfiguredFeatures;
 import workspacedead.world.feature.ModPlacedFeatures;
 import workspacedead.world.structure.ModStructures;
 
-import java.util.List;
-
-import org.apache.logging.log4j.core.config.ConfigurationFileWatcher;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -78,6 +86,7 @@ public class WorkspaceDead {
         ModFluids.register(eventBus);
 
         ModEffects.register(eventBus);
+        ModEnchantments.register(eventBus);
         ModPotions.register(eventBus);
 
         ModParticles.register(eventBus);
@@ -94,6 +103,8 @@ public class WorkspaceDead {
         ModStructures.register(eventBus);
 
         GeckoLib.initialize();
+
+        ModCriteriaTriggers.register();
 
         eventBus.addListener(this::setup);
         // eventBus.addListener(this::clientSetup);
@@ -120,6 +131,7 @@ public class WorkspaceDead {
 
             ComposterBlock.COMPOSTABLES.put(ModItems.POOP.get().asItem(), .5f);
             ComposterBlock.COMPOSTABLES.put(ModItems.COW_POOP.get().asItem(), .75f);
+            ComposterBlock.COMPOSTABLES.put(ModItems.PHANTOM_POOP.get().asItem(), .75f);
             ComposterBlock.COMPOSTABLES.put(ModItems.CHICKEN_POOP.get().asItem(), .75f);
             ComposterBlock.COMPOSTABLES.put(ModItems.SHEEP_POOP.get().asItem(), .75f);
             ComposterBlock.COMPOSTABLES.put(ModItems.PIG_POOP.get().asItem(), .75f);
@@ -133,6 +145,22 @@ public class WorkspaceDead {
             ComposterBlock.COMPOSTABLES.put(ModItems.DRAGON_POOP.get().asItem(), 1);
             ComposterBlock.COMPOSTABLES.put(ModItems.WITCH_POOP.get().asItem(), 1);
             ComposterBlock.COMPOSTABLES.put(ModItems.BLAZE_POOP.get().asItem(), 1);
+
+            DispenserBlock.registerBehavior(ModItems.DIRTY_ARROW.get(), new AbstractProjectileDispenseBehavior() {
+                protected Projectile getProjectile(Level level, Position position, ItemStack p_123409_) {
+                    var arrow = new DirtyArrow(level, position);
+                    arrow.pickup = AbstractArrow.Pickup.ALLOWED;
+                    return arrow;
+                }
+            });
+
+            DispenserBlock.registerBehavior(ModItems.DEAD_ARROW.get(), new AbstractProjectileDispenseBehavior() {
+                protected Projectile getProjectile(Level level, Position position, ItemStack p_123409_) {
+                    var arrow = new DeadArrow(level, position);
+                    arrow.pickup = AbstractArrow.Pickup.ALLOWED;
+                    return arrow;
+                }
+            });
 
             // ModCriteriaTriggers.register();
         });

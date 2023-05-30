@@ -1,5 +1,6 @@
 package workspacedead.entity.projectile;
 
+import net.minecraft.core.Position;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.EntityType;
@@ -10,6 +11,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraftforge.network.NetworkHooks;
 import workspacedead.effect.ModEffects;
+import workspacedead.entity.ModEntityTypes;
 import workspacedead.item.ModItems;
 
 public class DeadArrow extends AbstractArrow {
@@ -26,6 +28,10 @@ public class DeadArrow extends AbstractArrow {
         super(entityType, shooter, world);
     }
 
+    public DeadArrow(Level level, Position position) {
+        super(ModEntityTypes.DEAD_ARROW.get(), position.x(), position.y(), position.z(), level);
+    }
+
     @Override
     protected ItemStack getPickupItem() {
         return new ItemStack(ModItems.DEAD_ARROW.get());
@@ -34,7 +40,7 @@ public class DeadArrow extends AbstractArrow {
     @Override
     protected void onHitEntity(EntityHitResult pResult) {
         if (pResult.getEntity() instanceof LivingEntity) {
-            ((LivingEntity) pResult.getEntity()).addEffect(new MobEffectInstance(ModEffects.DEADINSIDE.get(), 240));
+            ((LivingEntity) pResult.getEntity()).addEffect(new MobEffectInstance(ModEffects.DEADINSIDE.get(), 200));
         }
         super.onHitEntity(pResult);
     }

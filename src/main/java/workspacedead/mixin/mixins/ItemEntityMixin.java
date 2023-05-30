@@ -9,6 +9,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import net.minecraft.core.Position;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -17,6 +18,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.material.Fluids;
+import workspacedead.advancement.ModCriteriaTriggers;
 //import workspacedead.advancement.ModCriteriaTriggers;
 //import workspacedead.advancement.WaterCleanedTrigger;
 import workspacedead.fluid.ModFluids;
@@ -61,7 +63,13 @@ public abstract class ItemEntityMixin extends Entity {
                         for (var i = 0; i < 10; i++) {
                             Particleify(this.level, this.position(), ParticleTypes.EXPLOSION);
                         }
-                        // ModCriteriaTriggers.WATER_CLEANED.trigger(player); Too lazy to find out who
+                        // var targeting = TargetingConditions.forNonCombat().range(30);
+                        for (var player : this.level.players()) {
+                            if (player instanceof ServerPlayer serverplayer)
+                                if (player.position().distanceTo(this.position()) <= 48) {
+                                    ModCriteriaTriggers.WATER_CLEANED.trigger(serverplayer);
+                                }
+                        }
                         // threw it...
                         this.workspacedead_server_time = -60000;
                     }
@@ -106,7 +114,8 @@ public abstract class ItemEntityMixin extends Entity {
             var z = pos.z();
             // want more Y so particles go "up"
             // bubble = ParticleTypes.BUBBLE;
-            level.addParticle(bubble, true, x, y, z, level.random.nextFloat() - .5f, level.random.nextFloat() - .25f, level.random.nextFloat() - .5f);
+            level.addParticle(bubble, true, x, y, z, level.random.nextFloat() - .5f, level.random.nextFloat() - .25f,
+                    level.random.nextFloat() - .5f);
             // }
         }
     }

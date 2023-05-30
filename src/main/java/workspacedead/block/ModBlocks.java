@@ -28,11 +28,10 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import workspacedead.WorkspaceDead;
 import workspacedead.block.BioMass.BioMassBlock;
-import workspacedead.block.GrassyPotatoPlant.GrassyPotatoPlantBlock;
+import workspacedead.block.MrHanky.MrHankyBlock;
 import workspacedead.block.PoopLantern.CarvedPoopBlock;
 import workspacedead.block.PoopLantern.PoopBlock;
 import workspacedead.item.ModCreativeModeTab;
-//import workspacedead.block.animatedblock.AnimatedBlock;
 import workspacedead.item.ModItems;
 import workspacedead.world.feature.tree.DeadSaplingBlock;
 import workspacedead.world.feature.tree.DeadTreeGrower;
@@ -43,6 +42,9 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> BIOMASS_BLOCK = registerBlockWithoutBlockItem("biomass_block", //
             () -> new BioMassBlock(BlockBehaviour.Properties.of(Material.MOSS).strength(.9f).sound(SoundType.FUNGUS)));
+
+    public static final RegistryObject<Block> MRHANKY_BLOCK = registerBlockWithoutBlockItem("mrhanky_block", //
+            () -> new MrHankyBlock(BlockBehaviour.Properties.of(Material.STONE).strength(.9f).sound(SoundType.STONE)));
 
     public static final RegistryObject<Block> POTATOBLOCK = registerBlock("potato_block",
             () -> new Block(BlockBehaviour.Properties.of(Material.CACTUS).strength(.9f).sound(SoundType.CROP)),
@@ -205,35 +207,8 @@ public class ModBlocks {
     public static final RegistryObject<Block> GRASSYPOTATO_PLANT = registerBlockWithoutBlockItem("grassypotato_plant",
             () -> new GrassyPotatoPlantBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).noOcclusion()));
 
-    // public static final RegistryObject<Block> ANIMATED_BLOCK =
-    // registerBlockWithoutBlockItem("animated_block",
-    // () -> new
-    // AnimatedBlock(BlockBehaviour.Properties.of(Material.STONE).noOcclusion()));
-
-    // private static <T extends Block> RegistryObject<T>
-    // registerBlockWithoutBlockItem(String name, Supplier<T> block) {
-    // return MOD_BLOCKS.register(name, block);
-    // }
-
-    // private static <T extends Block> RegistryObject<T> registerBlock(String name,
-    // Supplier<T> block, CreativeModeTab tab, String tooltipKey) {
-    // RegistryObject<T> toReturn = MOD_BLOCKS.register(name, block);
-    // registerBlockItem(name, toReturn, tab, tooltipKey);
-    // return toReturn;
-    // }
-
-    // private static <T extends Block> RegistryObject<Item>
-    // registerBlockItem(String name, RegistryObject<T> block, CreativeModeTab tab,
-    // String tooltipKey) {
-    // return ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new
-    // Item.Properties().tab(tab)) {
-    // @Override
-    // public void appendHoverText(ItemStack pStack, @Nullable Level pLevel,
-    // List<Component> pTooltip, TooltipFlag pFlag) {
-    // pTooltip.add(new TranslatableComponent(tooltipKey));
-    // }
-    // });
-    // }
+    public static final RegistryObject<Block> SPAWNEGG_PLANT = registerBlockWithoutBlockItem("spawnegg_plant",
+            () -> new SpawnEggPlantBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).noOcclusion()));
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block,
             CreativeModeTab tab) {

@@ -15,7 +15,7 @@ public class DirtySwordItem extends SwordItem {
 
     @Override
     public boolean hurtEnemy(ItemStack pStack, LivingEntity pTarget, LivingEntity pAttacker) {
-        pTarget.addEffect(new MobEffectInstance(ModEffects.DEADINSIDE.get(), 60), pAttacker);
+        pTarget.addEffect(new MobEffectInstance(ModEffects.DEADINSIDE.get(), 200), pAttacker);
         return super.hurtEnemy(pStack, pTarget, pAttacker);
     }
 

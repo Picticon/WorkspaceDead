@@ -1,0 +1,29 @@
+{
+    "criteria": {
+        "water_cleaned": {
+            "conditions": {},
+            "trigger": "workspacedead:water_cleaned"
+        }
+    },
+    "display": {
+        "announce_to_chat": false,
+        "background": "workspacedead:textures/block/deadstone.png",
+        "description": {
+            "translate": "workspacedead.advancement.water_cleaned.desc"
+        },
+        "frame": "task",
+        "hidden": false,
+        "icon": {
+            "item": "workspacedead:purifyshard"
+        },
+        "show_toast": true,
+        "title": {
+            "translate": "workspacedead.advancement.water_cleaned.title"
+        }
+    },
+    "requirements": [
+        [
+            "water_cleaned"
+        ]
+    ]
+}

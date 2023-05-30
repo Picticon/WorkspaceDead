@@ -1,0 +1,30 @@
+{
+    "parent": "workspacedead:water_cleaned",
+    "criteria": {
+        "purification": {
+            "conditions": {},
+            "trigger": "workspacedead:purification"
+        }
+    },
+    "display": {
+        "announce_to_chat": false,
+        "background": "workspacedead:textures/block/deadstone.png",
+        "description": {
+            "translate": "workspacedead.advancement.purification.desc"
+        },
+        "frame": "task",
+        "hidden": false,
+        "icon": {
+            "item": "workspacedead:purifycrystal"
+        },
+        "show_toast": true,
+        "title": {
+            "translate": "workspacedead.advancement.purification.title"
+        }
+    },
+    "requirements": [
+        [
+            "purification"
+        ]
+    ]
+}

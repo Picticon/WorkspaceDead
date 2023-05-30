@@ -1,0 +1,66 @@
+package workspacedead.client;
+
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.SpawnEggItem;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.ColorHandlerEvent;
+import net.minecraftforge.common.ForgeSpawnEggItem;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.ForgeRegistries;
+import workspacedead.block.ModBlocks;
+import workspacedead.block.SpawnEggBlockEntity;
+import workspacedead.item.ModItems;
+import workspacedead.item.custom.SpawnEggSeedsItem;
+
+@Mod.EventBusSubscriber(value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
+public class ClientProxy {
+
+    @SubscribeEvent
+    static void registerItemColors(final ColorHandlerEvent.Item event) {
+        event.getItemColors().register((stack, tintIndex) -> {
+            if (tintIndex == 1 || tintIndex == 2) {
+                SpawnEggItem info = null;
+                if (stack.hasTag() && stack.getTag().contains(SpawnEggSeedsItem.EssenceTagID)) {
+                    ResourceLocation id = new ResourceLocation(
+                            stack.getTag().getString(SpawnEggSeedsItem.EssenceTagID));
+                    info = ForgeSpawnEggItem.fromEntityType(ForgeRegistries.ENTITIES.getValue(id));
+                }
+                if (info != null) {
+                    var r = (SpawnEggSeedsItem) ModItems.SPAWNEGG_SEEDS.get();
+                    if (r.canBeExtracted(info.getType(new CompoundTag()))) {
+                        return info.getColor(tintIndex - 1);
+                    }
+                }
+                return tintIndex == 1 ? 0x6b320f : 0x4b2a17;
+            }
+            return 0xFFFFFF;
+        }, ModItems.SPAWNEGG_SEEDS.get());
+    }
+
+    @SubscribeEvent
+    static void registerBlockColors(final ColorHandlerEvent.Block event) {
+        event.getBlockColors().register((state, world, pos, tintIndex) -> {
+            if (world != null && pos != null) {
+                BlockEntity te = world.getBlockEntity(pos);
+                if (te instanceof SpawnEggBlockEntity sebe) {
+                    if (tintIndex == 1 || tintIndex == 2) {
+                        var entityid = sebe.getEntityID();
+                        SpawnEggItem info = null;
+                        ResourceLocation id = new ResourceLocation(entityid);
+                        info = ForgeSpawnEggItem.fromEntityType(ForgeRegistries.ENTITIES.getValue(id));
+                        if (info != null) {
+                            var r = (SpawnEggSeedsItem) ModItems.SPAWNEGG_SEEDS.get();
+                            if (r.canBeExtracted(info.getType(new CompoundTag()))) {
+                                return info.getColor(tintIndex - 1);
+                            }
+                        }
+                    }
+                }
+            }
+            return -1;
+        }, ModBlocks.SPAWNEGG_PLANT.get());
+    }
+}

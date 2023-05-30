@@ -11,6 +11,7 @@ import net.minecraftforge.registries.RegistryObject;
 import workspacedead.WorkspaceDead;
 import workspacedead.block.ModBlocks;
 import workspacedead.block.BioMass.BioMassBlockItem;
+import workspacedead.block.MrHanky.MrHankyBlockItem;
 //import workspacedead.block.animatedblock.AnimatedBlockItem;
 import workspacedead.effect.ModEffects;
 import workspacedead.fluid.ModFluids;
@@ -24,23 +25,16 @@ public class ModItems {
     public static final RegistryObject<Item> DEADCOOKIE = ITEMS.register("deadcookie", //
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB)//
                     .food((new FoodProperties.Builder()).alwaysEat().fast().nutrition(0).saturationMod(0)//
-                            .effect(() -> new MobEffectInstance(ModEffects.DEADINSIDE.get(), 200, 0), 1F).build())));
+                            .effect(() -> new MobEffectInstance(ModEffects.DEADINSIDE.get(), 400, 0), 1F).build())));
     public static final RegistryObject<Item> DIRTYBREAD = ITEMS.register("dirtybread", //
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB)//
                     .food((new FoodProperties.Builder()).nutrition(3).saturationMod(1)//
                             .effect(() -> new MobEffectInstance(MobEffects.HUNGER, 100, 0), .05F).build())));
 
-    // public static final RegistryObject<Item> DEADWHEATSEED =
-    // ITEMS.register("deadwheatseed", () -> new Item(new
-    // Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB)));
-    // public static final RegistryObject<Item> DEADWHEAT =
-    // ITEMS.register("deadwheat", () -> new Item(new
-    // Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB)));
-
     public static final RegistryObject<Item> POOP = ITEMS.register("poop",
             () -> new PoopItem(new Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB)));
     public static final RegistryObject<Item> SEEDED_POOP = ITEMS.register("seededpoop",
-            () -> new PoopItem(new Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB)));
+            () -> new PoopItem(new Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB), 6000));
     public static final RegistryObject<Item> SKELETON_POOP = ITEMS.register("skeletonpoop",
             () -> new PoopItem(new Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB)));
     public static final RegistryObject<Item> CREEPER_POOP = ITEMS.register("creeperpoop",
@@ -71,16 +65,23 @@ public class ModItems {
             () -> new PoopItem(new Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB)));
     public static final RegistryObject<Item> BLAZE_POOP = ITEMS.register("blazepoop",
             () -> new PoopItem(new Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB)));
+    public static final RegistryObject<Item> PHANTOM_POOP = ITEMS.register("phantompoop",
+            () -> new PoopItem(new Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB)));
 
     public static final RegistryObject<Item> ENDER_ROD = ITEMS.register("ender_rod",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB)));
+    public static final RegistryObject<Item> ENDER_DUST = ITEMS.register("ender_dust",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB)));
 
-    public static final RegistryObject<Item> PURIFYCRYSTAL = ITEMS.register("purifycrystal",
-            () -> new PurifyCrystalItem(new Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB)));
-    public static final RegistryObject<Item> WEAKPURIFYCRYSTAL = ITEMS.register("weakpurifycrystal",
-            () -> new WeakPurifyCrystalItem(new Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB)));
+    // weakest
     public static final RegistryObject<Item> PURIFYSHARD = ITEMS.register("purifyshard",
             () -> new PurifyShardItem(new Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB)));
+    // medium
+    public static final RegistryObject<Item> WEAKPURIFYCRYSTAL = ITEMS.register("weakpurifycrystal",
+            () -> new WeakPurifyCrystalItem(new Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB)));
+    // full
+    public static final RegistryObject<Item> PURIFYCRYSTAL = ITEMS.register("purifycrystal",
+            () -> new PurifyCrystalItem(new Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB)));
 
     public static final RegistryObject<Item> DEADWATER_BUCKET = ITEMS.register("deadwater_bucket",
             () -> new BucketItem(ModFluids.DEADWATER_FLUID,
@@ -102,11 +103,22 @@ public class ModItems {
             () -> new BioMassBlockItem(ModBlocks.BIOMASS_BLOCK.get(),
                     new Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB)));
 
+    public static final RegistryObject<Item> MRHANKY_BLOCK_ITEM = ITEMS.register("mrhanky_block", //
+            () -> new MrHankyBlockItem(ModBlocks.MRHANKY_BLOCK.get(),
+                    new Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB)));
+
     // public static final RegistryObject<Item> GRASSYPOTATO_SEED =
     // ITEMS.register("grassypotato_seeds", //
     // () -> new PoopItem(new Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB)));
     public static final RegistryObject<Item> GRASSYPOTATO_SEEDS = ITEMS.register("grassypotato_seeds", //
             () -> new ItemNameBlockItem(ModBlocks.GRASSYPOTATO_PLANT.get(),
+                    new Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB)));
+
+    public static final RegistryObject<Item> PLUNGER = ITEMS.register("plunger",
+            () -> new PlungerItem(new Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB)));
+
+    public static final RegistryObject<Item> SPAWNEGG_SEEDS = ITEMS.register("spawnegg_seeds", //
+            () -> new SpawnEggSeedsItem(ModBlocks.SPAWNEGG_PLANT.get(),
                     new Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB)));
 
     public static final RegistryObject<Item> POTATO_HELMET = ITEMS.register("potato_helmet",
@@ -127,11 +139,6 @@ public class ModItems {
 
     public static final RegistryObject<PotatoPortalCatalystItem> POTATO_PORTAL_CATALYST = ITEMS
             .register("potato_portal_catalyst", PotatoPortalCatalystItem::new);
-
-    // public static final RegistryObject<Item> ANIMATED_BLOCK_ITEM =
-    // ITEMS.register("animated_block",
-    // () -> new AnimatedBlockItem(ModBlocks.ANIMATED_BLOCK.get(),
-    // new Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB)));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

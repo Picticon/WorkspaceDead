@@ -1,5 +1,7 @@
 package workspacedead.datagen;
 
+import java.util.function.Function;
+
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.data.loot.BlockLoot;
 import net.minecraft.world.item.Items;
@@ -7,12 +9,18 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.functions.CopyNameFunction;
+import net.minecraft.world.level.storage.loot.functions.CopyNbtFunction;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
+import net.minecraft.world.level.storage.loot.providers.nbt.ContextNbtProvider;
+import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraftforge.registries.RegistryObject;
+import workspacedead.block.GrassyPotatoPlantBlock;
 import workspacedead.block.ModBlocks;
-import workspacedead.block.GrassyPotatoPlant.GrassyPotatoPlantBlock;
+import workspacedead.block.SpawnEggBlockEntity;
 import workspacedead.item.ModItems;
+import workspacedead.item.custom.SpawnEggSeedsItem;
 
 public class ModBlockLootTables extends BlockLoot {
 
@@ -59,6 +67,7 @@ public class ModBlockLootTables extends BlockLoot {
         this.dropSelf(ModBlocks.CARVED_POOPBLOCK.get());
 
         this.dropSelf(ModBlocks.BIOMASS_BLOCK.get());
+        this.dropSelf(ModBlocks.MRHANKY_BLOCK.get());
         this.dropSelf(ModBlocks.DEAD_FARMLAND.get());
 
         LootItemCondition.Builder lootitemcondition$builder = //
@@ -66,22 +75,31 @@ public class ModBlockLootTables extends BlockLoot {
                         .setProperties(StatePropertiesPredicate.Builder.properties()
                                 .hasProperty(GrassyPotatoPlantBlock.AGE, 7));
 
-        // this.dropOther(ModBlocks.GRASSYPOTATO_PLANT.get(),
-        // ModItems.GRASSYPOTATO_SEEDS.get());
-        // this.add(ModBlocks.GRASSYPOTATO_PLANT.get(),
-        // createCropDrops(ModBlocks.GRASSYPOTATO_PLANT.get(), Items.AIR, //
-        // ModItems.GRASSYPOTATO_SEEDS.get(), lootitemcondition$builder));
         this.add(ModBlocks.GRASSYPOTATO_PLANT.get(), LootTable.lootTable()//
                 .withPool(LootPool.lootPool()//
                         .add(LootItem.lootTableItem(Items.AIR)//
                                 .when(lootitemcondition$builder)//
                                 .otherwise(LootItem.lootTableItem(ModItems.GRASSYPOTATO_SEEDS.get()))))//
         );
+
+        this.add(ModBlocks.SPAWNEGG_PLANT.get(),
+                block -> droppingWithFunctions(block,
+                        builder -> builder.apply(CopyNameFunction.copyName(CopyNameFunction.NameSource.BLOCK_ENTITY))
+                                .apply(CopyNbtFunction.copyData(ContextNbtProvider.BLOCK_ENTITY)
+                                        .copy(SpawnEggBlockEntity.entityidkey, SpawnEggSeedsItem.EssenceTagID))));
+
+        // this.add(ModBlocks.SPAWNEGG_PLANT.get(), noDrop());
     }
 
     // point the block iterator at our blocks, not minecraft.
     @Override
     protected Iterable<Block> getKnownBlocks() {
         return ModBlocks.MOD_BLOCKS.getEntries().stream().map(RegistryObject::get)::iterator;
+    }
+
+    private static LootTable.Builder droppingWithFunctions(Block block,
+            Function<LootItem.Builder<?>, LootItem.Builder<?>> mapping) {
+        return LootTable.lootTable().withPool(applyExplosionCondition(block, LootPool.lootPool()
+                .setRolls(ConstantValue.exactly(1)).add(mapping.apply(LootItem.lootTableItem(block)))));
     }
 }

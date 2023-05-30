@@ -39,6 +39,13 @@ public class ModBlocksStateProvider extends BlockStateProvider {
                 new ModelFile.UncheckedModelFile(new ResourceLocation(WorkspaceDead.MOD_ID, "block/biomass_block")));
         itemBlock(ModBlocks.BIOMASS_BLOCK.get());
 
+        // simpleBlock(ModBlocks.MRHANKY_BLOCK.get(),
+        // new ModelFile.UncheckedModelFile(new ResourceLocation(WorkspaceDead.MOD_ID,
+        // "block/mrhanky_block")));
+        this.horizontalBlock(ModBlocks.MRHANKY_BLOCK.get(),
+                new ModelFile.UncheckedModelFile(new ResourceLocation(WorkspaceDead.MOD_ID, "block/mrhanky_block")));
+        itemBlock(ModBlocks.MRHANKY_BLOCK.get());
+
         doorBlock((DoorBlock) ModBlocks.DEADDOOR.get(),
                 new ResourceLocation(WorkspaceDead.MOD_ID, "block/deaddoor_bottom"), //
                 new ResourceLocation(WorkspaceDead.MOD_ID, "block/deaddoor_top"));

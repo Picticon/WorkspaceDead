@@ -40,7 +40,7 @@ public abstract class NetherPortalMixin {
             var item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(CommonConfig.nether_opener.get()));
             if (item != null && item != Items.AIR) {
                 var nearestPlayer = this.level.getNearestPlayer((double) bottomLeft.getX(), (double) bottomLeft.getY(),
-                        (double) bottomLeft.getZ(), -1.0, false);
+                        (double) bottomLeft.getZ(), -1.0, true);
                 if (nearestPlayer != null) {
                     if (!nearestPlayer.getInventory().contains(new ItemStack(item))) {
                         level.playSound(null, bottomLeft, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 1.0f, 0.75f);

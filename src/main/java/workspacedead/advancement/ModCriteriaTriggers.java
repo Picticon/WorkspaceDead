@@ -1,18 +1,20 @@
-// package workspacedead.advancement;
+package workspacedead.advancement;
 
-// import org.jetbrains.annotations.ApiStatus.Internal;
-// import org.jetbrains.annotations.ApiStatus.NonExtendable;
+import net.minecraft.advancements.CriteriaTriggers;
 
-// import net.minecraft.advancements.CriteriaTriggers;
+import org.jetbrains.annotations.ApiStatus.Internal;
+import org.jetbrains.annotations.ApiStatus.NonExtendable;
 
-// @NonExtendable
-// public interface ModCriteriaTriggers {
-//     WaterCleanedTrigger WATER_CLEANED = CriteriaTriggers.register(new WaterCleanedTrigger());
+///
+///  This class handles all the advancement triggers for the modpack
+///
 
-//     /**
-//      * Empty method that is required for classloading
-//      */
-//     @Internal
-//     static void register() {
-//     }
-// }
+@NonExtendable
+public interface ModCriteriaTriggers {
+    public static final WaterCleanedTrigger WATER_CLEANED = CriteriaTriggers.register(new WaterCleanedTrigger());
+    public static final PurificationTrigger PURIFICATION = CriteriaTriggers.register(new PurificationTrigger());
+
+    @Internal
+    static void register() {
+    }
+}

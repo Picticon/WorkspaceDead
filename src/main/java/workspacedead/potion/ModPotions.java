@@ -14,7 +14,7 @@ public class ModPotions {
             WorkspaceDead.MOD_ID);
 
     public static final RegistryObject<Potion> DEADINSIDE_POTION = POTIONS.register("deadinside_potion",
-            () -> new Potion(new MobEffectInstance(ModEffects.DEADINSIDE.get(), 200, 0)));
+            () -> new Potion(new MobEffectInstance(ModEffects.DEADINSIDE.get(), 200*60, 0)));
 
     public static void register(IEventBus eventBus) {
         POTIONS.register(eventBus);

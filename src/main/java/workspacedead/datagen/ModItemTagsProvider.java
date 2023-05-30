@@ -52,6 +52,7 @@ public class ModItemTagsProvider extends ItemTagsProvider {
                 .add(ModItems.WITCH_POOP.get())//
                 .add(ModItems.BLAZE_POOP.get())//
                 .add(ModItems.COW_POOP.get())//
+                .add(ModItems.PHANTOM_POOP.get())//
                 .add(ModItems.PIG_POOP.get())//
                 .add(ModItems.CHICKEN_POOP.get())//
                 .add(ModItems.SHEEP_POOP.get())//

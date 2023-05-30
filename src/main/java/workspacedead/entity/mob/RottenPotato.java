@@ -10,17 +10,21 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
+import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
@@ -33,6 +37,7 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 import software.bernie.geckolib3.util.GeckoLibUtil;
+import workspacedead.item.ModArmorMaterials;
 import workspacedead.particle.ModParticles;
 import workspacedead.sound.ModSounds;
 
@@ -59,11 +64,43 @@ public class RottenPotato extends Monster implements IAnimatable {
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(1, new FloatGoal(this));
+        this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.0D, false));
         this.goalSelector.addGoal(3, new MoveToFarmlandBlockGoal(this));
         this.goalSelector.addGoal(8, new WaterAvoidingRandomStrollGoal(this, 1.0D));
-        this.goalSelector.addGoal(10, new LookAtPlayerGoal(this, Player.class, 8.0F));
+        this.goalSelector.addGoal(9, new LookAtPlayerGoal(this, Player.class, 8.0F));
         this.goalSelector.addGoal(10, new RandomLookAroundGoal(this));
+        this.targetSelector.addGoal(4,
+                new NearestAttackableTargetGoal<>(this, Player.class, 10, true, false, this::PlayerMissingArmor));
         this.targetSelector.addGoal(3, (new HurtByTargetGoal(this)).setAlertOthers());
+    }
+
+    boolean PlayerMissingArmor(LivingEntity pTarget) {
+        if (!this.canAttack(pTarget))
+            return false;
+        if (pTarget.getType() != EntityType.PLAYER)
+            return false;
+        var player = (Player) pTarget;
+
+        if (player.getInventory().getArmor(0).isEmpty())
+            return true;
+        if (player.getInventory().getArmor(1).isEmpty())
+            return true;
+        if (player.getInventory().getArmor(2).isEmpty())
+            return true;
+        if (player.getInventory().getArmor(3).isEmpty())
+            return true;
+
+        ArmorItem boots = ((ArmorItem) player.getInventory().getArmor(0).getItem());
+        ArmorItem leggings = ((ArmorItem) player.getInventory().getArmor(1).getItem());
+        ArmorItem breastplate = ((ArmorItem) player.getInventory().getArmor(2).getItem());
+        ArmorItem helmet = ((ArmorItem) player.getInventory().getArmor(3).getItem());
+
+        if (boots.getMaterial() == ModArmorMaterials.POTATO && //
+                leggings.getMaterial() == ModArmorMaterials.POTATO && //
+                breastplate.getMaterial() == ModArmorMaterials.POTATO && //
+                helmet.getMaterial() == ModArmorMaterials.POTATO)
+            return false;
+        return true;
     }
 
     protected void defineSynchedData() {

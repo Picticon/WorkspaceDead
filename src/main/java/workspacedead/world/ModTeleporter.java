@@ -6,7 +6,6 @@ import net.minecraft.world.entity.ai.village.poi.PoiManager;
 import net.minecraft.world.entity.ai.village.poi.PoiRecord;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.PotatoBlock;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.border.WorldBorder;
 import net.minecraft.world.level.dimension.DimensionType;
@@ -141,13 +140,13 @@ public class ModTeleporter implements ITeleporter {
             }
         }
 
-        BlockState kaupenPortal = ModBlocks.POTATOPORTALBLOCK.get().defaultBlockState().setValue(PotatoPortalBlock.AXIS,
+        BlockState potatoPortal = ModBlocks.POTATOPORTALBLOCK.get().defaultBlockState().setValue(PotatoPortalBlock.AXIS,
                 axis);
 
         for (int j2 = 0; j2 < 2; ++j2) {
             for (int l2 = 0; l2 < 3; ++l2) {
                 mutablePos.setWithOffset(blockpos, j2 * direction.getStepX(), l2, j2 * direction.getStepZ());
-                this.level.setBlock(mutablePos, kaupenPortal, 18);
+                this.level.setBlock(mutablePos, potatoPortal, 18);
             }
         }
 

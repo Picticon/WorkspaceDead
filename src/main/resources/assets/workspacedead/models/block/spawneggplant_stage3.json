@@ -1,0 +1,8 @@
+{
+    "parent": "workspacedead:block/tintedcross",
+    "textures": {
+        "cross": "workspacedead:block/spawneggplant_stage3",
+        "layer1": "workspacedead:block/spawneggplant_stage3_tint1",
+        "layer2": "workspacedead:block/spawneggplant_stage3_tint2"
+    }
+}

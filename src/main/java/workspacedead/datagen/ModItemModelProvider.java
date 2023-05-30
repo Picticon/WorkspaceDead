@@ -40,14 +40,19 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.WITCH_POOP.get());
         simpleItem(ModItems.BLAZE_POOP.get());
         simpleItem(ModItems.COW_POOP.get());
+        simpleItem(ModItems.PHANTOM_POOP.get());
         simpleItem(ModItems.CHICKEN_POOP.get());
         simpleItem(ModItems.SHEEP_POOP.get());
         simpleItem(ModItems.PIG_POOP.get());
         simpleItem(ModItems.GOLEM_POOP.get());
         simpleItem(ModItems.VILLAGER_POOP.get());
         simpleItem(ModItems.POTATO_PORTAL_CATALYST.get());
+        
+        simpleItem(ModItems.PLUNGER.get());
+        //simpleItem(ModItems.SPAWNEGG_SEEDS.get()); // manual
 
         simpleItem(ModItems.ENDER_ROD.get());
+        simpleItem(ModItems.ENDER_DUST.get());
 
         simpleItem(ModItems.PURIFYCRYSTAL.get());
         simpleItem(ModItems.WEAKPURIFYCRYSTAL.get());

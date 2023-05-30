@@ -50,6 +50,7 @@ public class DeadInsideEffect extends MobEffect {
                         itemToDrop = ModItems.SEEDED_POOP.get();
                     }
                 }
+                // var stack =
                 pLivingEntity.spawnAtLocation(itemToDrop);
                 pLivingEntity.hurt(DamageSource.MAGIC, 0.5f);
             }

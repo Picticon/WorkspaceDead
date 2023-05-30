@@ -1,0 +1,37 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.mrhanky.idle": {
+			"loop": true,
+			"bones": {
+				"footbone": {
+					"rotation": {
+						"vector": [0, 0, 0]
+					},
+					"position": {
+						"vector": [0, -8, -8]
+					},
+					"scale": {
+						"vector": [0.5, 0.5, 0.5]
+					}
+				},
+				"lid": {
+					"rotation": {
+						"vector": [-67.5, 0, 0]
+					}
+				}
+			}
+		},
+		"animation.mrhanky.active": {
+			"loop": true,
+			"bones": {
+				"lid": {
+					"rotation": {
+						"vector": [0, 0, 0]
+					}
+				}
+			}
+		}
+	},
+	"geckolib_format_version": 2
+}
