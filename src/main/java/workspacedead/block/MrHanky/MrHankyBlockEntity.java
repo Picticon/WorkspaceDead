@@ -18,15 +18,15 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 import software.bernie.geckolib3.util.GeckoLibUtil;
-import workspacedead.block.ModBlockEntities;
 import workspacedead.effect.ModEffects;
+import workspacedead.registry.MyBlockEntities;
 
 public class MrHankyBlockEntity extends BlockEntity implements IAnimatable {
     // private AnimationFactory factory = GeckoLibUtil.createFactory(this);
     private AnimationFactory factory = GeckoLibUtil.createFactory(this);
 
     public MrHankyBlockEntity(BlockPos pos, BlockState state) {
-        super(ModBlockEntities.MRHANKY_BLOCK_ENTITY.get(), pos, state);
+        super(MyBlockEntities.MRHANKY_BLOCK_ENTITY.get(), pos, state);
         // idleanim = new AnimationBuilder().addAnimation("idle",
         // EDefaultLoopTypes.LOOP);
     }

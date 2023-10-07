@@ -1,0 +1,25 @@
+{
+    "type": "workspacedead:saturator",
+    "output": {
+        "item": "minecraft:emerald"
+    },
+    "input": {
+        "item": "minecraft:cake"
+    },
+    "catalysts": [
+        {
+            "item": "minecraft:egg"
+        },
+        {
+            "item": "minecraft:egg"
+        },
+        {
+            "item": "minecraft:egg"
+        },
+        {
+            "item": "minecraft:egg"
+        }
+    ],
+    "power": 5000,
+    "time": 200
+}

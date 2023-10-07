@@ -11,15 +11,11 @@ import net.minecraft.world.entity.MobType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.animal.Animal;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import workspacedead.entity.ModEntityTypes;
-import workspacedead.entity.SpawnEggs;
-import workspacedead.sound.ModSounds;
+import workspacedead.registry.MySounds;
 
 public class SkeletonChicken extends SkeletonAnimal {
 
@@ -40,7 +36,7 @@ public class SkeletonChicken extends SkeletonAnimal {
     }
 
     public static AttributeSupplier setAttributes() {
-        return Animal.createMobAttributes().add(Attributes.MAX_HEALTH, 20).add(Attributes.ATTACK_DAMAGE, 1).add(Attributes.ATTACK_SPEED, 5).add(Attributes.MOVEMENT_SPEED, .4f).add(Attributes.SPAWN_REINFORCEMENTS_CHANCE).add(Attributes.FOLLOW_RANGE, 10.0D).build();
+        return Animal.createMobAttributes().add(Attributes.MAX_HEALTH, 10).add(Attributes.ATTACK_DAMAGE, .5).add(Attributes.ATTACK_SPEED, 3).add(Attributes.MOVEMENT_SPEED, .4f).add(Attributes.SPAWN_REINFORCEMENTS_CHANCE).add(Attributes.FOLLOW_RANGE, 10.0D).build();
     }
 
     @Override
@@ -48,37 +44,37 @@ public class SkeletonChicken extends SkeletonAnimal {
         this.playSound(SoundEvents.SKELETON_STEP, 0.15F, 1.0F);
     }
 
-    @Override
-    public boolean hurt(DamageSource pSource, float pAmount) {
-        if (pSource.getEntity() instanceof Player) {
-            var p = ((Player) pSource.getEntity());
-            if (!p.level.isClientSide) {
-                if (p.getMainHandItem() != null && p.getMainHandItem().is(Items.POTATO)) {
-                    if (!p.getAbilities().instabuild) {
-                        p.getMainHandItem().shrink(1);
-                    }
-                    var itemstack = new ItemStack(SpawnEggs.GRASSYPOTATO_SPAWN_EGG.get(), 1);
-                    this.spawnAtLocation(itemstack);
-                    this.playSound(SoundEvents.LAVA_POP, 1.0F, 1.0F);
-                    this.setHealth(0);
-                }
-            }
-        }
-        return super.hurt(pSource, pAmount);
-    }
+    // @Override
+    // public boolean hurt(DamageSource pSource, float pAmount) {
+    //     if (pSource.getEntity() instanceof Player) {
+    //         var p = ((Player) pSource.getEntity());
+    //         if (!p.level.isClientSide) {
+    //             if (p.getMainHandItem() != null && p.getMainHandItem().is(Items.POTATO)) {
+    //                 if (!p.getAbilities().instabuild) {
+    //                     p.getMainHandItem().shrink(1);
+    //                 }
+    //                 var itemstack = new ItemStack(SpawnEggs.GRASSYPOTATO_SPAWN_EGG.get(), 1);
+    //                 this.spawnAtLocation(itemstack);
+    //                 this.playSound(SoundEvents.LAVA_POP, 1.0F, 1.0F);
+    //                 this.setHealth(0);
+    //             }
+    //         }
+    //     }
+    //     return super.hurt(pSource, pAmount);
+    // }
 
     public boolean doHurtTarget(Entity pEntity) {
         var flag = super.doHurtTarget(pEntity);
         if (flag) {
             this.level.broadcastEntityEvent(this, (byte) 4);
-            this.playSound(ModSounds.SKELETONCHICKEN_ATTACKS.get(), 1.0F, this.getVoicePitch());
+            this.playSound(MySounds.SKELETONCHICKEN_ATTACKS.get(), 1.0F, this.getVoicePitch());
         }
         return flag;
     }
 
     public void handleEntityEvent(byte pId) {
         if (pId == 4) {
-            this.playSound(ModSounds.SKELETONCHICKEN_ATTACKS.get(), 1.0F, this.getVoicePitch());
+            this.playSound(MySounds.SKELETONCHICKEN_ATTACKS.get(), 1.0F, this.getVoicePitch());
         } else {
             super.handleEntityEvent(pId);
         }

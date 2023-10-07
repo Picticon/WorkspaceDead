@@ -21,8 +21,8 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.TicketType;
 import net.minecraftforge.common.util.ITeleporter;
-import workspacedead.block.ModBlocks;
 import workspacedead.block.PotatoPortalBlock;
+import workspacedead.registry.MyBlocks;
 
 import javax.annotation.Nullable;
 import java.util.*;
@@ -121,7 +121,7 @@ public class ModTeleporter implements ITeleporter {
             for (int l1 = -1; l1 < 2; ++l1) {
                 for (int k2 = 0; k2 < 2; ++k2) {
                     for (int i3 = -1; i3 < 3; ++i3) {
-                        BlockState blockstate1 = i3 < 0 ? ModBlocks.POTATOBLOCK.get().defaultBlockState()
+                        BlockState blockstate1 = i3 < 0 ? MyBlocks.POTATOBLOCK.get().defaultBlockState()
                                 : Blocks.AIR.defaultBlockState();
                         mutablePos.setWithOffset(blockpos, k2 * direction.getStepX() + l1 * direction1.getStepX(), i3,
                                 k2 * direction.getStepZ() + l1 * direction1.getStepZ());
@@ -135,12 +135,12 @@ public class ModTeleporter implements ITeleporter {
             for (int i2 = -1; i2 < 4; ++i2) {
                 if (k1 == -1 || k1 == 2 || i2 == -1 || i2 == 3) {
                     mutablePos.setWithOffset(blockpos, k1 * direction.getStepX(), i2, k1 * direction.getStepZ());
-                    this.level.setBlock(mutablePos, ModBlocks.POTATOBLOCK.get().defaultBlockState(), 3);
+                    this.level.setBlock(mutablePos, MyBlocks.POTATOBLOCK.get().defaultBlockState(), 3);
                 }
             }
         }
 
-        BlockState potatoPortal = ModBlocks.POTATOPORTALBLOCK.get().defaultBlockState().setValue(PotatoPortalBlock.AXIS,
+        BlockState potatoPortal = MyBlocks.POTATOPORTALBLOCK.get().defaultBlockState().setValue(PotatoPortalBlock.AXIS,
                 axis);
 
         for (int j2 = 0; j2 < 2; ++j2) {

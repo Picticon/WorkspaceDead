@@ -13,7 +13,7 @@ import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import workspacedead.entity.ModEntityTypes;
-import workspacedead.sound.ModSounds;
+import workspacedead.registry.MySounds;
 
 public class SkeletonSheep extends SkeletonAnimal {
 
@@ -39,14 +39,14 @@ public class SkeletonSheep extends SkeletonAnimal {
         var flag = super.doHurtTarget(pEntity);
         if (flag) {
             this.level.broadcastEntityEvent(this, (byte) 4);
-            this.playSound(ModSounds.SKELETONSHEEP_ATTACKS.get(), 1.0F, this.getVoicePitch());
+            this.playSound(MySounds.SKELETONSHEEP_ATTACKS.get(), 1.0F, this.getVoicePitch());
         }
         return flag;
     }
 
     public void handleEntityEvent(byte pId) {
         if (pId == 4) {
-            this.playSound(ModSounds.SKELETONSHEEP_ATTACKS.get(), 1.0F, this.getVoicePitch());
+            this.playSound(MySounds.SKELETONSHEEP_ATTACKS.get(), 1.0F, this.getVoicePitch());
         } else {
             super.handleEntityEvent(pId);
         }

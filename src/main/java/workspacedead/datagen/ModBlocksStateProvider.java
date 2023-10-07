@@ -18,7 +18,7 @@ import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.RegistryObject;
 import workspacedead.WorkspaceDead;
-import workspacedead.block.ModBlocks;
+import workspacedead.registry.MyBlocks;
 
 ///
 /// This class creates  MODEL, BLOCKSTATE, and ITEM  data for BLOCKS
@@ -35,95 +35,101 @@ public class ModBlocksStateProvider extends BlockStateProvider {
         // ALL CUSTOM CALLS START WITH "make"
 
         // simpleBlock(ModBlocks.BIOMASS.get());
-        simpleBlock(ModBlocks.BIOMASS_BLOCK.get(),
+        simpleBlock(MyBlocks.BIOMASS_BLOCK.get(),
                 new ModelFile.UncheckedModelFile(new ResourceLocation(WorkspaceDead.MOD_ID, "block/biomass_block")));
-        itemBlock(ModBlocks.BIOMASS_BLOCK.get());
+        itemBlock(MyBlocks.BIOMASS_BLOCK.get());
 
         // simpleBlock(ModBlocks.MRHANKY_BLOCK.get(),
         // new ModelFile.UncheckedModelFile(new ResourceLocation(WorkspaceDead.MOD_ID,
         // "block/mrhanky_block")));
-        this.horizontalBlock(ModBlocks.MRHANKY_BLOCK.get(),
+        this.horizontalBlock(MyBlocks.MRHANKY_BLOCK.get(),
                 new ModelFile.UncheckedModelFile(new ResourceLocation(WorkspaceDead.MOD_ID, "block/mrhanky_block")));
-        itemBlock(ModBlocks.MRHANKY_BLOCK.get());
+        itemBlock(MyBlocks.MRHANKY_BLOCK.get());
 
-        doorBlock((DoorBlock) ModBlocks.DEADDOOR.get(),
+        doorBlock((DoorBlock) MyBlocks.DEADDOOR.get(),
                 new ResourceLocation(WorkspaceDead.MOD_ID, "block/deaddoor_bottom"), //
                 new ResourceLocation(WorkspaceDead.MOD_ID, "block/deaddoor_top"));
-        itemGenerated(ModBlocks.DEADDOOR);
+        itemGenerated(MyBlocks.DEADDOOR);
 
-        doorBlock((DoorBlock) ModBlocks.BURNTDOOR.get(),
+        doorBlock((DoorBlock) MyBlocks.BURNTDOOR.get(),
                 new ResourceLocation(WorkspaceDead.MOD_ID, "block/burntdoor_bottom"), //
                 new ResourceLocation(WorkspaceDead.MOD_ID, "block/burntdoor_top"));
-        itemGenerated(ModBlocks.BURNTDOOR);
+        itemGenerated(MyBlocks.BURNTDOOR);
 
-        trapdoorBlock((TrapDoorBlock) ModBlocks.DEADTRAPDOOR.get(), blockTexture(ModBlocks.DEADTRAPDOOR.get()), true);
-        makeItemFromParent(ModBlocks.DEADTRAPDOOR, WorkspaceDead.MOD_ID + ":block/deadtrapdoor_bottom");
+        trapdoorBlock((TrapDoorBlock) MyBlocks.DEADTRAPDOOR.get(), blockTexture(MyBlocks.DEADTRAPDOOR.get()), true);
+        makeItemFromParent(MyBlocks.DEADTRAPDOOR, WorkspaceDead.MOD_ID + ":block/deadtrapdoor_bottom");
 
-        trapdoorBlock((TrapDoorBlock) ModBlocks.BURNTTRAPDOOR.get(), blockTexture(ModBlocks.BURNTTRAPDOOR.get()), true);
-        makeItemFromParent(ModBlocks.BURNTTRAPDOOR, WorkspaceDead.MOD_ID + ":block/burnttrapdoor_bottom");
+        trapdoorBlock((TrapDoorBlock) MyBlocks.BURNTTRAPDOOR.get(), blockTexture(MyBlocks.BURNTTRAPDOOR.get()), true);
+        makeItemFromParent(MyBlocks.BURNTTRAPDOOR, WorkspaceDead.MOD_ID + ":block/burnttrapdoor_bottom");
 
-        itemBlock(ModBlocks.DEADLOG);
-        logBlock((RotatedPillarBlock) ModBlocks.DEADLOG.get());
+        itemBlock(MyBlocks.DEADLOG);
+        logBlock((RotatedPillarBlock) MyBlocks.DEADLOG.get());
 
-        itemBlock(ModBlocks.DEADWOOD);
-        axisBlock((RotatedPillarBlock) ModBlocks.DEADWOOD.get(), blockTexture(ModBlocks.DEADLOG.get()),
-                blockTexture(ModBlocks.DEADLOG.get()));
+        itemBlock(MyBlocks.DEADWOOD);
+        axisBlock((RotatedPillarBlock) MyBlocks.DEADWOOD.get(), blockTexture(MyBlocks.DEADLOG.get()),
+                blockTexture(MyBlocks.DEADLOG.get()));
 
-        itemBlock(ModBlocks.DEADLOG_STRIPPED);
-        axisBlock((RotatedPillarBlock) ModBlocks.DEADLOG_STRIPPED.get(),
+        itemBlock(MyBlocks.DEADLOG_STRIPPED);
+        axisBlock((RotatedPillarBlock) MyBlocks.DEADLOG_STRIPPED.get(),
                 new ResourceLocation(WorkspaceDead.MOD_ID, "block/deadlog_stripped"), //
                 new ResourceLocation(WorkspaceDead.MOD_ID, "block/deadlog_top_stripped"));
 
-        axisBlock((RotatedPillarBlock) ModBlocks.DEADWOOD_STRIPPED.get(),
+        axisBlock((RotatedPillarBlock) MyBlocks.DEADWOOD_STRIPPED.get(),
                 new ResourceLocation(WorkspaceDead.MOD_ID, "block/deadwood_stripped"), //
                 new ResourceLocation(WorkspaceDead.MOD_ID, "block/deadwood_top_stripped"));
-        itemBlock(ModBlocks.DEADWOOD_STRIPPED);
+        itemBlock(MyBlocks.DEADWOOD_STRIPPED);
 
-        makeSimpleBlockAndItem(ModBlocks.DEADPLANKS.get());
-        makeSimpleBlockAndItem(ModBlocks.BURNTPLANKS.get());
-        makeSimpleBlockAndItem(ModBlocks.DEADLEAVES.get());
-        makeSimpleBlockAndItem(ModBlocks.DEADDIRT.get());
-        makeSimpleBlockAndItem(ModBlocks.DEADSAND.get());
-        makeSimpleBlockAndItem(ModBlocks.DEADGRAVEL.get());
-        makeSimpleBlockAndItem(ModBlocks.DEADSTONE.get());
-        makeSimpleBlockAndItem(ModBlocks.DEADCLAY.get());
-        makeSimpleBlockAndItem(ModBlocks.DEADSLATE.get());
-        makeSimpleBlockAndItem(ModBlocks.POOPBLOCK.get());
-        makeSimpleBlockAndItem(ModBlocks.POOPBLOCK2X.get());
-        // makeSimpleBlockAndItem(ModBlocks.CARVED_POOPBLOCK.get());
-        // makeSimpleBlockAndItem(ModBlocks.POOP_O_LANTERN.get());
+        makeSimpleBlockAndItem(MyBlocks.DEADPLANKS.get());
+        makeSimpleBlockAndItem(MyBlocks.BURNTPLANKS.get());
+        makeSimpleBlockAndItem(MyBlocks.DEADLEAVES.get());
+        makeSimpleBlockAndItem(MyBlocks.DEADDIRT.get());
+        makeSimpleBlockAndItem(MyBlocks.DEADSAND.get());
+        makeSimpleBlockAndItem(MyBlocks.DEADGRAVEL.get());
+        makeSimpleBlockAndItem(MyBlocks.DEADSTONE.get());
+        makeSimpleBlockAndItem(MyBlocks.DEADCLAY.get());
+        makeSimpleBlockAndItem(MyBlocks.DEADSLATE.get());
+        makeSimpleBlockAndItem(MyBlocks.DEADORE.get());
+        makeSimpleBlockAndItem(MyBlocks.POOPBLOCK.get());
+        makeSimpleBlockAndItem(MyBlocks.POOPBLOCK2X.get());
 
-        // makeSimpleBlockAndItem(ModBlocks.DEAD_FARMLAND.get());
-        cubeColumn(ModBlocks.DEAD_FARMLAND.get(), blockTexture(Blocks.DIRT),
+        cubeColumn(MyBlocks.DEAD_FARMLAND.get(), blockTexture(Blocks.DIRT),
                 new ResourceLocation(WorkspaceDead.MOD_ID, "block/deadfarmland"));
-        itemBlock(ModBlocks.DEAD_FARMLAND);
+        itemBlock(MyBlocks.DEAD_FARMLAND);
 
-        makeFacingBlock(ModBlocks.CARVED_POOPBLOCK);
-        itemFromBlock(ModBlocks.CARVED_POOPBLOCK);
-        makeFacingBlock(ModBlocks.POOP_O_LANTERN);
-        itemFromBlock(ModBlocks.POOP_O_LANTERN);
+        makeFacingBlock(MyBlocks.CARVED_POOPBLOCK);
+        itemFromBlock(MyBlocks.CARVED_POOPBLOCK);
+        makeFacingBlock(MyBlocks.POOP_O_LANTERN);
+        itemFromBlock(MyBlocks.POOP_O_LANTERN);
 
         // inv item is simpleitem
-        simpleBlock(ModBlocks.DEADSAPLING.get(), models().cross(ModBlocks.DEADSAPLING.get().getRegistryName().getPath(),
-                blockTexture(ModBlocks.DEADSAPLING.get())));
-        itemGenerated(ModBlocks.DEADSAPLING);
+        simpleBlock(MyBlocks.DEADSAPLING.get(), models().cross(MyBlocks.DEADSAPLING.get().getRegistryName().getPath(),
+                blockTexture(MyBlocks.DEADSAPLING.get())));
+        itemGenerated(MyBlocks.DEADSAPLING);
 
-        slabBlock(ModBlocks.DEADSLAB, ModBlocks.DEADPLANKS);
-        itemFromBlock(ModBlocks.DEADSLAB);
-        slabBlock(ModBlocks.BURNTSLAB, ModBlocks.BURNTPLANKS);
-        itemFromBlock(ModBlocks.BURNTSLAB);
-        fenceBlock(ModBlocks.DEADFENCE, ModBlocks.DEADPLANKS);
-        parentBlockWithTexture(ModBlocks.DEADFENCE, "block/fence_inventory", "texture", ModBlocks.DEADPLANKS);
-        fenceBlock(ModBlocks.BURNTFENCE, ModBlocks.BURNTPLANKS);
-        parentBlockWithTexture(ModBlocks.BURNTFENCE, "block/fence_inventory", "texture", ModBlocks.BURNTPLANKS);
-        fenceGateBlock(ModBlocks.DEADFENCE_GATE, ModBlocks.DEADPLANKS);
-        itemFromBlock(ModBlocks.DEADFENCE_GATE);
-        fenceGateBlock(ModBlocks.BURNTFENCE_GATE, ModBlocks.BURNTPLANKS);
-        itemFromBlock(ModBlocks.BURNTFENCE_GATE);
-        stairsBlock(ModBlocks.DEADSTAIRS, ModBlocks.DEADPLANKS);
-        itemFromBlock(ModBlocks.DEADSTAIRS);
-        stairsBlock(ModBlocks.BURNTSTAIRS, ModBlocks.BURNTPLANKS);
-        itemFromBlock(ModBlocks.BURNTSTAIRS);
+        // inv item is simpleitem
+        simpleBlock(MyBlocks.DEADGRASS.get(), models().cross(MyBlocks.DEADGRASS.get().getRegistryName().getPath(),
+                blockTexture(MyBlocks.DEADGRASS.get())));
+        itemGenerated(MyBlocks.DEADGRASS);
+
+        slabBlock(MyBlocks.DEADSLAB, MyBlocks.DEADPLANKS);
+        itemFromBlock(MyBlocks.DEADSLAB);
+        slabBlock(MyBlocks.BURNTSLAB, MyBlocks.BURNTPLANKS);
+        itemFromBlock(MyBlocks.BURNTSLAB);
+        fenceBlock(MyBlocks.DEADFENCE, MyBlocks.DEADPLANKS);
+        parentBlockWithTexture(MyBlocks.DEADFENCE, "block/fence_inventory", "texture", MyBlocks.DEADPLANKS);
+        fenceBlock(MyBlocks.BURNTFENCE, MyBlocks.BURNTPLANKS);
+        parentBlockWithTexture(MyBlocks.BURNTFENCE, "block/fence_inventory", "texture", MyBlocks.BURNTPLANKS);
+        fenceGateBlock(MyBlocks.DEADFENCE_GATE, MyBlocks.DEADPLANKS);
+        itemFromBlock(MyBlocks.DEADFENCE_GATE);
+        fenceGateBlock(MyBlocks.BURNTFENCE_GATE, MyBlocks.BURNTPLANKS);
+        itemFromBlock(MyBlocks.BURNTFENCE_GATE);
+        stairsBlock(MyBlocks.DEADSTAIRS, MyBlocks.DEADPLANKS);
+        itemFromBlock(MyBlocks.DEADSTAIRS);
+        stairsBlock(MyBlocks.BURNTSTAIRS, MyBlocks.BURNTPLANKS);
+        itemFromBlock(MyBlocks.BURNTSTAIRS);
+
+        makeFacingBlock(MyBlocks.YELLOW_GENERATOR);
+        itemFromBlock(MyBlocks.YELLOW_GENERATOR);
 
         // makeSimpleBlockAndItem(ModBlocks.POTATOBLOCK.get());
         // simpleBlock(ModBlocks.POTATOBLOCK.get(), (a) -> {

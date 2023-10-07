@@ -1,0 +1,25 @@
+{
+    "type": "workspacedead:saturator",
+    "output": {
+        "item": "minecraft:diamond"
+    },
+    "input": {
+        "item": "minecraft:dirt"
+    },
+    "catalysts": [
+        {
+            "item": "minecraft:dirt"
+        },
+        {
+            "item": "minecraft:dirt"
+        },
+        {
+            "item": "minecraft:dirt"
+        },
+        {
+            "item": "minecraft:dirt"
+        }
+    ],
+    "power": 1000,
+    "time": 100
+}

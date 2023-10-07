@@ -8,7 +8,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import workspacedead.WorkspaceDead;
-import workspacedead.block.ModBlocks;
+import workspacedead.registry.MyBlocks;
 
 public class ModPOIs {
     public static final DeferredRegister<PoiType> POI = DeferredRegister.create(ForgeRegistries.POI_TYPES,
@@ -16,7 +16,7 @@ public class ModPOIs {
 
     public static final RegistryObject<PoiType> POTATO_PORTAL = //
             POI.register("potato_portal", () -> new PoiType("potato_portal",
-                    ImmutableSet.copyOf(ModBlocks.POTATOPORTALBLOCK.get().getStateDefinition().getPossibleStates()), 0,
+                    ImmutableSet.copyOf(MyBlocks.POTATOPORTALBLOCK.get().getStateDefinition().getPossibleStates()), 0,
                     1));
 
     public static void register(IEventBus eventBus) {

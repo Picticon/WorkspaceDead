@@ -16,7 +16,7 @@ import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
-import workspacedead.item.ModItems;
+import workspacedead.registry.MyItems;
 
 public class SlingItem extends CrossbowItem {
 
@@ -135,7 +135,7 @@ public class SlingItem extends CrossbowItem {
   
 
     public static final Predicate<ItemStack> AMMO_ONLY = (i) -> {
-        return i.is(ModItems.DIRTY_ARROW.get());
+        return i.is(MyItems.DIRTY_ARROW.get());
     };
 
 }

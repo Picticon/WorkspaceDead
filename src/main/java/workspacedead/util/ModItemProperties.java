@@ -3,11 +3,11 @@ package workspacedead.util;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
-import workspacedead.item.ModItems;
+import workspacedead.registry.MyItems;
 
 public class ModItemProperties {
     public static void addCustomItemProperties() {
-        makeBow(ModItems.DIRTY_BOW.get());
+        makeBow(MyItems.DIRTY_BOW.get());
     }
 
     private static void makeBow(Item item) {

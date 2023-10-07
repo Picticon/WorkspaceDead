@@ -39,7 +39,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 import software.bernie.geckolib3.util.GeckoLibUtil;
 import workspacedead.item.ModArmorMaterials;
 import workspacedead.particle.ModParticles;
-import workspacedead.sound.ModSounds;
+import workspacedead.registry.MySounds;
 
 public class RottenPotato extends Monster implements IAnimatable {
     private static final EntityDataAccessor<Float> SCALESIZE = SynchedEntityData.defineId(RottenPotato.class,
@@ -280,15 +280,15 @@ public class RottenPotato extends Monster implements IAnimatable {
     }
 
     protected SoundEvent getAmbientSound() {
-        return ModSounds.GRASSYPOTATO_AMBIENT.get();
+        return MySounds.GRASSYPOTATO_AMBIENT.get();
     }
 
     protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-        return ModSounds.GRASSYPOTATO_HURT.get();
+        return MySounds.GRASSYPOTATO_HURT.get();
     }
 
     protected SoundEvent getDeathSound() {
-        return ModSounds.GRASSYPOTATO_DEATH.get();
+        return MySounds.GRASSYPOTATO_DEATH.get();
     }
 
     protected float getSoundVolume() {

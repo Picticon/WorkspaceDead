@@ -20,7 +20,7 @@ public class PoopItem extends BoneMealItem {
 
     @Override
     public int getBurnTime(ItemStack itemStack, RecipeType<?> recipeType) {
-        return 800; // half the time of coal
+        return 400; // quarter the time of coal
     }
 
     @Override

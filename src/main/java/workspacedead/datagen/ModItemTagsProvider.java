@@ -9,7 +9,7 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import workspacedead.WorkspaceDead;
-import workspacedead.item.ModItems;
+import workspacedead.registry.MyItems;
 
 public class ModItemTagsProvider extends ItemTagsProvider {
 
@@ -37,27 +37,27 @@ public class ModItemTagsProvider extends ItemTagsProvider {
         this.copy(BlockTags.LEAVES, ItemTags.LEAVES);
         this.copy(BlockTags.SAPLINGS, ItemTags.SAPLINGS);
 
-        this.tag(ItemTags.ARROWS).add(ModItems.DEAD_ARROW.get());
+        this.tag(ItemTags.ARROWS).add(MyItems.DEAD_ARROW.get());
 
         this.tag(POOP)//
-                .add(ModItems.POOP.get())//
-                .add(ModItems.SEEDED_POOP.get())//
-                .add(ModItems.ENDER_POOP.get())//
-                .add(ModItems.SKELETON_POOP.get())//
-                .add(ModItems.ZOMBIE_POOP.get())//
-                .add(ModItems.CREEPER_POOP.get())//
-                .add(ModItems.SPIDER_POOP.get())//
-                .add(ModItems.SLIME_POOP.get())//
-                .add(ModItems.DRAGON_POOP.get())//
-                .add(ModItems.WITCH_POOP.get())//
-                .add(ModItems.BLAZE_POOP.get())//
-                .add(ModItems.COW_POOP.get())//
-                .add(ModItems.PHANTOM_POOP.get())//
-                .add(ModItems.PIG_POOP.get())//
-                .add(ModItems.CHICKEN_POOP.get())//
-                .add(ModItems.SHEEP_POOP.get())//
-                .add(ModItems.GOLEM_POOP.get())//
-                .add(ModItems.VILLAGER_POOP.get())//
+                .add(MyItems.POOP.get())//
+                .add(MyItems.SEEDED_POOP.get())//
+                .add(MyItems.ENDER_POOP.get())//
+                .add(MyItems.SKELETON_POOP.get())//
+                .add(MyItems.ZOMBIE_POOP.get())//
+                .add(MyItems.CREEPER_POOP.get())//
+                .add(MyItems.SPIDER_POOP.get())//
+                .add(MyItems.SLIME_POOP.get())//
+                .add(MyItems.DRAGON_POOP.get())//
+                .add(MyItems.WITCH_POOP.get())//
+                .add(MyItems.BLAZE_POOP.get())//
+                .add(MyItems.COW_POOP.get())//
+                .add(MyItems.PHANTOM_POOP.get())//
+                .add(MyItems.PIG_POOP.get())//
+                .add(MyItems.CHICKEN_POOP.get())//
+                .add(MyItems.SHEEP_POOP.get())//
+                .add(MyItems.GOLEM_POOP.get())//
+                .add(MyItems.VILLAGER_POOP.get())//
         ;
         //this.tag(FIREPROOFITEM).add(ModItems.POOP.get());
     }

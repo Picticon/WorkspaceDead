@@ -17,7 +17,7 @@ import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.minecraftforge.registries.ForgeRegistries;
 import workspacedead.WorkspaceDead;
 import workspacedead.entity.ModEntityTypes;
-import workspacedead.item.ModItems;
+import workspacedead.registry.MyItems;
 
 public class ModEntityLootTables extends EntityLoot {
     @Override
@@ -25,7 +25,7 @@ public class ModEntityLootTables extends EntityLoot {
         var enderrod = LootTable.lootTable()//
                 .withPool(LootPool.lootPool()//
                         .setRolls(ConstantValue.exactly(1.0F))//
-                        .add(LootItem.lootTableItem(ModItems.ENDER_ROD.get())//
+                        .add(LootItem.lootTableItem(MyItems.ENDER_ROD.get())//
                                 .apply(SetItemCountFunction//
                                         .setCount(UniformGenerator//
                                                 .between(0.0F, 1.0F)))//

@@ -12,11 +12,11 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import software.bernie.geckolib3.renderers.geo.GeoArmorRenderer;
 import workspacedead.WorkspaceDead;
-import workspacedead.block.ModBlockEntities;
-import workspacedead.block.ModBlocks;
-//import workspacedead.block.animatedblock.AnimatedBlockRenderer;
 import workspacedead.block.BioMass.BioMassBlockRenderer;
+import workspacedead.block.FullMetalAlchemiser.FullMetalAlchemiserBlockEntityRenderer;
 import workspacedead.block.MrHanky.MrHankyBlockRenderer;
+import workspacedead.block.Saturator.DesaturatorBlockEntityRenderer;
+import workspacedead.block.Saturator.SaturatorBlockEntityRenderer;
 import workspacedead.client.armor.PotatoArmorRenderer;
 import workspacedead.client.renderer.mob.BoneGolemRenderer;
 import workspacedead.client.renderer.mob.DraconicBlazeModel;
@@ -36,6 +36,8 @@ import workspacedead.fluid.ModFluids;
 import workspacedead.item.custom.PotatoArmorItem;
 import workspacedead.particle.ModParticles;
 import workspacedead.particle.custom.PurifyParticles;
+import workspacedead.registry.MyBlockEntities;
+import workspacedead.registry.MyBlocks;
 import workspacedead.util.ModItemProperties;
 
 @Mod.EventBusSubscriber(modid = WorkspaceDead.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
@@ -46,18 +48,26 @@ public class ModEventClientBusEvents {
         ItemBlockRenderTypes.setRenderLayer(ModFluids.DEADWATER_FLUID.get(), RenderType.translucent());
         ItemBlockRenderTypes.setRenderLayer(ModFluids.DEADWATER_FLOWING.get(), RenderType.translucent());
 
-        ItemBlockRenderTypes.setRenderLayer(ModBlocks.DEADLEAVES.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(ModBlocks.DEADSAPLING.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ModFluids.URINE_BLOCK.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(ModFluids.URINE_FLUID.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(ModFluids.URINE_FLOWING.get(), RenderType.translucent());
 
-        ItemBlockRenderTypes.setRenderLayer(ModBlocks.DEADDOOR.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(ModBlocks.DEADTRAPDOOR.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(ModBlocks.BURNTDOOR.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(ModBlocks.BURNTTRAPDOOR.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(MyBlocks.DEADLEAVES.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(MyBlocks.DEADSAPLING.get(), RenderType.cutout());
 
-        ItemBlockRenderTypes.setRenderLayer(ModBlocks.GRASSYPOTATO_PLANT.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(ModBlocks.SPAWNEGG_PLANT.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(MyBlocks.DEADDOOR.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(MyBlocks.DEADTRAPDOOR.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(MyBlocks.BURNTDOOR.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(MyBlocks.BURNTTRAPDOOR.get(), RenderType.cutout());
 
-        ItemBlockRenderTypes.setRenderLayer(ModBlocks.POTATOPORTALBLOCK.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(MyBlocks.DEADGRASS.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(MyBlocks.GRASSYPOTATO_PLANT.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(MyBlocks.SPAWNEGG_PLANT.get(), RenderType.cutout());
+
+        ItemBlockRenderTypes.setRenderLayer(MyBlocks.POTATOPORTALBLOCK.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(MyBlocks.SATURATOR_BLOCK.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(MyBlocks.DESATURATOR_BLOCK.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(MyBlocks.FULLMETALALCHEMISER_BLOCK.get(), RenderType.translucent());
 
         ModItemProperties.addCustomItemProperties();
     }
@@ -92,8 +102,14 @@ public class ModEventClientBusEvents {
 
     @SubscribeEvent
     public static void registerRenderers(final EntityRenderersEvent.RegisterRenderers event) {
-        event.registerBlockEntityRenderer(ModBlockEntities.BIOMASS_BLOCK_ENTITY.get(), BioMassBlockRenderer::new);
-        event.registerBlockEntityRenderer(ModBlockEntities.MRHANKY_BLOCK_ENTITY.get(), MrHankyBlockRenderer::new);
+        event.registerBlockEntityRenderer(MyBlockEntities.BIOMASS_BLOCK_ENTITY.get(), BioMassBlockRenderer::new);
+        event.registerBlockEntityRenderer(MyBlockEntities.MRHANKY_BLOCK_ENTITY.get(), MrHankyBlockRenderer::new);
+        event.registerBlockEntityRenderer(MyBlockEntities.SATURATOR_BLOCK_ENTITY.get(),
+                SaturatorBlockEntityRenderer::new);
+        event.registerBlockEntityRenderer(MyBlockEntities.DESATURATOR_BLOCK_ENTITY.get(),
+                DesaturatorBlockEntityRenderer::new);
+        event.registerBlockEntityRenderer(MyBlockEntities.FULLMETALALCHEMISER_BLOCK_ENTITY.get(),
+                FullMetalAlchemiserBlockEntityRenderer::new);
     }
 
     @SubscribeEvent

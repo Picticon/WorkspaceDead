@@ -1,0 +1,29 @@
+{
+    "variants": {
+        "facing=north": {
+            "model": "workspacedead:block/fullmetalalchemiser_block"
+        },
+        "facing=south": {
+            "model": "workspacedead:block/fullmetalalchemiser_block",
+            "y": 180
+        },
+        "facing=west": {
+            "model": "workspacedead:block/fullmetalalchemiser_block",
+            "y": 270
+        },
+        "facing=east": {
+            "model": "workspacedead:block/fullmetalalchemiser_block",
+            "y": 90
+        },
+        "facing=down": {
+            "model": "workspacedead:block/fullmetalalchemiser_block",
+            "x": 90,
+            "y": 90
+        },
+        "facing=up": {
+            "model": "workspacedead:block/fullmetalalchemiser_block",
+            "x": -90,
+            "y": 90
+        }
+    }
+}

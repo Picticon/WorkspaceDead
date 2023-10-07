@@ -9,7 +9,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import workspacedead.entity.ModEntityTypes;
-import workspacedead.item.ModItems;
+import workspacedead.registry.MyItems;
 
 public class GrassyPotatoPlantBlock extends CropBlock {
     public static final IntegerProperty AGE = BlockStateProperties.AGE_7;
@@ -25,7 +25,7 @@ public class GrassyPotatoPlantBlock extends CropBlock {
 
     @Override
     protected ItemLike getBaseSeedId() {
-        return ModItems.GRASSYPOTATO_SEEDS.get();
+        return MyItems.GRASSYPOTATO_SEEDS.get();
     }
 
     private void spawnInfestation(ServerLevel level, BlockPos pos) {

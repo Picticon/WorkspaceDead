@@ -8,8 +8,8 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import workspacedead.block.ModBlocks;
-import workspacedead.sound.ModSounds;
+import workspacedead.registry.MySounds;
+import workspacedead.registry.MyBlocks;
 
 public class MoveToFarmlandBlockGoal extends MoveToBlockGoal {
 
@@ -67,11 +67,11 @@ public class MoveToFarmlandBlockGoal extends MoveToBlockGoal {
                 BlockState blockstate = level.getBlockState(this.blockPos);
                 if (blockstate.is(Blocks.FARMLAND)) {
                     if (!level.isClientSide()) {
-                        level.setBlock(this.blockPos, ModBlocks.DEAD_FARMLAND.get().defaultBlockState(), 1 | 2);
+                        level.setBlock(this.blockPos, MyBlocks.DEAD_FARMLAND.get().defaultBlockState(), 1 | 2);
                         this.grassyPotato.setPos((this.grassyPotato.getX() + this.blockPos.getX() + .5f) / 2.0f,
                                 this.grassyPotato.getY() + .1f,
                                 (this.grassyPotato.getZ() + this.blockPos.getZ() + .5f) / 2.0f);
-                        level.playSound(null, this.blockPos, ModSounds.POP.get(), SoundSource.AMBIENT, 1F, 1);
+                        level.playSound(null, this.blockPos, MySounds.POP.get(), SoundSource.AMBIENT, 1F, 1);
                         this.grassyPotato.setYya(nextStartTick);
                     }
                 }

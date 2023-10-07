@@ -13,13 +13,13 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import workspacedead.registry.MyBlockEntities;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.Mirror;
-import workspacedead.block.ModBlockEntities;
 
 public class MrHankyBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
@@ -34,7 +34,7 @@ public class MrHankyBlock extends BaseEntityBlock {
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
-        return ModBlockEntities.MRHANKY_BLOCK_ENTITY.get().create(pPos, pState);
+        return MyBlockEntities.MRHANKY_BLOCK_ENTITY.get().create(pPos, pState);
     }
 
     @Override
@@ -58,7 +58,7 @@ public class MrHankyBlock extends BaseEntityBlock {
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state,
             BlockEntityType<T> type) {
-        return createTickerHelper(type, ModBlockEntities.MRHANKY_BLOCK_ENTITY.get(), MrHankyBlockEntity::tick);
+        return createTickerHelper(type, MyBlockEntities.MRHANKY_BLOCK_ENTITY.get(), MrHankyBlockEntity::tick);
     }
 
     public BlockState rotate(BlockState pState, Rotation pRot) {

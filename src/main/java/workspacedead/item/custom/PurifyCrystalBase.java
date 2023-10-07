@@ -21,7 +21,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import workspacedead.advancement.ModCriteriaTriggers;
 import workspacedead.config.CommonConfig;
 import workspacedead.particle.ModParticles;
-import workspacedead.sound.ModSounds;
+import workspacedead.registry.MySounds;
 
 import java.util.ArrayList;
 
@@ -79,7 +79,7 @@ public class PurifyCrystalBase extends Item {
             cnt += transformBlock(nblockpos, list, pContext);
         }
         if (cnt > 0) {
-            pContext.getLevel().playSound(pContext.getPlayer(), blockpos, ModSounds.PURIFY.get(), SoundSource.BLOCKS, 1,
+            pContext.getLevel().playSound(pContext.getPlayer(), blockpos, MySounds.PURIFY.get(), SoundSource.BLOCKS, 1,
                     1);
             pContext.getLevel().playSound(pContext.getPlayer(), blockpos, SoundEvents.AMETHYST_BLOCK_HIT,
                     SoundSource.BLOCKS, .5f, 1.4f);
@@ -150,7 +150,7 @@ public class PurifyCrystalBase extends Item {
                             }
                         }
                         Particleify(pPlayer.level, pInteractionTarget.getOnPos(), 1.4);
-                        pPlayer.level.playSound(pPlayer, pInteractionTarget.blockPosition(), ModSounds.PURIFY.get(),
+                        pPlayer.level.playSound(pPlayer, pInteractionTarget.blockPosition(), MySounds.PURIFY.get(),
                                 SoundSource.PLAYERS, 1, 1);
                         pPlayer.level.playSound(pPlayer, pInteractionTarget.blockPosition(),
                                 SoundEvents.AMETHYST_BLOCK_HIT, SoundSource.PLAYERS, .5f, 1.4f);

@@ -14,8 +14,8 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import workspacedead.WorkspaceDead;
-import workspacedead.block.ModBlocks;
-import workspacedead.item.ModItems;
+import workspacedead.registry.MyBlocks;
+import workspacedead.registry.MyItems;
 
 public class ModFluids {
 
@@ -38,10 +38,29 @@ public class ModFluids {
                     .density(15).luminosity(2).viscosity(5).sound(SoundEvents.WATER_AMBIENT).overlay(WATER_OVERLAY_RL)
                     .color(0xC3333333))
             .slopeFindDistance(2).levelDecreasePerBlock(2)
-            .block(() -> ModFluids.DEADWATER_BLOCK.get()).bucket(() -> ModItems.DEADWATER_BUCKET.get());
+            .block(() -> ModFluids.DEADWATER_BLOCK.get()).bucket(() -> MyItems.DEADWATER_BUCKET.get());
 
-    public static final RegistryObject<LiquidBlock> DEADWATER_BLOCK = ModBlocks.MOD_BLOCKS.register("deadwater",
+    public static final RegistryObject<LiquidBlock> DEADWATER_BLOCK = MyBlocks.MOD_BLOCKS.register("deadwater",
             () -> new LiquidBlock(() -> ModFluids.DEADWATER_FLUID.get(), BlockBehaviour.Properties.of(Material.WATER)
+                    .noCollission().strength(100f).noDrops()));
+
+
+    public static final RegistryObject<FlowingFluid> URINE_FLUID = MOD_FLUIDS.register("urine_fluid",
+            () -> new ForgeFlowingFluid.Source(ModFluids.URINE_PROPERTIES));
+
+    public static final RegistryObject<FlowingFluid> URINE_FLOWING = MOD_FLUIDS.register("urine_flowing",
+            () -> new ForgeFlowingFluid.Flowing(ModFluids.URINE_PROPERTIES));
+
+    public static final ForgeFlowingFluid.Properties URINE_PROPERTIES = new ForgeFlowingFluid.Properties(
+            () -> URINE_FLUID.get(), () -> URINE_FLOWING.get(),
+            FluidAttributes.builder(WATER_STILL_RL, WATER_FLOWING_RL)
+                    .density(15).luminosity(2).viscosity(5).sound(SoundEvents.WATER_AMBIENT).overlay(WATER_OVERLAY_RL)
+                    .color(0xC3FFEE55))
+            .slopeFindDistance(2).levelDecreasePerBlock(2)
+            .block(() -> ModFluids.URINE_BLOCK.get()).bucket(() -> MyItems.URINE_BUCKET.get());
+
+    public static final RegistryObject<LiquidBlock> URINE_BLOCK = MyBlocks.MOD_BLOCKS.register("urine",
+            () -> new LiquidBlock(() -> ModFluids.URINE_FLUID.get(), BlockBehaviour.Properties.of(Material.WATER)
                     .noCollission().strength(100f).noDrops()));
 
     public static void register(IEventBus eventBus) {

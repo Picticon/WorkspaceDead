@@ -6,6 +6,7 @@
     "mixins": [
         "ItemEntityMixin",
         "NetherPortalMixin",
-        "CropBlockMixin"
+        "CropBlockMixin",
+        "CloudColorMixin"
     ]
 }

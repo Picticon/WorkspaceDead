@@ -6,8 +6,8 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import workspacedead.registry.MyBlockEntities;
 import net.minecraft.world.level.block.BaseEntityBlock;
-import workspacedead.block.ModBlockEntities;
 
 public class BioMassBlock extends BaseEntityBlock {
     //public static final DirectionProperty FACING = BlockStateProperties.FACING;
@@ -19,7 +19,7 @@ public class BioMassBlock extends BaseEntityBlock {
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
-        return ModBlockEntities.BIOMASS_BLOCK_ENTITY.get().create(pPos, pState);
+        return MyBlockEntities.BIOMASS_BLOCK_ENTITY.get().create(pPos, pState);
     }
 
     @Override

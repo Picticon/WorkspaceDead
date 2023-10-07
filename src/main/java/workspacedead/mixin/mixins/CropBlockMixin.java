@@ -9,7 +9,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import workspacedead.block.ModBlocks;
+import workspacedead.registry.MyBlocks;
 
 @Mixin(CropBlock.class)
 public abstract class CropBlockMixin {
@@ -19,7 +19,7 @@ public abstract class CropBlockMixin {
     @Inject(at = @At("HEAD"), method = "mayPlaceOn", cancellable = true)
     protected void mayPlaceOn(BlockState pState, BlockGetter pLevel, BlockPos pPos,
             CallbackInfoReturnable<Boolean> cir) {
-        if (pState.is(ModBlocks.DEAD_FARMLAND.get())) {
+        if (pState.is(MyBlocks.DEAD_FARMLAND.get())) {
             cir.setReturnValue(true);
         }
     }

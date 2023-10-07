@@ -4,6 +4,9 @@ import java.util.Random;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.Difficulty;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
@@ -18,7 +21,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
-import workspacedead.block.ModBlocks;
+import workspacedead.registry.MyBlocks;
 
 public class SkeletonAnimal extends Monster {
 
@@ -28,12 +31,21 @@ public class SkeletonAnimal extends Monster {
 
     public static boolean checkAnimalSpawnRules(EntityType<? extends Monster> pType, LevelAccessor pLevel,
             MobSpawnType pSpawnType, BlockPos pPos, Random pRandom) {
-        return ((pLevel.getBlockState(pPos.below()).is(ModBlocks.DEADDIRT.get()) || //
-                pLevel.getBlockState(pPos.below()).is(ModBlocks.DEADSAND.get()) || //
-                pLevel.getBlockState(pPos.below()).is(ModBlocks.DEADSTONE.get()) || //
-                pLevel.getBlockState(pPos.below()).is(ModBlocks.DEADCLAY.get()))  //
+        return ((pLevel.getBlockState(pPos.below()).is(MyBlocks.DEADDIRT.get()) || //
+                pLevel.getBlockState(pPos.below()).is(MyBlocks.DEADSAND.get()) || //
+                pLevel.getBlockState(pPos.below()).is(MyBlocks.DEADSTONE.get()) || //
+                pLevel.getBlockState(pPos.below()).is(MyBlocks.DEADCLAY.get())) //
                 && pLevel.getDifficulty() != Difficulty.PEACEFUL
                 && checkMobSpawnRules(pType, pLevel, pSpawnType, pPos, pRandom));
+    }
+
+    public void aiStep() {
+        if (this.isAlive()) {
+            if (!this.hasEffect(MobEffects.MOVEMENT_SPEED) && !this.isSunBurnTick()) {
+                this.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20, 1));
+            }
+        }
+        super.aiStep();
     }
 
     @Override

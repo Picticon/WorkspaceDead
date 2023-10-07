@@ -32,6 +32,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.Cancelable;
+import workspacedead.registry.MyBlocks;
 import workspacedead.util.ModTags;
 import workspacedead.world.ModDimensions;
 import workspacedead.world.ModTeleporter;
@@ -152,6 +153,7 @@ public class PotatoPortalBlock extends Block {
         }
 
         for (int i = 0; i < 4; ++i) {
+            /*
             double x = (double) pos.getX() + rand.nextDouble();
             double y = (double) pos.getY() + rand.nextDouble();
             double z = (double) pos.getZ() + rand.nextDouble();
@@ -166,6 +168,7 @@ public class PotatoPortalBlock extends Block {
                 z = (double) pos.getZ() + 0.5D + 0.25D * (double) j;
                 zSpeed = rand.nextFloat() * 2.0F * (float) j;
             }
+             */
 
             // TODO: Particles
             // worldIn.addParticle(PARTICLE_TYPE, x, y, z, xSpeed, ySpeed, zSpeed);
@@ -274,7 +277,7 @@ public class PotatoPortalBlock extends Block {
                     }
 
                     Block block = blockstate.getBlock();
-                    if (block == ModBlocks.POTATOPORTALBLOCK.get()) {
+                    if (block == MyBlocks.POTATOPORTALBLOCK.get()) {
                         ++this.portalBlockCount;
                     }
 
@@ -312,7 +315,7 @@ public class PotatoPortalBlock extends Block {
 
         protected boolean canConnect(BlockState pos) {
             Block block = pos.getBlock();
-            return pos.isAir() || block == ModBlocks.POTATOPORTALBLOCK.get();
+            return pos.isAir() || block == MyBlocks.POTATOPORTALBLOCK.get();
         }
 
         public boolean isValid() {
@@ -325,7 +328,7 @@ public class PotatoPortalBlock extends Block {
                 BlockPos blockpos = this.bottomLeft.relative(this.rightDir, i);
 
                 for (int j = 0; j < this.height; ++j) {
-                    this.level.setBlock(blockpos.above(j), ModBlocks.POTATOPORTALBLOCK.get().defaultBlockState()
+                    this.level.setBlock(blockpos.above(j), MyBlocks.POTATOPORTALBLOCK.get().defaultBlockState()
                             .setValue(PotatoPortalBlock.AXIS, this.axis), 18);
                 }
             }

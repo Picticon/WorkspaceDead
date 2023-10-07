@@ -15,11 +15,13 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
@@ -33,10 +35,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
 import software.bernie.geckolib3.GeckoLib;
 import workspacedead.advancement.ModCriteriaTriggers;
-import workspacedead.block.ModBlockEntities;
-//import workspacedead.advancement.ModCriteriaTriggers;
-//import workspacedead.advancement.ModAdvancements;
-import workspacedead.block.ModBlocks;
+import workspacedead.client.ClientSetup;
 import workspacedead.config.CommonConfig;
 import workspacedead.datagen.ModItemTagsProvider;
 import workspacedead.effect.ModEffects;
@@ -47,10 +46,15 @@ import workspacedead.entity.mob.SkeletonSlime;
 import workspacedead.entity.projectile.DeadArrow;
 import workspacedead.entity.projectile.DirtyArrow;
 import workspacedead.fluid.ModFluids;
-import workspacedead.item.ModItems;
+import workspacedead.network.MyMessages;
 import workspacedead.particle.ModParticles;
 import workspacedead.potion.ModPotions;
-import workspacedead.sound.ModSounds;
+import workspacedead.registry.MySounds;
+import workspacedead.registry.MyBlockEntities;
+import workspacedead.registry.MyBlocks;
+import workspacedead.registry.MyContainers;
+import workspacedead.registry.MyItems;
+import workspacedead.registry.MyRecipes;
 import workspacedead.util.Chatter;
 import workspacedead.world.ModDimensions;
 import workspacedead.world.ModPOIs;
@@ -81,19 +85,21 @@ public class WorkspaceDead {
 
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        ModItems.register(eventBus);
-        ModBlocks.register(eventBus);
+        MyItems.register(eventBus);
+        MyBlocks.register(eventBus);
         ModFluids.register(eventBus);
+        MyContainers.register(eventBus);
+        MyRecipes.register(eventBus);
 
         ModEffects.register(eventBus);
         ModEnchantments.register(eventBus);
         ModPotions.register(eventBus);
 
         ModParticles.register(eventBus);
-        ModSounds.register(eventBus);
+        MySounds.register(eventBus);
 
         ModEntityTypes.register(eventBus); // needs to go before "Items", because Items registers spawn eggs.
-        ModBlockEntities.register(eventBus);
+        MyBlockEntities.register(eventBus);
 
         ModPOIs.register(eventBus);
 
@@ -106,8 +112,9 @@ public class WorkspaceDead {
 
         ModCriteriaTriggers.register();
 
-        eventBus.addListener(this::setup);
+        // eventBus.addListener(this::setup);
         // eventBus.addListener(this::clientSetup);
+        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> eventBus.addListener(ClientSetup::init));
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, CommonConfig.SPEC, "workspacedead-common.toml");
 
@@ -115,6 +122,7 @@ public class WorkspaceDead {
     }
 
     private void setup(final FMLCommonSetupEvent event) {
+
         event.enqueueWork(() -> {
             SpawnPlacements.register(ModEntityTypes.SKELETONCOW.get(), SpawnPlacements.Type.ON_GROUND,
                     Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, SkeletonAnimal::checkAnimalSpawnRules);
@@ -129,24 +137,24 @@ public class WorkspaceDead {
             SpawnPlacements.register(ModEntityTypes.SKELETONSPIDER.get(), SpawnPlacements.Type.ON_GROUND,
                     Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules);
 
-            ComposterBlock.COMPOSTABLES.put(ModItems.POOP.get().asItem(), .5f);
-            ComposterBlock.COMPOSTABLES.put(ModItems.COW_POOP.get().asItem(), .75f);
-            ComposterBlock.COMPOSTABLES.put(ModItems.PHANTOM_POOP.get().asItem(), .75f);
-            ComposterBlock.COMPOSTABLES.put(ModItems.CHICKEN_POOP.get().asItem(), .75f);
-            ComposterBlock.COMPOSTABLES.put(ModItems.SHEEP_POOP.get().asItem(), .75f);
-            ComposterBlock.COMPOSTABLES.put(ModItems.PIG_POOP.get().asItem(), .75f);
-            ComposterBlock.COMPOSTABLES.put(ModItems.CREEPER_POOP.get().asItem(), 1);
-            ComposterBlock.COMPOSTABLES.put(ModItems.SKELETON_POOP.get().asItem(), 1);
-            ComposterBlock.COMPOSTABLES.put(ModItems.ENDER_POOP.get().asItem(), 1);
-            ComposterBlock.COMPOSTABLES.put(ModItems.ZOMBIE_POOP.get().asItem(), 1);
-            ComposterBlock.COMPOSTABLES.put(ModItems.VILLAGER_POOP.get().asItem(), 1);
-            ComposterBlock.COMPOSTABLES.put(ModItems.SPIDER_POOP.get().asItem(), 1);
-            ComposterBlock.COMPOSTABLES.put(ModItems.GOLEM_POOP.get().asItem(), 1);
-            ComposterBlock.COMPOSTABLES.put(ModItems.DRAGON_POOP.get().asItem(), 1);
-            ComposterBlock.COMPOSTABLES.put(ModItems.WITCH_POOP.get().asItem(), 1);
-            ComposterBlock.COMPOSTABLES.put(ModItems.BLAZE_POOP.get().asItem(), 1);
+            ComposterBlock.COMPOSTABLES.put(MyItems.POOP.get().asItem(), .5f);
+            ComposterBlock.COMPOSTABLES.put(MyItems.COW_POOP.get().asItem(), .75f);
+            ComposterBlock.COMPOSTABLES.put(MyItems.PHANTOM_POOP.get().asItem(), .75f);
+            ComposterBlock.COMPOSTABLES.put(MyItems.CHICKEN_POOP.get().asItem(), .75f);
+            ComposterBlock.COMPOSTABLES.put(MyItems.SHEEP_POOP.get().asItem(), .75f);
+            ComposterBlock.COMPOSTABLES.put(MyItems.PIG_POOP.get().asItem(), .75f);
+            ComposterBlock.COMPOSTABLES.put(MyItems.CREEPER_POOP.get().asItem(), 1);
+            ComposterBlock.COMPOSTABLES.put(MyItems.SKELETON_POOP.get().asItem(), 1);
+            ComposterBlock.COMPOSTABLES.put(MyItems.ENDER_POOP.get().asItem(), 1);
+            ComposterBlock.COMPOSTABLES.put(MyItems.ZOMBIE_POOP.get().asItem(), 1);
+            ComposterBlock.COMPOSTABLES.put(MyItems.VILLAGER_POOP.get().asItem(), 1);
+            ComposterBlock.COMPOSTABLES.put(MyItems.SPIDER_POOP.get().asItem(), 1);
+            ComposterBlock.COMPOSTABLES.put(MyItems.GOLEM_POOP.get().asItem(), 1);
+            ComposterBlock.COMPOSTABLES.put(MyItems.DRAGON_POOP.get().asItem(), 1);
+            ComposterBlock.COMPOSTABLES.put(MyItems.WITCH_POOP.get().asItem(), 1);
+            ComposterBlock.COMPOSTABLES.put(MyItems.BLAZE_POOP.get().asItem(), 1);
 
-            DispenserBlock.registerBehavior(ModItems.DIRTY_ARROW.get(), new AbstractProjectileDispenseBehavior() {
+            DispenserBlock.registerBehavior(MyItems.DIRTY_ARROW.get(), new AbstractProjectileDispenseBehavior() {
                 protected Projectile getProjectile(Level level, Position position, ItemStack p_123409_) {
                     var arrow = new DirtyArrow(level, position);
                     arrow.pickup = AbstractArrow.Pickup.ALLOWED;
@@ -154,7 +162,7 @@ public class WorkspaceDead {
                 }
             });
 
-            DispenserBlock.registerBehavior(ModItems.DEAD_ARROW.get(), new AbstractProjectileDispenseBehavior() {
+            DispenserBlock.registerBehavior(MyItems.DEAD_ARROW.get(), new AbstractProjectileDispenseBehavior() {
                 protected Projectile getProjectile(Level level, Position position, ItemStack p_123409_) {
                     var arrow = new DeadArrow(level, position);
                     arrow.pickup = AbstractArrow.Pickup.ALLOWED;
@@ -162,8 +170,8 @@ public class WorkspaceDead {
                 }
             });
 
-            // ModCriteriaTriggers.register();
         });
+        MyMessages.register(); // supposedly does not work inside the enqueueWork call.
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event) {
@@ -202,6 +210,7 @@ public class WorkspaceDead {
         }
     }
 
+    // Prevent items with custom tags from burning
     @SubscribeEvent
     public void onEntitySpawn(EntityJoinWorldEvent event) {
         if (event.getEntity() instanceof ItemEntity) {
@@ -214,6 +223,7 @@ public class WorkspaceDead {
         }
     }
 
+    // reload config caches when config file changes
     @SubscribeEvent
     static void onFileChange(final ModConfigEvent.Reloading configEvent) {
         if (configEvent.getConfig().getSpec() == CommonConfig.SPEC) {

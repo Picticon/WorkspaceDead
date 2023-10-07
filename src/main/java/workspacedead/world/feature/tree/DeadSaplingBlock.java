@@ -6,7 +6,7 @@ import net.minecraft.world.level.block.SaplingBlock;
 import net.minecraft.world.level.block.grower.AbstractTreeGrower;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.PlantType;
-import workspacedead.block.ModBlocks;
+import workspacedead.registry.MyBlocks;
 
 public class DeadSaplingBlock extends SaplingBlock {
 
@@ -16,7 +16,7 @@ public class DeadSaplingBlock extends SaplingBlock {
 
     @Override
     protected boolean mayPlaceOn(BlockState pState, BlockGetter pLevel, BlockPos pPos) {
-        return pState.is(ModBlocks.DEADDIRT.get()) || pState.is(ModBlocks.DEADSAND.get());
+        return pState.is(MyBlocks.DEADDIRT.get()) || pState.is(MyBlocks.DEADSAND.get());
     }
 
     @Override

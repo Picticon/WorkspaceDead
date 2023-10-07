@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import net.minecraft.world.phys.Vec3;
 
 import net.minecraftforge.common.ForgeConfigSpec;
 
@@ -22,6 +26,9 @@ public final class CommonConfig {
 
     public static final ForgeConfigSpec.ConfigValue<List<? extends String>> poop_mobs;
     public static HashMap<String, String[]> poop_mobs_cache;
+
+    public static final ForgeConfigSpec.ConfigValue<String> cloud_color;
+    public static Vec3 cloud_color_cache = null;
 
     static {
         BUILDER.push("WorkspaceDead Config");
@@ -86,6 +93,9 @@ public final class CommonConfig {
                 "List of living entities and poop types, from:to, e.g. minecraft:chicken:workspacedead:chickenpoop")
                 .defineList("Poop Sources", poopMobs, o -> true);
 
+        cloud_color = BUILDER.comment("Color of clouds. Blank for default. \"128,128,128\" (RGB) otherwise.")
+                .define("Cloud Color", "");
+
         BUILDER.pop();
         SPEC = BUILDER.build();
     }
@@ -101,6 +111,17 @@ public final class CommonConfig {
                     poop_mobs_cache.put(arr[0] + ":" + arr[1], new String[] { arr[0], arr[1], arr[2], arr[3] });
                 }
             }
+        }
+
+        Pattern RGB_PATTERN = Pattern.compile("(\\d{1,3}),(\\d{1,3}),(\\d{1,3})", Pattern.CASE_INSENSITIVE);
+        Matcher m = RGB_PATTERN.matcher(CommonConfig.cloud_color.get());
+        if (m.find()) {
+            Integer red = Integer.parseInt(m.group(1));
+            Integer green = Integer.parseInt(m.group(2));
+            Integer blue = Integer.parseInt(m.group(3));
+            cloud_color_cache = new Vec3(red, green, blue);
+        } else {
+            cloud_color_cache = null;
         }
     }
 }

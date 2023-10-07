@@ -15,6 +15,7 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.SpawnPlacements;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.NaturalSpawner;
@@ -27,6 +28,7 @@ import net.minecraft.world.phys.AABB;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.registries.ForgeRegistries;
+import workspacedead.block.SpawnEggPlant.SpawnEggBlockEntity;
 import workspacedead.effect.ModEffects;
 
 ///
@@ -103,7 +105,20 @@ public class DeadFarmland extends Block {
                 // return;
                 // }
                 entity.addEffect(new MobEffectInstance(ModEffects.DOOMED.get(), 15 * 20)); // 15 second lifespan
-                entity.finalizeSpawn(level, level.getCurrentDifficultyAt(pos), MobSpawnType.NATURAL, null, null);
+                var speed = entity.getAttribute(Attributes.MOVEMENT_SPEED);
+                if (speed != null)
+                    speed.setBaseValue(speed.getBaseValue() * 3);
+                var str = entity.getAttribute(Attributes.ATTACK_DAMAGE);
+                if (str != null)
+                    str.setBaseValue(str.getBaseValue() * 3);
+                var aspeed = entity.getAttribute(Attributes.ATTACK_SPEED);
+                if (aspeed != null)
+                    aspeed.setBaseValue(aspeed.getBaseValue() * 3);
+                var life = entity.getAttribute(Attributes.MAX_HEALTH);
+                if (life != null)
+                    life.setBaseValue(life.getBaseValue() * 3);
+
+                entity.finalizeSpawn(level, level.getCurrentDifficultyAt(pos), MobSpawnType.SPAWNER, null, null);
                 level.addFreshEntity(entity);
             }
         }

@@ -182,6 +182,16 @@ repositories {
     maven {
         url 'https://cursemaven.com'
     }
+    maven { // JEI
+        url "https://dvs1.progwml6.com/files/maven"
+    }
+    maven { // TOP
+        url "https://cursemaven.com"
+    }
+    maven {
+        name = "ModMaven / JEI Mirror"
+        url = "https://modmaven.k-4u.nl"
+    }
 }
 
 dependencies {
@@ -207,6 +217,10 @@ dependencies {
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
     implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.18:3.0.57')
 
+    //compileOnly fg.deobf("mezz.jei:jei-${jei_version}:api")
+    //implementation fg.deobf("mezz.jei:jei-${jei_version}")
+
+    implementation fg.deobf("curse.maven:the-one-probe-245211:3550084")
     // // Loom (Fabric / Quilt / Architectury)
     // modImplementation("dev.latvian.mods:kubejs-<loader>:${kubejs_version}")
 
@@ -216,6 +230,11 @@ dependencies {
     // // these two are unfortunately needed since fg.deobf doesn't respect transitive dependencies yet
     // implementation fg.deobf("dev.latvian.mods:rhino:${rhino_version}")
     // implementation fg.deobf("dev.architectury:architectury-forge:${architectury_version}")
+
+// compile against the JEI API but do not include it at runtime
+    compileOnly fg.deobf("mezz.jei:jei-${jei_version}:api")
+    // at runtime, use the full JEI jar
+    runtimeOnly fg.deobf("mezz.jei:jei-${jei_version}")    
 }
 
 // Example for how to get properties into the manifest for reading at runtime.

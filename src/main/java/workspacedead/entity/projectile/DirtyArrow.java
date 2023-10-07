@@ -9,7 +9,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.network.NetworkHooks;
 import workspacedead.entity.ModEntityTypes;
-import workspacedead.item.ModItems;
+import workspacedead.registry.MyItems;
 
 public class DirtyArrow extends AbstractArrow {
 
@@ -31,7 +31,7 @@ public class DirtyArrow extends AbstractArrow {
 
     @Override
     protected ItemStack getPickupItem() {
-        return new ItemStack(ModItems.DIRTY_ARROW.get());
+        return new ItemStack(MyItems.DIRTY_ARROW.get());
     }
 
     @Override

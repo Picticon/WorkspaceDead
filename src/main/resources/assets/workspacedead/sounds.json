@@ -58,12 +58,29 @@
         "sounds": [
             "workspacedead:grassypotato_death"
         ]
-    }
-    ,
+    },
     "pop": {
         "subtitle": "sounds.workspacedead.pop",
         "sounds": [
             "workspacedead:pop"
+        ]
+    },
+    "plunger": {
+        "subtitle": "sounds.workspacedead.plunger",
+        "sounds": [
+            "workspacedead:plunger"
+        ]
+    },
+    "fullmetalalchemiser_firing": {
+        "subtitle": "sounds.workspacedead.fullmetalalchemiser_firing",
+        "sounds": [
+            "workspacedead:fullmetalalchemiser_firing"
+        ]
+    },
+    "fullmetalalchemiser_firing_alt": {
+        "subtitle": "sounds.workspacedead.fullmetalalchemiser_firing_alt",
+        "sounds": [
+            "workspacedead:fullmetalalchemiser_firing_alt"
         ]
     }
 }

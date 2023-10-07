@@ -2,6 +2,8 @@
   "replace": false,
   "values": [
     "workspacedead:deadstone",
-    "workspacedead:deadslate"
+    "workspacedead:deadslate",
+    "workspacedead:deadore",
+    "workspacedead:yellow_generator"
   ]
 }

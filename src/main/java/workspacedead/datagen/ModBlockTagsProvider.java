@@ -9,7 +9,7 @@ import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraftforge.common.data.ExistingFileHelper;
-import workspacedead.block.ModBlocks;
+import workspacedead.registry.MyBlocks;
 import workspacedead.util.ModTags;
 
 public class ModBlockTagsProvider extends BlockTagsProvider {
@@ -30,36 +30,39 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
 
     @Override
     protected void addTags() {
-        this.tag(BlockTags.DOORS).add(ModBlocks.DEADDOOR.get(), ModBlocks.BURNTDOOR.get());
-        this.tag(BlockTags.TRAPDOORS).add(ModBlocks.DEADTRAPDOOR.get(), ModBlocks.BURNTTRAPDOOR.get());
-        this.tag(BlockTags.SLABS).add(ModBlocks.DEADSLAB.get(), ModBlocks.BURNTSLAB.get());
-        this.tag(BlockTags.FENCES).add(ModBlocks.DEADFENCE.get(), ModBlocks.BURNTFENCE.get());
-        this.tag(BlockTags.FENCE_GATES).add(ModBlocks.DEADFENCE_GATE.get(), ModBlocks.BURNTFENCE_GATE.get());
-        this.tag(BlockTags.PLANKS).add(ModBlocks.BURNTPLANKS.get(), ModBlocks.DEADPLANKS.get());
-        this.tag(BlockTags.STAIRS).add(ModBlocks.BURNTSTAIRS.get(), ModBlocks.DEADSTAIRS.get());
+        this.tag(BlockTags.DOORS).add(MyBlocks.DEADDOOR.get(), MyBlocks.BURNTDOOR.get());
+        this.tag(BlockTags.TRAPDOORS).add(MyBlocks.DEADTRAPDOOR.get(), MyBlocks.BURNTTRAPDOOR.get());
+        this.tag(BlockTags.SLABS).add(MyBlocks.DEADSLAB.get(), MyBlocks.BURNTSLAB.get());
+        this.tag(BlockTags.FENCES).add(MyBlocks.DEADFENCE.get(), MyBlocks.BURNTFENCE.get());
+        this.tag(BlockTags.FENCE_GATES).add(MyBlocks.DEADFENCE_GATE.get(), MyBlocks.BURNTFENCE_GATE.get());
+        this.tag(BlockTags.PLANKS).add(MyBlocks.BURNTPLANKS.get(), MyBlocks.DEADPLANKS.get());
+        this.tag(BlockTags.STAIRS).add(MyBlocks.BURNTSTAIRS.get(), MyBlocks.DEADSTAIRS.get());
 
-        this.tag(BlockTags.LOGS).add(ModBlocks.DEADLOG.get(), ModBlocks.DEADLOG_STRIPPED.get(),
-                ModBlocks.DEADWOOD.get(), ModBlocks.DEADWOOD_STRIPPED.get());
-        this.tag(BlockTags.LOGS_THAT_BURN).add(ModBlocks.DEADLOG.get(), ModBlocks.DEADLOG_STRIPPED.get());
-        this.tag(BlockTags.MINEABLE_WITH_AXE).add(ModBlocks.DEADLOG.get(), ModBlocks.DEADLOG_STRIPPED.get());
-        this.tag(BlockTags.MINEABLE_WITH_AXE).add(ModBlocks.DEADWOOD.get(), ModBlocks.DEADWOOD_STRIPPED.get());
-        this.tag(BlockTags.MINEABLE_WITH_AXE).add(ModBlocks.DEADPLANKS.get(), ModBlocks.BURNTPLANKS.get());
-        this.tag(BlockTags.MINEABLE_WITH_AXE).add(ModBlocks.DEADTRAPDOOR.get(), ModBlocks.BURNTTRAPDOOR.get());
-        this.tag(BlockTags.MINEABLE_WITH_AXE).add(ModBlocks.DEADSLAB.get(), ModBlocks.BURNTSLAB.get());
-        this.tag(BlockTags.MINEABLE_WITH_AXE).add(ModBlocks.DEADDOOR.get(), ModBlocks.BURNTDOOR.get());
-        this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(ModBlocks.DEADSTONE.get());
-        this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(ModBlocks.DEADSLATE.get());
-        this.tag(BlockTags.MINEABLE_WITH_SHOVEL).add(ModBlocks.DEADSAND.get());
-        this.tag(BlockTags.MINEABLE_WITH_SHOVEL).add(ModBlocks.DEADDIRT.get());
-        this.tag(BlockTags.MINEABLE_WITH_SHOVEL).add(ModBlocks.DEADGRAVEL.get());
-        this.tag(BlockTags.MINEABLE_WITH_SHOVEL).add(ModBlocks.DEADCLAY.get());
-        this.tag(BlockTags.MINEABLE_WITH_SHOVEL).add(ModBlocks.POOP_O_LANTERN.get(), ModBlocks.CARVED_POOPBLOCK.get());
-        this.tag(BlockTags.MINEABLE_WITH_SHOVEL).add(ModBlocks.POOPBLOCK.get(), ModBlocks.POOPBLOCK2X.get());
-        this.tag(BlockTags.MINEABLE_WITH_SHOVEL).add(ModBlocks.DEAD_FARMLAND.get());
-        this.tag(BlockTags.SAPLINGS).add(ModBlocks.DEADSAPLING.get());
-        this.tag(BlockTags.LEAVES).add(ModBlocks.DEADLEAVES.get());
+        this.tag(BlockTags.LOGS).add(MyBlocks.DEADLOG.get(), MyBlocks.DEADLOG_STRIPPED.get(),
+                MyBlocks.DEADWOOD.get(), MyBlocks.DEADWOOD_STRIPPED.get());
+        this.tag(BlockTags.LOGS_THAT_BURN).add(MyBlocks.DEADLOG.get(), MyBlocks.DEADLOG_STRIPPED.get());
+        this.tag(BlockTags.MINEABLE_WITH_AXE).add(MyBlocks.DEADLOG.get(), MyBlocks.DEADLOG_STRIPPED.get());
+        this.tag(BlockTags.MINEABLE_WITH_AXE).add(MyBlocks.DEADWOOD.get(), MyBlocks.DEADWOOD_STRIPPED.get());
+        this.tag(BlockTags.MINEABLE_WITH_AXE).add(MyBlocks.DEADPLANKS.get(), MyBlocks.BURNTPLANKS.get());
+        this.tag(BlockTags.MINEABLE_WITH_AXE).add(MyBlocks.DEADTRAPDOOR.get(), MyBlocks.BURNTTRAPDOOR.get());
+        this.tag(BlockTags.MINEABLE_WITH_AXE).add(MyBlocks.DEADSLAB.get(), MyBlocks.BURNTSLAB.get());
+        this.tag(BlockTags.MINEABLE_WITH_AXE).add(MyBlocks.DEADDOOR.get(), MyBlocks.BURNTDOOR.get());
+        this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(MyBlocks.DEADSTONE.get());
+        this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(MyBlocks.DEADSLATE.get());
+        this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(MyBlocks.DEADORE.get());
+        this.tag(BlockTags.MINEABLE_WITH_SHOVEL).add(MyBlocks.DEADSAND.get());
+        this.tag(BlockTags.MINEABLE_WITH_SHOVEL).add(MyBlocks.DEADDIRT.get());
+        this.tag(BlockTags.MINEABLE_WITH_SHOVEL).add(MyBlocks.DEADGRAVEL.get());
+        this.tag(BlockTags.MINEABLE_WITH_SHOVEL).add(MyBlocks.DEADCLAY.get());
+        this.tag(BlockTags.MINEABLE_WITH_SHOVEL).add(MyBlocks.POOP_O_LANTERN.get(), MyBlocks.CARVED_POOPBLOCK.get());
+        this.tag(BlockTags.MINEABLE_WITH_SHOVEL).add(MyBlocks.POOPBLOCK.get(), MyBlocks.POOPBLOCK2X.get());
+        this.tag(BlockTags.MINEABLE_WITH_SHOVEL).add(MyBlocks.DEAD_FARMLAND.get());
+        this.tag(BlockTags.SAPLINGS).add(MyBlocks.DEADSAPLING.get());
+        this.tag(BlockTags.LEAVES).add(MyBlocks.DEADLEAVES.get());
 
-        this.tag(ModTags.Blocks.POTATO_PORTAL_FRAME).add(ModBlocks.POTATOBLOCK.get());
+        this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(MyBlocks.YELLOW_GENERATOR.get());
+
+        this.tag(ModTags.Blocks.POTATO_PORTAL_FRAME).add(MyBlocks.POTATOBLOCK.get());
 
         // this.tag(SUPERMAN).add(ModBlocks.POOPBLOCK2X.get());
     }

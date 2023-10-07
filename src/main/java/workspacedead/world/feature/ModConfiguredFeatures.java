@@ -15,7 +15,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 import workspacedead.WorkspaceDead;
-import workspacedead.block.ModBlocks;
+import workspacedead.registry.MyBlocks;
 import workspacedead.world.feature.tree.NoFoliagePlacer;
 
 import java.util.List;
@@ -33,12 +33,12 @@ public class ModConfiguredFeatures {
     public static final RegistryObject<ConfiguredFeature<?, ?>> DEADTREE = //
             CONFIGURED_FEATURES.register("deadtree", () -> //
             new ConfiguredFeature<>(Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(//
-                    BlockStateProvider.simple(ModBlocks.DEADLOG.get()), //
+                    BlockStateProvider.simple(MyBlocks.DEADLOG.get()), //
                     new StraightTrunkPlacer(1, 1, 3), //
-                    BlockStateProvider.simple(ModBlocks.DEADLEAVES.get()), //
+                    BlockStateProvider.simple(MyBlocks.DEADLEAVES.get()), //
                     new NoFoliagePlacer(ConstantInt.of(0), ConstantInt.of(0)), //
                     new TwoLayersFeatureSize(1, 0, 2))//
-                            .dirt(BlockStateProvider.simple(ModBlocks.DEADDIRT.get()))//
+                            .dirt(BlockStateProvider.simple(MyBlocks.DEADDIRT.get()))//
                             .build()));
 
     public static final RegistryObject<ConfiguredFeature<?, ?>> DEADTREE_SPAWN = //

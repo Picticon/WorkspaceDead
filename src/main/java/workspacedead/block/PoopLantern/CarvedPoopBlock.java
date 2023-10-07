@@ -25,13 +25,13 @@ import net.minecraft.world.level.block.state.predicate.BlockMaterialPredicate;
 import net.minecraft.world.level.block.state.predicate.BlockStatePredicate;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.material.Material;
-import workspacedead.block.ModBlocks;
 import workspacedead.entity.ModEntityTypes;
+import workspacedead.registry.MyBlocks;
 
 public class CarvedPoopBlock extends HorizontalDirectionalBlock implements Wearable {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     private static final Predicate<BlockState> PUMPKINS_PREDICATE = (predator) -> {
-        return predator != null && (predator.is(ModBlocks.POOP_O_LANTERN.get()) || predator.is(ModBlocks.CARVED_POOPBLOCK.get()));
+        return predator != null && (predator.is(MyBlocks.POOP_O_LANTERN.get()) || predator.is(MyBlocks.CARVED_POOPBLOCK.get()));
     };
     @Nullable
     private BlockPattern boneGolemBase;

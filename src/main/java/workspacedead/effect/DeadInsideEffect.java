@@ -8,7 +8,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.registries.ForgeRegistries;
 import workspacedead.config.CommonConfig;
-import workspacedead.item.ModItems;
+import workspacedead.registry.MyItems;
 
 public class DeadInsideEffect extends MobEffect {
 
@@ -29,7 +29,7 @@ public class DeadInsideEffect extends MobEffect {
         super.applyEffectTick(pLivingEntity, pAmplifier);
         if (!pLivingEntity.level.isClientSide()) {
             if (pLivingEntity.level.random.nextDouble() < .05) {
-                var itemToDrop = ModItems.POOP.get(); // default poop
+                var itemToDrop = MyItems.POOP.get(); // default poop
                 if (CommonConfig.poop_mobs_cache == null)
                     return;
                 var entry = CommonConfig.poop_mobs_cache.get(pLivingEntity.getType().getRegistryName().toString());
@@ -47,7 +47,7 @@ public class DeadInsideEffect extends MobEffect {
 
                 {
                     if (pLivingEntity.level.random.nextDouble() < .05) {
-                        itemToDrop = ModItems.SEEDED_POOP.get();
+                        itemToDrop = MyItems.SEEDED_POOP.get();
                     }
                 }
                 // var stack =

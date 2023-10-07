@@ -13,30 +13,35 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
-import workspacedead.block.ModBlocks;
+import workspacedead.registry.MyBlocks;
 
 public class PoopBlock extends Block {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
 
-    public PoopBlock(BlockBehaviour.Properties blockProps) {
-        super(blockProps);
+    public PoopBlock() {
+        super(BlockBehaviour.Properties.of(Material.SPONGE).strength(1).sound(SoundType.SLIME_BLOCK));
     }
 
     @SuppressWarnings("deprecation")
     @Override
-    public InteractionResult use(BlockState pBlockState, Level pLevel, BlockPos blockPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHitResult) {
+    public InteractionResult use(BlockState pBlockState, Level pLevel, BlockPos blockPos, Player pPlayer,
+            InteractionHand pHand, BlockHitResult pHitResult) {
         ItemStack itemstack = pPlayer.getItemInHand(pHand);
         if (itemstack.canPerformAction(net.minecraftforge.common.ToolActions.SHEARS_CARVE)) {
             if (!pLevel.isClientSide) {
                 Direction direction = pHitResult.getDirection();
-                Direction direction1 = direction.getAxis() == Direction.Axis.Y ? pPlayer.getDirection().getOpposite() : direction;
+                Direction direction1 = direction.getAxis() == Direction.Axis.Y ? pPlayer.getDirection().getOpposite()
+                        : direction;
                 pLevel.playSound((Player) null, blockPos, SoundEvents.PUMPKIN_CARVE, SoundSource.BLOCKS, 1.0F, 1.0F);
-                pLevel.setBlock(blockPos, ModBlocks.CARVED_POOPBLOCK.get().defaultBlockState().setValue(FACING, direction1), 11);
+                pLevel.setBlock(blockPos,
+                        MyBlocks.CARVED_POOPBLOCK.get().defaultBlockState().setValue(FACING, direction1), 11);
                 // ItemEntity itementity = new ItemEntity(p_55290_, (double) p_55291_.getX() +
                 // 0.5D + (double) direction1.getStepX() * 0.65D, //
                 // (double) p_55291_.getY() + 0.1D, (double) p_55291_.getZ() + 0.5D + (double)

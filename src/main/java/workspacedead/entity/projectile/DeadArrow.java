@@ -12,7 +12,7 @@ import net.minecraft.world.phys.EntityHitResult;
 import net.minecraftforge.network.NetworkHooks;
 import workspacedead.effect.ModEffects;
 import workspacedead.entity.ModEntityTypes;
-import workspacedead.item.ModItems;
+import workspacedead.registry.MyItems;
 
 public class DeadArrow extends AbstractArrow {
 
@@ -34,7 +34,7 @@ public class DeadArrow extends AbstractArrow {
 
     @Override
     protected ItemStack getPickupItem() {
-        return new ItemStack(ModItems.DEAD_ARROW.get());
+        return new ItemStack(MyItems.DEAD_ARROW.get());
     }
 
     @Override

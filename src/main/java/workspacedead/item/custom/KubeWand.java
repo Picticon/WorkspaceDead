@@ -34,6 +34,8 @@ public class KubeWand extends Item {
 
         if (level.isClientSide()) {
             var tile = level.getBlockEntity(pos);
+            if (tile == null)
+                return InteractionResult.PASS;
             var inv = tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, facing);
             if (inv.isPresent()) {
                 var map = new HashMap<String, String>();

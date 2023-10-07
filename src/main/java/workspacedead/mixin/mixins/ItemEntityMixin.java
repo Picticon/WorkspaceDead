@@ -22,7 +22,7 @@ import workspacedead.advancement.ModCriteriaTriggers;
 //import workspacedead.advancement.ModCriteriaTriggers;
 //import workspacedead.advancement.WaterCleanedTrigger;
 import workspacedead.fluid.ModFluids;
-import workspacedead.item.ModItems;
+import workspacedead.registry.MyItems;
 
 // parts of code ripped from AE2.
 
@@ -46,7 +46,7 @@ public abstract class ItemEntityMixin extends Entity {
         var self = (ItemEntity) (Object) this;
 
         // purify dead water
-        if (self.getItem().is(ModItems.PURIFYSHARD.get())) {
+        if (self.getItem().is(MyItems.PURIFYSHARD.get())) {
             var fluidblock = this.level.getFluidState(this.blockPosition());
             boolean isValidFluid = !fluidblock.isEmpty() && (fluidblock.is(ModFluids.DEADWATER_BLOCK.get().getFluid()));
             if (isValidFluid) {
@@ -81,7 +81,7 @@ public abstract class ItemEntityMixin extends Entity {
         }
 
         // wash poop
-        if (self.getItem().is(ModItems.SEEDED_POOP.get())) {
+        if (self.getItem().is(MyItems.SEEDED_POOP.get())) {
             var fluidblock = this.level.getFluidState(this.blockPosition());
             boolean isValidFluid = !fluidblock.isEmpty() && fluidblock.is(Fluids.WATER);
             if (isValidFluid) {

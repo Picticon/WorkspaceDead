@@ -1,7 +1,9 @@
 {
     "replace": false,
     "values": [
-      "workspacedead:deadwater_flowing",
-      "workspacedead:deadwater_fluid"
+        "workspacedead:deadwater_flowing",
+        "workspacedead:deadwater_fluid",
+        "workspacedead:urine_flowing",
+        "workspacedead:urine_fluid"
     ]
-  }
+}

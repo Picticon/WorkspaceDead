@@ -21,7 +21,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.state.BlockState;
-import workspacedead.sound.ModSounds;
+import workspacedead.registry.MySounds;
 
 public class SkeletonSlime extends Slime {
 
@@ -77,7 +77,7 @@ public class SkeletonSlime extends Slime {
         if (this.isAlive()) {
             int i = this.getSize();
             if (this.distanceToSqr(pLivingEntity) < 0.6D * (double) i * 0.6D * (double) i && this.hasLineOfSight(pLivingEntity) && pLivingEntity.hurt(DamageSource.mobAttack(this), this.getAttackDamage())) {
-                this.playSound(ModSounds.SKELETONSLIME_ATTACKS.get(), 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
+                this.playSound(MySounds.SKELETONSLIME_ATTACKS.get(), 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
                 this.doEnchantDamageEffects(this, pLivingEntity);
             }
         }

@@ -9,7 +9,7 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.registries.ForgeRegistries;
-import workspacedead.block.SpawnEggBlockEntity;
+import workspacedead.block.SpawnEggPlant.SpawnEggBlockEntity;
 import workspacedead.util.ModTags;
 
 public class SpawnEggSeedsItem extends ItemNameBlockItem {

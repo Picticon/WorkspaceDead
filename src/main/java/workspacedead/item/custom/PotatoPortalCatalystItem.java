@@ -9,9 +9,9 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
-import workspacedead.block.ModBlocks;
 import workspacedead.block.PotatoPortalBlock;
 import workspacedead.item.ModCreativeModeTab;
+import workspacedead.registry.MyBlocks;
 import workspacedead.world.ModDimensions;
 
 public class PotatoPortalCatalystItem extends Item {
@@ -26,7 +26,7 @@ public class PotatoPortalCatalystItem extends Item {
                     || context.getPlayer().level.dimension() == Level.OVERWORLD) {
                 for (Direction direction : Direction.Plane.VERTICAL) {
                     BlockPos framePos = context.getClickedPos().relative(direction);
-                    if (((PotatoPortalBlock) ModBlocks.POTATOPORTALBLOCK.get()).trySpawnPortal(context.getLevel(),
+                    if (((PotatoPortalBlock) MyBlocks.POTATOPORTALBLOCK.get()).trySpawnPortal(context.getLevel(),
                             framePos)) {
                         context.getLevel().playSound(context.getPlayer(), framePos, SoundEvents.PORTAL_TRIGGER,
                                 SoundSource.BLOCKS, 1.0F, 1.0F);
