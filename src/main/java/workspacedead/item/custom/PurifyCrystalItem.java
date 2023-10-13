@@ -3,7 +3,7 @@ package workspacedead.item.custom;
 public class PurifyCrystalItem extends PurifyCrystalBase {
 
     public PurifyCrystalItem(Properties pProperties) {
-        super(pProperties,100);
+        super(pProperties,2);
     }
 
 //    @Override

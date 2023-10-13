@@ -83,8 +83,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         
         simpleItem(MyItems.RETDESON_CRYSTAL.get());
         simpleItem(MyItems.RETDESON_SATURATED.get());
-        simpleItem(MyItems.ASTHMYTE_CRYSTAL.get());
-        simpleItem(MyItems.ASTHMYTE_SATURATED.get());
+        simpleItem(MyItems.GLOD_CRYSTAL.get());
+        simpleItem(MyItems.GLOD_SATURATED.get());
         simpleItem(MyItems.EMELDAR_CRYSTAL.get());
         simpleItem(MyItems.EMELDAR_SATURATED.get());
         simpleItem(MyItems.CEPPRO_CRYSTAL.get());

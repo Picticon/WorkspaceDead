@@ -8,6 +8,8 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import workspacedead.WorkspaceDead;
+import workspacedead.recipe.PurificationRecipe;
+import workspacedead.recipe.DeadInsideEffectRecipe;
 import workspacedead.recipe.FullMetalAlchemiserRecipe;
 import workspacedead.recipe.SaturatorRecipe;
 
@@ -21,9 +23,16 @@ public class MyRecipes {
     public static final RegistryObject<RecipeSerializer<FullMetalAlchemiserRecipe>> FULLMETALALCHEMISER_SERIALIZER = SERIALIZERS
             .register("fullmetalalchemiser", () -> FullMetalAlchemiserRecipe.Serializer.INSTANCE);
 
+    public static final RegistryObject<RecipeSerializer<PurificationRecipe>> PURIFICATION_SERIALIZER = SERIALIZERS
+            .register(PurificationRecipe.STATICID, () -> PurificationRecipe.Serializer.INSTANCE);
+
+    public static final RegistryObject<RecipeSerializer<DeadInsideEffectRecipe>> DEADINSIDEEFFECT_SERIALIZER = SERIALIZERS
+            .register(DeadInsideEffectRecipe.STATICID, () -> DeadInsideEffectRecipe.Serializer.INSTANCE);
+
     public static final RecipeType<SaturatorRecipe> SATURATOR_RECIPES = new RecipeType<>();
     public static final RecipeType<FullMetalAlchemiserRecipe> FULLMETALALCHEMISER_RECIPES = new RecipeType<>();
-
+    public static final RecipeType<PurificationRecipe> PURIFICATION_RECIPES = new RecipeType<>();
+    public static final RecipeType<DeadInsideEffectRecipe> DEADINSIDEEFFECT_RECIPES = new RecipeType<>();
 
     public static void register(IEventBus eventBus) {
         SERIALIZERS.register(eventBus);

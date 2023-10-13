@@ -1,11 +1,10 @@
 package workspacedead.network;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.NetworkDirection;
 import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.simple.SimpleChannel;
-import net.minecraftforge.network.PacketDistributor;
 import workspacedead.WorkspaceDead;
 
 public final class MyMessages {
@@ -31,7 +30,9 @@ public final class MyMessages {
     }
 
     public static <MSG> void sendToServer(MSG message) {
-        INSTANCE.sendToServer(message);
+        var minecraft = Minecraft.getInstance();
+        if (minecraft.level.isClientSide)
+            INSTANCE.sendToServer(message);
     }
 
     // public static <MSG> void sendToPlayer(MSG message, ServerPlayer player) {

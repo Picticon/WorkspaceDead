@@ -36,7 +36,9 @@ public class SkeletonChicken extends SkeletonAnimal {
     }
 
     public static AttributeSupplier setAttributes() {
-        return Animal.createMobAttributes().add(Attributes.MAX_HEALTH, 10).add(Attributes.ATTACK_DAMAGE, .5).add(Attributes.ATTACK_SPEED, 3).add(Attributes.MOVEMENT_SPEED, .4f).add(Attributes.SPAWN_REINFORCEMENTS_CHANCE).add(Attributes.FOLLOW_RANGE, 10.0D).build();
+        return Animal.createMobAttributes().add(Attributes.MAX_HEALTH, 6).add(Attributes.ATTACK_DAMAGE, .5)
+                .add(Attributes.ATTACK_SPEED, 3).add(Attributes.MOVEMENT_SPEED, .3f)
+                .add(Attributes.SPAWN_REINFORCEMENTS_CHANCE).add(Attributes.FOLLOW_RANGE, 10.0D).build();
     }
 
     @Override

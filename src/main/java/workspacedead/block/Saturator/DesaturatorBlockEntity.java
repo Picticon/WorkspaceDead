@@ -3,6 +3,8 @@ package workspacedead.block.Saturator;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
@@ -11,14 +13,23 @@ import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
 import workspacedead.block.InventoryEntityBaseBlock;
 import workspacedead.block.generators.CustomEnergyStorage;
+import workspacedead.client.IPowerHUD;
+import workspacedead.gfx.ElectricityGFX;
+import workspacedead.network.EntityInts;
+import workspacedead.network.IHandleClientInt;
+import workspacedead.network.MyMessages;
 import workspacedead.registry.MyBlockEntities;
 
-public class DesaturatorBlockEntity extends InventoryEntityBaseBlock {
+public class DesaturatorBlockEntity extends InventoryEntityBaseBlock implements IPowerHUD, IHandleClientInt {
 
     public static final int POWERGEN_CAPACITY = 500000; // Max capacity
     public static final int POWERGEN_RECEIVE = 5000; // Power to send out per tick
     private final CustomEnergyStorage energy = createEnergy();
     private final LazyOptional<IEnergyStorage> energyCapability = LazyOptional.of(() -> energy);
+    private int _peeticks;
+    public ElectricityGFX[] bolts = null;
+    private float[] _colors = new float[] { 0, 0, 0, 0 };
+    private int _craftingClock;
 
     public DesaturatorBlockEntity(BlockPos position, BlockState state) {
         super(MyBlockEntities.DESATURATOR_BLOCK_ENTITY.get(), position, state);
@@ -26,6 +37,39 @@ public class DesaturatorBlockEntity extends InventoryEntityBaseBlock {
 
     public ItemStack getDisplayedItemStack() {
         return this.getItem(0);
+    }
+
+    // this is coming from the renderering system on the client.
+    public void setColors(float[] colors) {
+        _colors[0] = colors[0];
+        _colors[1] = colors[1];
+        _colors[2] = colors[2];
+    }
+
+    // this is coming from the renderering system on the client.
+    public float[] getColors() {
+        return _colors;
+    }
+
+    // oh god, the hacks
+    public boolean isCrafting() {
+        _craftingClock--;
+        return _craftingClock > 0;
+    }
+
+    @Override
+    public Component getMessage() {
+        _peeticks++;
+        if (_peeticks % 40 == 0) {
+            MyMessages.sendToServer(new EntityInts(this.level, this.getBlockPos(), EntityInts.TRIGGER_UPDATEBLOCK, 0));
+        }
+        return new TextComponent(energy.getEnergyStored() + " FE");
+    }
+
+    @Override
+    public void handleClientInt(int controlId, int value) {
+        if (controlId == EntityInts.TRIGGER_UPDATEBLOCK)
+            updateBlock();
     }
 
     private CustomEnergyStorage createEnergy() {
@@ -69,4 +113,7 @@ public class DesaturatorBlockEntity extends InventoryEntityBaseBlock {
         return super.getCapability(cap, side);
     }
 
+    public void setCrafting(boolean b) {
+        _craftingClock = b ? 2 : 0;
+    }
 }

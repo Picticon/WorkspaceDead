@@ -1,0 +1,26 @@
+{
+    "type": "workspacedead:saturator",
+    "output": {
+        "item": "workspacedead:ceppro_saturated"
+    },
+    "input": {
+        "item": "workspacedead:ceppro_crystal"
+    },
+    "catalysts": [
+        {
+            "item": "minecraft:orange_dye"
+        },
+        {
+            "item": "minecraft:orange_dye"
+        },
+        {
+            "item": "minecraft:orange_dye"
+        },
+        {
+            "item": "minecraft:orange_dye"
+        }
+    ],
+    "power": 5000,
+    "time": 100,
+    "color": 16744448
+}

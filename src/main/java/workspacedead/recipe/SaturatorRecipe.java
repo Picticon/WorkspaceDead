@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SaturatorRecipe extends BaseRecipe {
+    public static final String STATICID = "saturator";
+
     private final ResourceLocation id;
 
     private final ItemStack output; // the result of the craft
@@ -125,7 +127,7 @@ public class SaturatorRecipe extends BaseRecipe {
         }
 
         public static final Type INSTANCE = new Type();
-        public static final String ID = "saturator";
+        public static final String ID = STATICID;
     }
 
     public static class Serializer implements RecipeSerializer<SaturatorRecipe> {

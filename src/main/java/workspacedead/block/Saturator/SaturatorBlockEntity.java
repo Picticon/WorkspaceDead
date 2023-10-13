@@ -10,9 +10,10 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -21,10 +22,12 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.ItemStackHandler;
+import workspacedead.client.IPowerHUD;
+import workspacedead.gfx.ElectricityGFX;
 import workspacedead.recipe.SaturatorRecipe;
 import workspacedead.registry.MyBlockEntities;
 
-public class SaturatorBlockEntity extends BlockEntity {
+public class SaturatorBlockEntity extends BlockEntity implements IPowerHUD {
 
     final static private int INPUTSLOT = 0;
     final static private int OUTPUTSLOT = 1;
@@ -36,14 +39,28 @@ public class SaturatorBlockEntity extends BlockEntity {
     private int _ticksRemaining;
     private int _energyPerTick;
     private float _percentageDone;
+    public ElectricityGFX[] bolts = null;
 
     public final SaturatorItemStackHandler inv;
     private final LazyOptional<SaturatorItemStackHandler> lazyInv;
+    private int _color;
+    private float[] _colors = new float[] { .5f, .5f, .5f, 1 };
 
     public SaturatorBlockEntity(BlockPos position, BlockState state) {
         super(MyBlockEntities.SATURATOR_BLOCK_ENTITY.get(), position, state);
         inv = new SaturatorItemStackHandler();
         this.lazyInv = LazyOptional.of(() -> this.inv);
+    }
+
+    // this is coming from the renderering system on the client.
+    public void setColors(float[] colors) {
+        _colors = colors;
+        var desats = getDesaturators();
+        if (ValidDesaturators(desats)) {
+            for (var i = 0; i < 4; i++) {
+                desats[i].setColors(colors);
+            }
+        }
     }
 
     public float percentageDone() {
@@ -87,15 +104,18 @@ public class SaturatorBlockEntity extends BlockEntity {
             ostack.save(stackTag);
             tag.put("ois", stackTag);
         }
-        tag.putInt("ept", this._energyPerTick);
-        tag.putInt("tr", this._ticksRemaining);
-        tag.putBoolean("cr", this._crafting);
-        tag.putInt("pr0", this._powerremaining[0]);
-        tag.putInt("pr1", this._powerremaining[1]);
-        tag.putInt("pr2", this._powerremaining[2]);
-        tag.putInt("pr3", this._powerremaining[3]);
-        tag.putString("r", _recipe == null ? "" : this._recipe.getId().toString());
-        tag.putFloat("rem", this._percentageDone);
+        CompoundTag localTag = new CompoundTag();
+        localTag.putInt("ept", this._energyPerTick);
+        localTag.putInt("tr", this._ticksRemaining);
+        localTag.putBoolean("cr", this._crafting);
+        localTag.putInt("c", this._color);
+        localTag.putInt("pr0", this._powerremaining[0]);
+        localTag.putInt("pr1", this._powerremaining[1]);
+        localTag.putInt("pr2", this._powerremaining[2]);
+        localTag.putInt("pr3", this._powerremaining[3]);
+        localTag.putString("r", _recipe == null ? "" : this._recipe.getId().toString());
+        localTag.putFloat("rem", this._percentageDone);
+        tag.put("saturator", localTag);
     }
 
     @NotNull
@@ -118,21 +138,30 @@ public class SaturatorBlockEntity extends BlockEntity {
         super.load(compound);
         setInputStack(ItemStack.of((CompoundTag) compound.get("iis")));
         setOutputStack(ItemStack.of((CompoundTag) compound.get("ois")));
-        _energyPerTick = compound.getInt("ept");
-        _ticksRemaining = compound.getInt("tr");
-        _crafting = compound.getBoolean("cr");
-        _powerremaining[0] = compound.getInt("pr0");
-        _powerremaining[1] = compound.getInt("pr1");
-        _powerremaining[2] = compound.getInt("pr2");
-        _powerremaining[3] = compound.getInt("pr3");
-        _percentageDone = compound.getFloat("rem");
-        var rn = compound.getString("r");
-        _recipe = null;
-        if (rn != null) {
-            var recipes = this.level.getRecipeManager().getAllRecipesFor(SaturatorRecipe.Type.INSTANCE);
-            for (var i = 0; i < recipes.size(); i++) {
-                if (recipes.get(i).getId().toString().equals(rn)) {
-                    _recipe = recipes.get(i);
+        var localTag = compound.getCompound("saturator");
+        if (localTag != null) {
+            _energyPerTick = localTag.getInt("ept");
+            _ticksRemaining = localTag.getInt("tr");
+            _crafting = localTag.getBoolean("cr");
+            if (localTag.contains("c"))
+                _color = localTag.getInt("c");
+            else
+                _color = -1;
+            _powerremaining[0] = localTag.getInt("pr0");
+            _powerremaining[1] = localTag.getInt("pr1");
+            _powerremaining[2] = localTag.getInt("pr2");
+            _powerremaining[3] = localTag.getInt("pr3");
+            _percentageDone = localTag.getFloat("rem");
+            var rn = localTag.getString("r");
+            _recipe = null;
+            if (this.level != null && !this.level.isClientSide()) {
+                if (rn != null) {
+                    var recipes = this.level.getRecipeManager().getAllRecipesFor(SaturatorRecipe.Type.INSTANCE);
+                    for (var i = 0; i < recipes.size(); i++) {
+                        if (recipes.get(i).getId().toString().equals(rn)) {
+                            _recipe = recipes.get(i);
+                        }
+                    }
                 }
             }
         }
@@ -302,6 +331,7 @@ public class SaturatorBlockEntity extends BlockEntity {
         // Chatter.sendToAllPlayers("Starting craft " + recipe.name.toString());
         _recipe = recipe;
         _crafting = true;
+        _color = recipe.getColor();
         _powerremaining[0] = recipe.getPower();
         _powerremaining[1] = recipe.getPower();
         _powerremaining[2] = recipe.getPower();
@@ -316,9 +346,11 @@ public class SaturatorBlockEntity extends BlockEntity {
 
     private void progressCrafting(Level pLevel, BlockPos pPos, SaturatorBlockEntity pBlockEntity) {
         var desats = getDesaturators();
-        if (ValidDesaturators(desats)) {
-            for (var i = 0; i < 4; i++)
+        if (_recipe != null && ValidDesaturators(desats)) {
+            for (var i = 0; i < 4; i++) {
                 _powerremaining[i] -= desats[i].extractEnergy(Math.min(_energyPerTick, _powerremaining[i]));
+                desats[i].setCrafting(true);
+            }
             _ticksRemaining--;
             if (_ticksRemaining < 0)
                 _ticksRemaining = 0;
@@ -420,6 +452,21 @@ public class SaturatorBlockEntity extends BlockEntity {
         if (west instanceof DesaturatorBlockEntity)
             desats[3] = (DesaturatorBlockEntity) west;
         return desats;
+    }
+
+    public int getColor() {
+        return _color;
+    }
+
+    public float[] getColors() {
+        return _colors;
+    }
+
+    @Override
+    public Component getMessage() {
+        if (!_crafting)
+            return TextComponent.EMPTY;
+        return new TextComponent(Math.round(_percentageDone * 100) + "%");
     }
 
 }

@@ -4,6 +4,8 @@ import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.gui.ForgeIngameGui;
+import net.minecraftforge.client.gui.OverlayRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import workspacedead.WorkspaceDead;
@@ -20,6 +22,10 @@ public class ClientSetup {
             ItemBlockRenderTypes.setRenderLayer(MyBlocks.YELLOW_GENERATOR.get(), RenderType.translucent());
             //PowergenRenderer.register();
         });
+
+        // amount of power when hovering over desaturators
+        OverlayRegistry.registerOverlayAbove(ForgeIngameGui.HOTBAR_ELEMENT,"Workspace Dead Block Info", GuiEntityInfoHUD.OVERLAY);
+
         // MinecraftForge.EVENT_BUS.addListener(KeyInputHandler::onKeyInput);
         // KeyBindings.init();
         // OverlayRegistry.registerOverlayAbove(HOTBAR_ELEMENT, "name", ManaOverlay.HUD_MANA);

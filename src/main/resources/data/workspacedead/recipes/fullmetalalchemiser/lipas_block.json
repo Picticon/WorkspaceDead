@@ -1,0 +1,10 @@
+{
+    "type": "workspacedead:fullmetalalchemiser",
+    "output": {
+        "item": "workspacedead:lipas_block"
+    },
+    "input": {
+        "item": "minecraft:lapis_block"
+    },
+    "power": 900
+}

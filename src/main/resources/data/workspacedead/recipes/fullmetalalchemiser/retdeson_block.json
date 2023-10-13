@@ -1,0 +1,10 @@
+{
+    "type": "workspacedead:fullmetalalchemiser",
+    "output": {
+        "item": "workspacedead:retdeson_block"
+    },
+    "input": {
+        "item": "minecraft:redstone_block"
+    },
+    "power": 900
+}

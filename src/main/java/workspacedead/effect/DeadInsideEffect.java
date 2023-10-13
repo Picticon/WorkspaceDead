@@ -1,13 +1,22 @@
 package workspacedead.effect;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Objects;
+
+import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraftforge.registries.ForgeRegistries;
 import workspacedead.config.CommonConfig;
+import workspacedead.recipe.DeadInsideEffectRecipe;
+import workspacedead.recipe.PurificationRecipe;
 import workspacedead.registry.MyItems;
 
 public class DeadInsideEffect extends MobEffect {
@@ -29,17 +38,17 @@ public class DeadInsideEffect extends MobEffect {
         super.applyEffectTick(pLivingEntity, pAmplifier);
         if (!pLivingEntity.level.isClientSide()) {
             if (pLivingEntity.level.random.nextDouble() < .05) {
-                var itemToDrop = MyItems.POOP.get(); // default poop
-                if (CommonConfig.poop_mobs_cache == null)
-                    return;
-                var entry = CommonConfig.poop_mobs_cache.get(pLivingEntity.getType().getRegistryName().toString());
+                var itemToDrop = new ItemStack(MyItems.POOP.get(), 1); // default poop
+                //Minecraft minecraft = Minecraft.getInstance();
+                //RecipeManager rm = Objects.requireNonNull(minecraft.level).getRecipeManager();
+                //List<DeadInsideEffectRecipe> recipes3 = rm.getAllRecipesFor(DeadInsideEffectRecipe.Type.INSTANCE);
+                if (poop_mobs_cache == null)
+                    buildCaches();
+                var entry = poop_mobs_cache.get(pLivingEntity.getType().getRegistryName().toString());
                 if (entry != null) {
-                    var ent = ForgeRegistries.ENTITIES.getValue(new ResourceLocation(entry[0], entry[1]));
-                    if (ent != null && pLivingEntity.getType() == ent) {
-                        var testitem = ForgeRegistries.ITEMS.getValue(new ResourceLocation(entry[2], entry[3]));
-                        if (testitem != null) {
-                            itemToDrop = testitem;
-                        }
+                    var testitem = entry.getResultItem();
+                    if (testitem != null) {
+                        itemToDrop = testitem;
                     }
                 }
                 // var c = pLivingEntity.getClass().toString();
@@ -47,7 +56,7 @@ public class DeadInsideEffect extends MobEffect {
 
                 {
                     if (pLivingEntity.level.random.nextDouble() < .05) {
-                        itemToDrop = MyItems.SEEDED_POOP.get();
+                        itemToDrop = new ItemStack(MyItems.SEEDED_POOP.get());
                     }
                 }
                 // var stack =
@@ -72,5 +81,24 @@ public class DeadInsideEffect extends MobEffect {
     @Override
     public boolean isDurationEffectTick(int pDuration, int pAmplifier) {
         return true;
+    }
+
+    public static HashMap<String, DeadInsideEffectRecipe> poop_mobs_cache;
+
+    public static void buildCaches() {
+        poop_mobs_cache = null;
+        Minecraft minecraft = Minecraft.getInstance();
+        if (minecraft.level == null)
+            return;
+        RecipeManager rm = minecraft.level.getRecipeManager();
+        if (rm == null)
+            return;
+        List<DeadInsideEffectRecipe> recipes3 = rm.getAllRecipesFor(DeadInsideEffectRecipe.Type.INSTANCE);
+        poop_mobs_cache = new HashMap<String, DeadInsideEffectRecipe>();
+        for (var idx = 0; idx < recipes3.size(); idx++) {
+            var t = recipes3.get(idx);
+            poop_mobs_cache.put(t.getInputEntity().getRegistryName().toString(), t);
+        }
+
     }
 }

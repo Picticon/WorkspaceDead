@@ -1,9 +1,7 @@
 package workspacedead.item.custom;
 
-import net.minecraft.world.item.Item;
-
-public class PurifyShardItem extends Item {
+public class PurifyShardItem extends PurifyCrystalBase {
     public PurifyShardItem(Properties pProperties) {
-        super(pProperties);
+        super(pProperties, 0);
     }
 }

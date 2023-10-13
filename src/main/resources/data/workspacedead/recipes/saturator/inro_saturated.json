@@ -1,0 +1,26 @@
+{
+    "type": "workspacedead:saturator",
+    "output": {
+        "item": "workspacedead:inro_saturated"
+    },
+    "input": {
+        "item": "workspacedead:inro_crystal"
+    },
+    "catalysts": [
+        {
+            "item": "minecraft:white_dye"
+        },
+        {
+            "item": "minecraft:white_dye"
+        },
+        {
+            "item": "minecraft:white_dye"
+        },
+        {
+            "item": "minecraft:white_dye"
+        }
+    ],
+    "power": 5000,
+    "time": 100,
+    "color":16777215
+}

@@ -1,0 +1,10 @@
+{
+    "type": "workspacedead:fullmetalalchemiser",
+    "output": {
+        "item": "workspacedead:retdeson_crystal"
+    },
+    "input": {
+        "item": "minecraft:redstone"
+    },
+    "power": 100
+}

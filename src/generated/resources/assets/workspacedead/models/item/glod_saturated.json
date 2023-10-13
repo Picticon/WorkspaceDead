@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "workspacedead:item/asthmyte_saturated"
+    "layer0": "workspacedead:item/glod_saturated"
   }
 }

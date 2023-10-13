@@ -46,7 +46,7 @@ public class SaturatorRecipeCategory implements IRecipeCategory<SaturatorRecipe>
 
     @Override
     public Component getTitle() {
-        return new TranslatableComponent("container." + JEIPlugin.SATURATOR_CRAFT + ".name");
+        return new TranslatableComponent("recipecategory." + SaturatorRecipe.STATICID + ".title");
     }
 
     @Override

@@ -43,19 +43,21 @@ public class LaserGFX {
         // float f14 = 1.0F;
         float f15 = -1.0F + f2;
         float f16 = length * pTextureScale * (0.5F / pBeamRadius) + f15;
-        renderPart(pPoseStack, pBufferSource.getBuffer(RenderType.beaconBeam(pBeamLocation, false)), f3, f4, f5, 0.5F,
+        renderPart(pPoseStack, pBufferSource.getBuffer(RenderType.beaconBeam(pBeamLocation, false)), f3, f4, f5, 0.3F,
                 i, 0.0F, pBeamRadius, pBeamRadius, 0.0F, f9, 0.0F, 0.0F, f12, 0.0F, 1.0F, f16, f15);
         pPoseStack.popPose();
-        f6 = -pGlowRadius;
-        float f7 = -pGlowRadius;
-        f8 = -pGlowRadius;
-        f9 = -pGlowRadius;
-        // f13 = 0.0F;
-        // f14 = 1.0F;
-        f15 = -1.0F + f2;
-        f16 = length * pTextureScale + f15;
-        renderPart(pPoseStack, pBufferSource.getBuffer(RenderType.beaconBeam(pBeamLocation, true)), f3, f4, f5, 0.2F, i,
-                f6, f7, pGlowRadius, f8, f9, pGlowRadius, pGlowRadius, pGlowRadius, 0.0F, 1.0F, f16, f15);
+        if (pGlowRadius > 0) {
+            f6 = -pGlowRadius;
+            float f7 = -pGlowRadius;
+            f8 = -pGlowRadius;
+            f9 = -pGlowRadius;
+            // f13 = 0.0F;
+            // f14 = 1.0F;
+            f15 = -1.0F + f2;
+            f16 = length * pTextureScale + f15;
+            renderPart(pPoseStack, pBufferSource.getBuffer(RenderType.beaconBeam(pBeamLocation, true)), f3, f4, f5,
+                    0.3F, i, f6, f7, pGlowRadius, f8, f9, pGlowRadius, pGlowRadius, pGlowRadius, 0.0F, 1.0F, f16, f15);
+        }
         pPoseStack.popPose();
     }
 

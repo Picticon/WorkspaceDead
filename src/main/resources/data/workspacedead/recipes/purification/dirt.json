@@ -1,0 +1,6 @@
+{
+    "type": "workspacedead:purification",
+    "output": "minecraft:dirt",
+    "input": "workspacedead:deaddirt",
+    "power": 1
+}

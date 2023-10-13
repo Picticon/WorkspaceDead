@@ -1,0 +1,6 @@
+{
+    "type": "workspacedead:purification",
+    "output": "minecraft:sand",
+    "input": "workspacedead:deadsand",
+    "power": 1
+}

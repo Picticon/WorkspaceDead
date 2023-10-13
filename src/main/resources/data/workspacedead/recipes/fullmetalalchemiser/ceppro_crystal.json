@@ -1,0 +1,10 @@
+{
+    "type": "workspacedead:fullmetalalchemiser",
+    "output": {
+        "item": "workspacedead:ceppro_crystal"
+    },
+    "input": {
+        "item": "minecraft:copper_ingot"
+    },
+    "power": 100
+}

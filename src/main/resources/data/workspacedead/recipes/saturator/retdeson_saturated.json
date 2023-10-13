@@ -1,0 +1,26 @@
+{
+    "type": "workspacedead:saturator",
+    "output": {
+        "item": "workspacedead:retdeson_saturated"
+    },
+    "input": {
+        "item": "workspacedead:retdeson_crystal"
+    },
+    "catalysts": [
+        {
+            "item": "minecraft:red_dye"
+        },
+        {
+            "item": "minecraft:red_dye"
+        },
+        {
+            "item": "minecraft:red_dye"
+        },
+        {
+            "item": "minecraft:red_dye"
+        }
+    ],
+    "power": 5000,
+    "time": 100,
+    "color":16711680
+}

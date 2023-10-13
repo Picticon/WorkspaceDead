@@ -88,9 +88,9 @@ public class MyItems {
     public static final RegistryObject<Item> RETDESON_SATURATED = ITEMS.register("retdeson_saturated",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB)));
 
-    public static final RegistryObject<Item> ASTHMYTE_CRYSTAL = ITEMS.register("asthmyte_crystal",
+    public static final RegistryObject<Item> GLOD_CRYSTAL = ITEMS.register("glod_crystal",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB)));
-    public static final RegistryObject<Item> ASTHMYTE_SATURATED = ITEMS.register("asthmyte_saturated",
+    public static final RegistryObject<Item> GLOD_SATURATED = ITEMS.register("glod_saturated",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB)));
 
     public static final RegistryObject<Item> CEPPRO_CRYSTAL = ITEMS.register("ceppro_crystal",

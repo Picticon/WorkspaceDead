@@ -1,0 +1,10 @@
+{
+    "type": "workspacedead:fullmetalalchemiser",
+    "output": {
+        "item": "workspacedead:ceppro_block"
+    },
+    "input": {
+        "item": "minecraft:copper_block"
+    },
+    "power": 900
+}

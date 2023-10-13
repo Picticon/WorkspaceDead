@@ -144,8 +144,12 @@ public class FullMetalAlchemiserBlockEntity extends BlockEntity implements IHand
         Direction d = this.getBlockState().getValue(DirectionalBlock.FACING);
         var len = 0;
         var recipes = this.level.getRecipeManager().getAllRecipesFor(FullMetalAlchemiserRecipe.Type.INSTANCE);
-        level.playSound(null, getBlockPos().getX(), getBlockPos().getY(), getBlockPos().getZ(),
-                MySounds.FULLMETALALCHEMISER_FIRING.get(), SoundSource.BLOCKS, 1, 1);
+        if (getPlaySound() == 1)
+            level.playSound(null, getBlockPos().getX(), getBlockPos().getY(), getBlockPos().getZ(),
+                    MySounds.FULLMETALALCHEMISER_FIRING.get(), SoundSource.BLOCKS, 1, 1);
+        if (getPlaySound() == 2)
+            level.playSound(null, getBlockPos().getX(), getBlockPos().getY(), getBlockPos().getZ(),
+                    MySounds.FULLMETALALCHEMISER_FIRING_ALT.get(), SoundSource.BLOCKS, 1, 1);
         for (var i = 1; i <= MAXBEAMLENGTH; i++) {
             var pos2 = pos.relative(d, i);
             if (this.level.getBlockState(pos2).isCollisionShapeFullBlock(level, pos))

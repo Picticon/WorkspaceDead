@@ -27,7 +27,9 @@ public class SkeletonCow extends SkeletonAnimal {
     }
 
     public static AttributeSupplier setAttributes() {
-        return Animal.createMobAttributes().add(Attributes.MAX_HEALTH, 20).add(Attributes.ATTACK_DAMAGE, 2).add(Attributes.ATTACK_SPEED, 4).add(Attributes.MOVEMENT_SPEED, .2f).add(Attributes.SPAWN_REINFORCEMENTS_CHANCE).add(Attributes.FOLLOW_RANGE, 15.0D).build();
+        return Animal.createMobAttributes().add(Attributes.MAX_HEALTH, 14).add(Attributes.ATTACK_DAMAGE, 2)
+                .add(Attributes.ATTACK_SPEED, 4).add(Attributes.MOVEMENT_SPEED, .2f)
+                .add(Attributes.SPAWN_REINFORCEMENTS_CHANCE).add(Attributes.FOLLOW_RANGE, 15.0D).build();
     }
 
     @Override

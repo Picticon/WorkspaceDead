@@ -1,0 +1,26 @@
+{
+    "type": "workspacedead:saturator",
+    "output": {
+        "item": "workspacedead:retdeson_saturated_block"
+    },
+    "input": {
+        "item": "workspacedead:retdeson_block"
+    },
+    "catalysts": [
+        {
+            "item": "minecraft:red_dye"
+        },
+        {
+            "item": "minecraft:red_dye"
+        },
+        {
+            "item": "minecraft:red_dye"
+        },
+        {
+            "item": "minecraft:red_dye"
+        }
+    ],
+    "power": 50000,
+    "time": 500,
+    "color":16711680
+}

@@ -1,0 +1,6 @@
+{
+    "type": "workspacedead:purification",
+    "output": "minecraft:gravel",
+    "input": "workspacedead:deadgravel",
+    "power": 1
+}

@@ -1,0 +1,10 @@
+{
+    "type": "workspacedead:fullmetalalchemiser",
+    "output": {
+        "item": "workspacedead:emeldar_crystal"
+    },
+    "input": {
+        "item": "minecraft:emerald"
+    },
+    "power": 100
+}

@@ -1,0 +1,6 @@
+{
+    "type": "workspacedead:purification",
+    "output": "minecraft:deepslate",
+    "input": "workspacedead:deadslate",
+    "power": 2
+}

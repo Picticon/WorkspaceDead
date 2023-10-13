@@ -1,0 +1,6 @@
+{
+    "type": "workspacedead:purification",
+    "output": "minecraft:stone",
+    "input": "workspacedead:deadstone",
+    "power": 1
+}

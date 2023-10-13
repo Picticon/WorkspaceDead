@@ -4,7 +4,6 @@ import java.util.Random;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.Difficulty;
-import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
@@ -39,10 +38,13 @@ public class SkeletonAnimal extends Monster {
                 && checkMobSpawnRules(pType, pLevel, pSpawnType, pPos, pRandom));
     }
 
+    public int ctr = 0;
+
     public void aiStep() {
+        ctr++;
         if (this.isAlive()) {
-            if (!this.hasEffect(MobEffects.MOVEMENT_SPEED) && !this.isSunBurnTick()) {
-                this.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20, 1));
+            if (ctr % 60 == 0 && !this.hasEffect(MobEffects.MOVEMENT_SPEED) && !this.level.isDay()) {
+                this.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 60, 1));
             }
         }
         super.aiStep();

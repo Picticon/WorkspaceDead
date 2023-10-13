@@ -3,21 +3,11 @@ package workspacedead.block.FullMetalAlchemiser;
 import javax.annotation.Nullable;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.components.events.GuiEventListener;
-import net.minecraft.client.gui.screens.PauseScreen;
-import net.minecraft.client.gui.screens.inventory.SignEditScreen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.MenuProvider;
-import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.vehicle.Minecart;
-import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
@@ -34,7 +24,6 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraftforge.network.NetworkHooks;
 
 public class FullMetalAlchemiserBlock extends BaseEntityBlock {
 

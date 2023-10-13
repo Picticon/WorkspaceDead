@@ -1,0 +1,6 @@
+{
+    "type": "workspacedead:purification",
+    "output": "minecraft:chicken",
+    "input": "workspacedead:skeletonchicken",
+    "power": 1
+}

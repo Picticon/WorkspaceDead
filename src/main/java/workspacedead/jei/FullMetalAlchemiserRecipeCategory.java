@@ -44,7 +44,7 @@ public class FullMetalAlchemiserRecipeCategory implements IRecipeCategory<FullMe
 
     @Override
     public Component getTitle() {
-        return new TranslatableComponent("container." + JEIPlugin.FULLMETALALCHEMISER_CRAFT + ".name");
+        return new TranslatableComponent("recipecategory." + FullMetalAlchemiserRecipe.STATICID + ".title");
     }
 
     @Override

@@ -1,0 +1,10 @@
+{
+    "type": "workspacedead:fullmetalalchemiser",
+    "output": {
+        "item": "workspacedead:lipas_crystal"
+    },
+    "input": {
+        "item": "minecraft:lapis_lazuli"
+    },
+    "power": 100
+}

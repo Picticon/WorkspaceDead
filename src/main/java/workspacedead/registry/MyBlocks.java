@@ -51,14 +51,14 @@ public class MyBlocks {
     public static final DeferredRegister<Block> MOD_BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS,
             WorkspaceDead.MOD_ID);
 
-    public static final RegistryObject<Block> FULLMETALALCHEMISER_BLOCK = registerBlockAndItem("fullmetalalchemiser_block",
-            () -> new FullMetalAlchemiserBlock(), ModCreativeModeTab.ITEMS_TAB);
+    public static final RegistryObject<Block> FULLMETALALCHEMISER_BLOCK = registerBlockAndItem(
+            "fullmetalalchemiser_block", () -> new FullMetalAlchemiserBlock(), ModCreativeModeTab.ITEMS_TAB);
 
-     public static final RegistryObject<Block> SATURATOR_BLOCK = registerBlockAndItem("saturator_block",
-             () -> new SaturatorBlock(), ModCreativeModeTab.ITEMS_TAB);
+    public static final RegistryObject<Block> SATURATOR_BLOCK = registerBlockAndItem("saturator_block",
+            () -> new SaturatorBlock(), ModCreativeModeTab.ITEMS_TAB);
 
-     public static final RegistryObject<Block> DESATURATOR_BLOCK = registerBlockAndItem("desaturator_block",
-             () -> new DesaturatorBlock(), ModCreativeModeTab.ITEMS_TAB);
+    public static final RegistryObject<Block> DESATURATOR_BLOCK = registerBlockAndItem("desaturator_block",
+            () -> new DesaturatorBlock(), ModCreativeModeTab.ITEMS_TAB);
 
     public static final RegistryObject<Block> BIOMASS_BLOCK = registerBlockWithoutBlockItem("biomass_block", //
             () -> new BioMassBlock(BlockBehaviour.Properties.of(Material.MOSS).strength(.9f).sound(SoundType.FUNGUS)));
@@ -116,13 +116,70 @@ public class MyBlocks {
             () -> new DeadSaplingBlock(new DeadTreeGrower(), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)),
             ModCreativeModeTab.ITEMS_TAB);
 
-
     /// GENERATORS
 
     public static final RegistryObject<Block> YELLOW_GENERATOR = registerBlockAndItem("yellow_generator",
             () -> new YellowGeneratorBlock(BlockBehaviour.Properties.of(Material.STONE)), ModCreativeModeTab.ITEMS_TAB);
 
     /// GENERATORS END
+
+
+    public static final RegistryObject<Block> GLOD_BLOCK = registerBlockAndItem("glod_block",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE).strength(1f).sound(SoundType.STONE)),
+            ModCreativeModeTab.ITEMS_TAB);
+    public static final RegistryObject<Block> GLOD_SATURATED_BLOCK = registerBlockAndItem(
+            "glod_saturated_block",
+            () -> new Block(BlockBehaviour.Properties.of(Material.HEAVY_METAL).strength(2f).sound(SoundType.METAL)),
+            ModCreativeModeTab.ITEMS_TAB);
+
+    public static final RegistryObject<Block> INRO_BLOCK = registerBlockAndItem("inro_block",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE).strength(1f).sound(SoundType.STONE)),
+            ModCreativeModeTab.ITEMS_TAB);
+    public static final RegistryObject<Block> INRO_SATURATED_BLOCK = registerBlockAndItem("inro_saturated_block",
+            () -> new Block(BlockBehaviour.Properties.of(Material.HEAVY_METAL).strength(2f).sound(SoundType.METAL)),
+            ModCreativeModeTab.ITEMS_TAB);
+
+    public static final RegistryObject<Block> RETDESON_BLOCK = registerBlockAndItem("retdeson_block",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE).strength(1f).sound(SoundType.STONE)),
+            ModCreativeModeTab.ITEMS_TAB);
+    public static final RegistryObject<Block> RETDESON_SATURATED_BLOCK = registerBlockAndItem("retdeson_saturated_block",
+            () -> new Block(BlockBehaviour.Properties.of(Material.HEAVY_METAL).strength(2f).sound(SoundType.METAL)),
+            ModCreativeModeTab.ITEMS_TAB);
+
+    public static final RegistryObject<Block> CEPPRO_BLOCK = registerBlockAndItem("ceppro_block",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE).strength(1f).sound(SoundType.STONE)),
+            ModCreativeModeTab.ITEMS_TAB);
+    public static final RegistryObject<Block> CEPPRO_SATURATED_BLOCK = registerBlockAndItem("ceppro_saturated_block",
+            () -> new Block(BlockBehaviour.Properties.of(Material.HEAVY_METAL).strength(2f).sound(SoundType.METAL)),
+            ModCreativeModeTab.ITEMS_TAB);
+
+    public static final RegistryObject<Block> CALO_BLOCK = registerBlockAndItem("calo_block",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE).strength(1f).sound(SoundType.STONE)),
+            ModCreativeModeTab.ITEMS_TAB);
+    public static final RegistryObject<Block> CALO_SATURATED_BLOCK = registerBlockAndItem("calo_saturated_block",
+            () -> new Block(BlockBehaviour.Properties.of(Material.HEAVY_METAL).strength(2f).sound(SoundType.METAL)),
+            ModCreativeModeTab.ITEMS_TAB);
+
+    public static final RegistryObject<Block> DANIDOM_BLOCK = registerBlockAndItem("danidom_block",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE).strength(1f).sound(SoundType.STONE)),
+            ModCreativeModeTab.ITEMS_TAB);
+    public static final RegistryObject<Block> DANIDOM_SATURATED_BLOCK = registerBlockAndItem("danidom_saturated_block",
+            () -> new Block(BlockBehaviour.Properties.of(Material.HEAVY_METAL).strength(2f).sound(SoundType.METAL)),
+            ModCreativeModeTab.ITEMS_TAB);
+
+    public static final RegistryObject<Block> EMELDAR_BLOCK = registerBlockAndItem("emeldar_block",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE).strength(1f).sound(SoundType.STONE)),
+            ModCreativeModeTab.ITEMS_TAB);
+    public static final RegistryObject<Block> EMELDAR_SATURATED_BLOCK = registerBlockAndItem("emeldar_saturated_block",
+            () -> new Block(BlockBehaviour.Properties.of(Material.HEAVY_METAL).strength(2f).sound(SoundType.METAL)),
+            ModCreativeModeTab.ITEMS_TAB);
+
+    public static final RegistryObject<Block> LIPAS_BLOCK = registerBlockAndItem("lipas_block",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE).strength(1f).sound(SoundType.STONE)),
+            ModCreativeModeTab.ITEMS_TAB);
+    public static final RegistryObject<Block> LIPAS_SATURATED_BLOCK = registerBlockAndItem("lipas_saturated_block",
+            () -> new Block(BlockBehaviour.Properties.of(Material.HEAVY_METAL).strength(2f).sound(SoundType.METAL)),
+            ModCreativeModeTab.ITEMS_TAB);
 
     // public static final RegistryObject<Block> POOPBLOCK =
     // RegisterBlockAndItem("poopblock", () -> new PoopBlock(),

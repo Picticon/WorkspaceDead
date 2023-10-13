@@ -17,6 +17,7 @@ import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.AddReloadListenerEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -38,6 +39,7 @@ import workspacedead.advancement.ModCriteriaTriggers;
 import workspacedead.client.ClientSetup;
 import workspacedead.config.CommonConfig;
 import workspacedead.datagen.ModItemTagsProvider;
+import workspacedead.effect.DeadInsideEffect;
 import workspacedead.effect.ModEffects;
 import workspacedead.effect.ModEnchantments;
 import workspacedead.entity.ModEntityTypes;
@@ -119,6 +121,7 @@ public class WorkspaceDead {
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, CommonConfig.SPEC, "workspacedead-common.toml");
 
         MinecraftForge.EVENT_BUS.addListener(this::onEntitySpawn);
+        MinecraftForge.EVENT_BUS.addListener(this::addReloadListenerEvent);
     }
 
     private void setup(final FMLCommonSetupEvent event) {
@@ -221,6 +224,10 @@ public class WorkspaceDead {
                 event.getEntity().setInvulnerable(true);
 
         }
+    }
+
+    public void addReloadListenerEvent(AddReloadListenerEvent e) {
+      DeadInsideEffect.buildCaches();  
     }
 
     // reload config caches when config file changes

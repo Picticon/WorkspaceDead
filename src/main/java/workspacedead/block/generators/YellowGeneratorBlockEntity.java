@@ -28,6 +28,23 @@ public class YellowGeneratorBlockEntity extends BlockEntity {// implements IInve
     public static final int POWERGEN_GENERATE = 60; // Generation per tick
     public static final int POWERGEN_SEND = 200; // Power to send out per tick
 
+    //WHITE	white wool/string
+    //ORANGE	blaze/magma
+    //MAGENTA	
+    //LIGHT_BLUE	
+    //YELLOW	light on/off
+    //LIME	
+    //PINK	raw meat
+    //GRAY	
+    //LIGHT_GRAY	
+    //CYAN	
+    //PURPLE phantom membranes 	
+    //BLUE	Water appear/disappear
+    //BROWN	Poop
+    //GREEN	plant growth
+    //RED	
+    //BLACK	Death of mobs
+
     // Never create lazy optionals in getCapability. Always place them as fields in
     // the tile entity:
     private final ItemStackHandler itemHandler = createHandler();

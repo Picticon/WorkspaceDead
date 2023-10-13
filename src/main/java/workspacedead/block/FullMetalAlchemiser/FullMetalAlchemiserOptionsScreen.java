@@ -33,6 +33,9 @@ public class FullMetalAlchemiserOptionsScreen extends Screen {
     private ItemButton _btn_rs_1;
     private ItemButton _btn_rs_2;
     private ItemButton _btn_rs_3;
+    private ItemButton _btn_s_0;
+    private ItemButton _btn_s_1;
+    private ItemButton _btn_s_2;
     private int ctr;
 
     public FullMetalAlchemiserOptionsScreen(FullMetalAlchemiserBlockEntity be) {
@@ -98,6 +101,20 @@ public class FullMetalAlchemiserOptionsScreen extends Screen {
         addRenderableWidget(_btn_rs_1);
         addRenderableWidget(_btn_rs_2);
         addRenderableWidget(_btn_rs_3);
+
+        _btn_s_0 = new ItemButton(guiLeft + 10, guiTop + 40, 20, 20, new TextComponent(""), Items.RED_WOOL, button -> {
+            MyMessages.sendToServer(new EntityInts(minecraft.player.level, _entity.getBlockPos(), 2, 0));
+        });
+        _btn_s_1 = new ItemButton(guiLeft + 35, guiTop + 40, 20, 20, new TextComponent(""), Items.NOTE_BLOCK, button -> {
+            MyMessages.sendToServer(new EntityInts(minecraft.player.level, _entity.getBlockPos(), 2, 1));
+        });
+        _btn_s_2 = new ItemButton(guiLeft + 60, guiTop + 40, 20, 20, new TextComponent(""), Items.IRON_HELMET, button -> {
+            MyMessages.sendToServer(new EntityInts(minecraft.player.level, _entity.getBlockPos(), 2, 2));
+        });
+        addRenderableWidget(_btn_s_0);
+        addRenderableWidget(_btn_s_1);
+        addRenderableWidget(_btn_s_2);
+
     }
 
     @Override
@@ -124,14 +141,26 @@ public class FullMetalAlchemiserOptionsScreen extends Screen {
         _btn_rs_1.setSelected(_entity.getRedstoneMode() == 1);
         _btn_rs_2.setSelected(_entity.getRedstoneMode() == 2);
         _btn_rs_3.setSelected(_entity.getRedstoneMode() == 3);
-        var redmsg = new TranslatableComponent("text.workspacedead.runsalways");
+        var redmsg = new TranslatableComponent("text.workspacedead.fullmetalalchemiser.runsalways");
         if (_entity.getRedstoneMode() == 1)
-            redmsg = new TranslatableComponent("text.workspacedead.runsonsignal");
+            redmsg = new TranslatableComponent("text.workspacedead.fullmetalalchemiser.runsonsignal");
         if (_entity.getRedstoneMode() == 2)
-            redmsg = new TranslatableComponent("text.workspacedead.runswithoutsignal");
+            redmsg = new TranslatableComponent("text.workspacedead.fullmetalalchemiser.runswithoutsignal");
         if (_entity.getRedstoneMode() == 3)
-            redmsg = new TranslatableComponent("text.workspacedead.runswithpulse");
+            redmsg = new TranslatableComponent("text.workspacedead.fullmetalalchemiser.runswithpulse");
         font.draw(poseStack, redmsg.getVisualOrderText(), (float) (guiLeft + 10), guiTop + 120, 0);
+
+        _btn_s_0.setSelected(_entity.getPlaySound() == 0);
+        _btn_s_1.setSelected(_entity.getPlaySound() == 1);
+        _btn_s_2.setSelected(_entity.getPlaySound() == 2);
+
+        var sndmsg = new TranslatableComponent("text.workspacedead.fullmetalalchemiser.soundoff");
+        if (_entity.getPlaySound() == 1)
+            sndmsg = new TranslatableComponent("text.workspacedead.fullmetalalchemiser.soundlaser");
+        if (_entity.getPlaySound() == 2)
+            sndmsg = new TranslatableComponent("text.workspacedead.fullmetalalchemiser.soundhand");
+        font.draw(poseStack, sndmsg.getVisualOrderText(), (float) (guiLeft + 10), guiTop + 66, 0);
+
     }
 
     // the following is a hack to get the amount of power sent back to the client.

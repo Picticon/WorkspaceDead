@@ -1,0 +1,10 @@
+{
+    "type": "workspacedead:fullmetalalchemiser",
+    "output": {
+        "item": "workspacedead:inro_crystal"
+    },
+    "input": {
+        "item": "minecraft:iron_ingot"
+    },
+    "power": 100
+}

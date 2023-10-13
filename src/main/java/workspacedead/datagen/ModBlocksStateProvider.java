@@ -92,6 +92,23 @@ public class ModBlocksStateProvider extends BlockStateProvider {
         makeSimpleBlockAndItem(MyBlocks.POOPBLOCK.get());
         makeSimpleBlockAndItem(MyBlocks.POOPBLOCK2X.get());
 
+        makeSimpleBlockAndItem(MyBlocks.GLOD_BLOCK.get());
+        makeSimpleBlockAndItem(MyBlocks.GLOD_SATURATED_BLOCK.get());
+        makeSimpleBlockAndItem(MyBlocks.CALO_BLOCK.get());
+        makeSimpleBlockAndItem(MyBlocks.CALO_SATURATED_BLOCK.get());
+        makeSimpleBlockAndItem(MyBlocks.CEPPRO_BLOCK.get());
+        makeSimpleBlockAndItem(MyBlocks.CEPPRO_SATURATED_BLOCK.get());
+        makeSimpleBlockAndItem(MyBlocks.DANIDOM_BLOCK.get());
+        makeSimpleBlockAndItem(MyBlocks.DANIDOM_SATURATED_BLOCK.get());
+        makeSimpleBlockAndItem(MyBlocks.EMELDAR_BLOCK.get());
+        makeSimpleBlockAndItem(MyBlocks.EMELDAR_SATURATED_BLOCK.get());
+        makeSimpleBlockAndItem(MyBlocks.INRO_BLOCK.get());
+        makeSimpleBlockAndItem(MyBlocks.INRO_SATURATED_BLOCK.get());
+        makeSimpleBlockAndItem(MyBlocks.RETDESON_BLOCK.get());
+        makeSimpleBlockAndItem(MyBlocks.RETDESON_SATURATED_BLOCK.get());
+        makeSimpleBlockAndItem(MyBlocks.LIPAS_BLOCK.get());
+        makeSimpleBlockAndItem(MyBlocks.LIPAS_SATURATED_BLOCK.get());
+
         cubeColumn(MyBlocks.DEAD_FARMLAND.get(), blockTexture(Blocks.DIRT),
                 new ResourceLocation(WorkspaceDead.MOD_ID, "block/deadfarmland"));
         itemBlock(MyBlocks.DEAD_FARMLAND);

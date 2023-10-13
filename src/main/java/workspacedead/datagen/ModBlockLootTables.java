@@ -79,6 +79,24 @@ public class ModBlockLootTables extends BlockLoot {
         this.dropSelf(MyBlocks.DESATURATOR_BLOCK.get());
         this.dropSelf(MyBlocks.FULLMETALALCHEMISER_BLOCK.get());
 
+
+        this.dropSelf(MyBlocks.GLOD_BLOCK.get());
+        this.dropSelf(MyBlocks.GLOD_SATURATED_BLOCK.get());
+        this.dropSelf(MyBlocks.CALO_BLOCK.get());
+        this.dropSelf(MyBlocks.CALO_SATURATED_BLOCK.get());
+        this.dropSelf(MyBlocks.CEPPRO_BLOCK.get());
+        this.dropSelf(MyBlocks.CEPPRO_SATURATED_BLOCK.get());
+        this.dropSelf(MyBlocks.DANIDOM_BLOCK.get());
+        this.dropSelf(MyBlocks.DANIDOM_SATURATED_BLOCK.get());
+        this.dropSelf(MyBlocks.EMELDAR_BLOCK.get());
+        this.dropSelf(MyBlocks.EMELDAR_SATURATED_BLOCK.get());
+        this.dropSelf(MyBlocks.LIPAS_BLOCK.get());
+        this.dropSelf(MyBlocks.LIPAS_SATURATED_BLOCK.get());
+        this.dropSelf(MyBlocks.RETDESON_BLOCK.get());
+        this.dropSelf(MyBlocks.RETDESON_SATURATED_BLOCK.get());
+        this.dropSelf(MyBlocks.INRO_BLOCK.get());
+        this.dropSelf(MyBlocks.INRO_SATURATED_BLOCK.get());
+
         LootItemCondition.Builder lootitemcondition$builder = //
                 LootItemBlockStatePropertyCondition.hasBlockStateProperties(MyBlocks.GRASSYPOTATO_PLANT.get())//
                         .setProperties(StatePropertiesPredicate.Builder.properties()

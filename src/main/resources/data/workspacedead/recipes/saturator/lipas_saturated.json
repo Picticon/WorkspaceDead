@@ -1,0 +1,26 @@
+{
+    "type": "workspacedead:saturator",
+    "output": {
+        "item": "workspacedead:lipas_saturated"
+    },
+    "input": {
+        "item": "workspacedead:lipas_crystal"
+    },
+    "catalysts": [
+        {
+            "item": "minecraft:blue_dye"
+        },
+        {
+            "item": "minecraft:blue_dye"
+        },
+        {
+            "item": "minecraft:blue_dye"
+        },
+        {
+            "item": "minecraft:blue_dye"
+        }
+    ],
+    "power": 5000,
+    "time": 100,
+    "color":255
+}

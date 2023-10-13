@@ -1,0 +1,26 @@
+{
+    "type": "workspacedead:saturator",
+    "output": {
+        "item": "workspacedead:glod_saturated_block"
+    },
+    "input": {
+        "item": "workspacedead:glod_block"
+    },
+    "catalysts": [
+        {
+            "item": "minecraft:yellow_dye"
+        },
+        {
+            "item": "minecraft:yellow_dye"
+        },
+        {
+            "item": "minecraft:yellow_dye"
+        },
+        {
+            "item": "minecraft:yellow_dye"
+        }
+    ],
+    "power": 50000,
+    "time": 500,
+    "color": 16776960
+}

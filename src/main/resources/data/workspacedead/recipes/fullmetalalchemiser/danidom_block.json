@@ -1,0 +1,10 @@
+{
+    "type": "workspacedead:fullmetalalchemiser",
+    "output": {
+        "item": "workspacedead:danidom_block"
+    },
+    "input": {
+        "item": "minecraft:diamond_block"
+    },
+    "power": 900
+}

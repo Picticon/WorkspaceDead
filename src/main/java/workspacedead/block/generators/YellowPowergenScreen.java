@@ -10,7 +10,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import workspacedead.WorkspaceDead;
 
-
 // This defines the custom parts of the UI for the generator
 
 public class YellowPowergenScreen extends AbstractContainerScreen<YellowPowergenContainer> {
@@ -30,7 +29,8 @@ public class YellowPowergenScreen extends AbstractContainerScreen<YellowPowergen
 
     @Override
     protected void renderLabels(PoseStack matrixStack, int mouseX, int mouseY) {
-        drawString(matrixStack, Minecraft.getInstance().font, "Energy: " + menu.getEnergy(), 10, 10, 0xffffff);
+        Minecraft minecraft = Minecraft.getInstance();
+        drawString(matrixStack, minecraft.font, "Energy: " + menu.getEnergy(), 10, 10, 0xffffff);
     }
 
     @Override

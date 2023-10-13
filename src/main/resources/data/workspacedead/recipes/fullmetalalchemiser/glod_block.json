@@ -1,0 +1,10 @@
+{
+    "type": "workspacedead:fullmetalalchemiser",
+    "output": {
+        "item": "workspacedead:glod_block"
+    },
+    "input": {
+        "item": "minecraft:gold_block"
+    },
+    "power": 900
+}

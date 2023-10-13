@@ -14,6 +14,7 @@ import net.minecraft.world.item.crafting.ShapedRecipe;
 import workspacedead.WorkspaceDead;
 
 public class FullMetalAlchemiserRecipe extends BaseRecipe {
+    public static final String STATICID = "fullmetalalchemiser";
     private final ResourceLocation id;
     private final ItemStack output; // the result of the craft
     protected final Ingredient input; // the input item
@@ -67,7 +68,7 @@ public class FullMetalAlchemiserRecipe extends BaseRecipe {
         }
 
         public static final Type INSTANCE = new Type();
-        public static final String ID = "fullmetalalchemiser";
+        public static final String ID = STATICID;
     }
 
     @Override

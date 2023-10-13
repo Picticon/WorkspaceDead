@@ -1,20 +1,15 @@
 package workspacedead.network;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.dimension.DimensionType;
 import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
-
-import io.netty.buffer.ByteBufUtil;
 
 public class EntityInts {
 

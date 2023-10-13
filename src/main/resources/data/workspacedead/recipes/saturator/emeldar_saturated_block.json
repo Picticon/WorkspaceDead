@@ -1,0 +1,26 @@
+{
+    "type": "workspacedead:saturator",
+    "output": {
+        "item": "workspacedead:emeldar_saturated_block"
+    },
+    "input": {
+        "item": "workspacedead:emeldar_block"
+    },
+    "catalysts": [
+        {
+            "item": "minecraft:green_dye"
+        },
+        {
+            "item": "minecraft:green_dye"
+        },
+        {
+            "item": "minecraft:green_dye"
+        },
+        {
+            "item": "minecraft:green_dye"
+        }
+    ],
+    "power": 50000,
+    "time": 500,
+    "color": 65280
+}

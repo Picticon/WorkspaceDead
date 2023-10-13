@@ -1,0 +1,10 @@
+{
+    "type": "workspacedead:fullmetalalchemiser",
+    "output": {
+        "item": "workspacedead:calo_crystal"
+    },
+    "input": {
+        "item": "minecraft:coal_block"
+    },
+    "power": 900
+}

@@ -1,0 +1,26 @@
+{
+    "type": "workspacedead:saturator",
+    "output": {
+        "item": "workspacedead:calo_saturated_block"
+    },
+    "input": {
+        "item": "workspacedead:calo_block"
+    },
+    "catalysts": [
+        {
+            "item": "minecraft:black_dye"
+        },
+        {
+            "item": "minecraft:black_dye"
+        },
+        {
+            "item": "minecraft:black_dye"
+        },
+        {
+            "item": "minecraft:black_dye"
+        }
+    ],
+    "power": 50000,
+    "time": 500,
+    "color": 0
+}

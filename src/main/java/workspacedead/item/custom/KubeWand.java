@@ -199,7 +199,8 @@ public class KubeWand extends Item {
     }
 
     private static void setClipboard(String string) {
-        Minecraft.getInstance().keyboardHandler.setClipboard(string);
+        Minecraft minecraft = Minecraft.getInstance();
+        minecraft.keyboardHandler.setClipboard(string);
     }
 
 }
