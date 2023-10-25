@@ -15,6 +15,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeManager;
 import workspacedead.WorkspaceDead;
 import workspacedead.recipe.PurificationRecipe;
+import workspacedead.recipe.CropMutationRecipe;
 import workspacedead.recipe.DeadInsideEffectRecipe;
 import workspacedead.recipe.FullMetalAlchemiserRecipe;
 import workspacedead.recipe.SaturatorRecipe;
@@ -32,6 +33,8 @@ public class JEIPlugin implements IModPlugin {
             .create(WorkspaceDead.MOD_ID, PurificationRecipe.STATICID, PurificationRecipe.class);
     public static final RecipeType<DeadInsideEffectRecipe> DEADINSIDEEFFECT_CRAFT = RecipeType
             .create(WorkspaceDead.MOD_ID, DeadInsideEffectRecipe.STATICID, DeadInsideEffectRecipe.class);
+    public static final RecipeType<CropMutationRecipe> CROPMUTATION_CRAFT = RecipeType
+            .create(WorkspaceDead.MOD_ID, CropMutationRecipe.STATICID, CropMutationRecipe.class);
     private static final ResourceLocation PLUGIN_ID = new ResourceLocation(WorkspaceDead.MOD_ID, "jei_plugin");
 
     @Override
@@ -46,6 +49,7 @@ public class JEIPlugin implements IModPlugin {
         registry.addRecipeCategories(new FullMetalAlchemiserRecipeCategory(helper));
         registry.addRecipeCategories(new PurificationRecipeCategory(helper));
         registry.addRecipeCategories(new DeadInsideEffectRecipeCategory(helper));
+        registry.addRecipeCategories(new CropMutationRecipeCategory(helper));
     }
 
     @Override
@@ -60,6 +64,8 @@ public class JEIPlugin implements IModPlugin {
         //         JEIPlugin.PURIFICATION_CRAFT);
         // registration.addRecipeCatalyst(new ItemStack(MyItems.PURIFYSHARD.get()),
         //         JEIPlugin.PURIFICATION_CRAFT);
+        registration.addRecipeCatalyst(new ItemStack(MyBlocks.MUTATING_FARMLAND.get()),
+                JEIPlugin.CROPMUTATION_CRAFT);
     }
 
     @Override
@@ -74,5 +80,7 @@ public class JEIPlugin implements IModPlugin {
         registration.addRecipes(JEIPlugin.PURIFICATION_CRAFT, recipes3);
         List<DeadInsideEffectRecipe> recipes4 = rm.getAllRecipesFor(DeadInsideEffectRecipe.Type.INSTANCE);
         registration.addRecipes(JEIPlugin.DEADINSIDEEFFECT_CRAFT, recipes4);
+        List<CropMutationRecipe> recipes5 = rm.getAllRecipesFor(CropMutationRecipe.Type.INSTANCE);
+        registration.addRecipes(JEIPlugin.CROPMUTATION_CRAFT, recipes5);
     }
 }

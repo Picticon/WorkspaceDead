@@ -141,21 +141,39 @@ public class WorkspaceDead {
                     Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules);
 
             ComposterBlock.COMPOSTABLES.put(MyItems.POOP.get().asItem(), .5f);
-            ComposterBlock.COMPOSTABLES.put(MyItems.COW_POOP.get().asItem(), .75f);
-            ComposterBlock.COMPOSTABLES.put(MyItems.PHANTOM_POOP.get().asItem(), .75f);
-            ComposterBlock.COMPOSTABLES.put(MyItems.CHICKEN_POOP.get().asItem(), .75f);
-            ComposterBlock.COMPOSTABLES.put(MyItems.SHEEP_POOP.get().asItem(), .75f);
-            ComposterBlock.COMPOSTABLES.put(MyItems.PIG_POOP.get().asItem(), .75f);
-            ComposterBlock.COMPOSTABLES.put(MyItems.CREEPER_POOP.get().asItem(), 1);
-            ComposterBlock.COMPOSTABLES.put(MyItems.SKELETON_POOP.get().asItem(), 1);
-            ComposterBlock.COMPOSTABLES.put(MyItems.ENDER_POOP.get().asItem(), 1);
-            ComposterBlock.COMPOSTABLES.put(MyItems.ZOMBIE_POOP.get().asItem(), 1);
-            ComposterBlock.COMPOSTABLES.put(MyItems.VILLAGER_POOP.get().asItem(), 1);
-            ComposterBlock.COMPOSTABLES.put(MyItems.SPIDER_POOP.get().asItem(), 1);
-            ComposterBlock.COMPOSTABLES.put(MyItems.GOLEM_POOP.get().asItem(), 1);
-            ComposterBlock.COMPOSTABLES.put(MyItems.DRAGON_POOP.get().asItem(), 1);
-            ComposterBlock.COMPOSTABLES.put(MyItems.WITCH_POOP.get().asItem(), 1);
-            ComposterBlock.COMPOSTABLES.put(MyItems.BLAZE_POOP.get().asItem(), 1);
+            ComposterBlock.COMPOSTABLES.put(MyItems.POOP_COW.get().asItem(), .75f);
+            ComposterBlock.COMPOSTABLES.put(MyItems.POOP_PHANTOM.get().asItem(), .75f);
+            ComposterBlock.COMPOSTABLES.put(MyItems.POOP_CHICKEN.get().asItem(), .75f);
+            ComposterBlock.COMPOSTABLES.put(MyItems.POOP_SHEEP.get().asItem(), .75f);
+            ComposterBlock.COMPOSTABLES.put(MyItems.POOP_PIG.get().asItem(), .75f);
+            ComposterBlock.COMPOSTABLES.put(MyItems.POOP_CREEPER.get().asItem(), 1);
+            ComposterBlock.COMPOSTABLES.put(MyItems.POOP_SKELETON.get().asItem(), 1);
+            ComposterBlock.COMPOSTABLES.put(MyItems.POOP_ENDERMAN.get().asItem(), 1);
+            ComposterBlock.COMPOSTABLES.put(MyItems.POOP_ZOMBIE.get().asItem(), 1);
+            ComposterBlock.COMPOSTABLES.put(MyItems.POOP_VILLAGER.get().asItem(), 1);
+            ComposterBlock.COMPOSTABLES.put(MyItems.POOP_SPIDER.get().asItem(), 1);
+            ComposterBlock.COMPOSTABLES.put(MyItems.POOP_IRON_GOLEM.get().asItem(), 1);
+            ComposterBlock.COMPOSTABLES.put(MyItems.POOP_DRAGON.get().asItem(), 1);
+            ComposterBlock.COMPOSTABLES.put(MyItems.POOP_WITCH.get().asItem(), 1);
+            ComposterBlock.COMPOSTABLES.put(MyItems.POOP_BLAZE.get().asItem(), 1);
+
+            ComposterBlock.COMPOSTABLES.put(MyItems.POOP_WITHER.get().asItem(), 1);
+            ComposterBlock.COMPOSTABLES.put(MyItems.POOP_TURTLE.get().asItem(), 1);
+            ComposterBlock.COMPOSTABLES.put(MyItems.POOP_WITHER_SKELETON.get().asItem(), 1);
+            ComposterBlock.COMPOSTABLES.put(MyItems.POOP_ZOGLIN.get().asItem(), 1);
+            ComposterBlock.COMPOSTABLES.put(MyItems.POOP_HOGLIN.get().asItem(), 1);
+            ComposterBlock.COMPOSTABLES.put(MyItems.POOP_CAT.get().asItem(), 1);
+            ComposterBlock.COMPOSTABLES.put(MyItems.POOP_BEE.get().asItem(), 1);
+            ComposterBlock.COMPOSTABLES.put(MyItems.POOP_BAT.get().asItem(), 1);
+            ComposterBlock.COMPOSTABLES.put(MyItems.POOP_AXOLOTL.get().asItem(), 1);
+            ComposterBlock.COMPOSTABLES.put(MyItems.POOP_MAGMACUBE.get().asItem(), 1);
+            ComposterBlock.COMPOSTABLES.put(MyItems.POOP_PIGLIN.get().asItem(), 1);
+            ComposterBlock.COMPOSTABLES.put(MyItems.POOP_ZOMBIFIEDPIGLIN.get().asItem(), 1);
+            ComposterBlock.COMPOSTABLES.put(MyItems.POOP_GHAST.get().asItem(), 1);
+            ComposterBlock.COMPOSTABLES.put(MyItems.POOP_SHULKER.get().asItem(), 1);
+            ComposterBlock.COMPOSTABLES.put(MyItems.POOP_SQUID.get().asItem(), 1);
+            ComposterBlock.COMPOSTABLES.put(MyItems.POOP_MOOSHROOM.get().asItem(), 1);
+            ComposterBlock.COMPOSTABLES.put(MyItems.POOP_GUARDIAN.get().asItem(), 1);
 
             DispenserBlock.registerBehavior(MyItems.DIRTY_ARROW.get(), new AbstractProjectileDispenseBehavior() {
                 protected Projectile getProjectile(Level level, Position position, ItemStack p_123409_) {
@@ -227,7 +245,7 @@ public class WorkspaceDead {
     }
 
     public void addReloadListenerEvent(AddReloadListenerEvent e) {
-      DeadInsideEffect.buildCaches();  
+        DeadInsideEffect.buildCaches();
     }
 
     // reload config caches when config file changes

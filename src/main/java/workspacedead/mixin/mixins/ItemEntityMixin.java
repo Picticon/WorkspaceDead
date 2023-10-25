@@ -81,7 +81,7 @@ public abstract class ItemEntityMixin extends Entity {
         }
 
         // wash poop
-        if (self.getItem().is(MyItems.SEEDED_POOP.get())) {
+        if (self.getItem().is(MyItems.POOP_SEEDED.get())) {
             var fluidblock = this.level.getFluidState(this.blockPosition());
             boolean isValidFluid = !fluidblock.isEmpty() && fluidblock.is(Fluids.WATER);
             if (isValidFluid) {

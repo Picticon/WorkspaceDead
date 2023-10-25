@@ -1,0 +1,7 @@
+{
+    "type": "workspacedead:deadinsideeffect",
+    "output": {
+        "item": "workspacedead:poop_iron_golem"
+    },
+    "input": "minecraft:iron_golem"
+}

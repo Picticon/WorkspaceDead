@@ -57,6 +57,7 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
         this.tag(BlockTags.MINEABLE_WITH_SHOVEL).add(MyBlocks.POOP_O_LANTERN.get(), MyBlocks.CARVED_POOPBLOCK.get());
         this.tag(BlockTags.MINEABLE_WITH_SHOVEL).add(MyBlocks.POOPBLOCK.get(), MyBlocks.POOPBLOCK2X.get());
         this.tag(BlockTags.MINEABLE_WITH_SHOVEL).add(MyBlocks.DEAD_FARMLAND.get());
+        this.tag(BlockTags.MINEABLE_WITH_SHOVEL).add(MyBlocks.MUTATING_FARMLAND.get());
         this.tag(BlockTags.SAPLINGS).add(MyBlocks.DEADSAPLING.get());
         this.tag(BlockTags.LEAVES).add(MyBlocks.DEADLEAVES.get());
 

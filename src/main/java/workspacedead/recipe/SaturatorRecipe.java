@@ -132,7 +132,7 @@ public class SaturatorRecipe extends BaseRecipe {
 
     public static class Serializer implements RecipeSerializer<SaturatorRecipe> {
         public static final Serializer INSTANCE = new Serializer();
-        public static final ResourceLocation ID = new ResourceLocation(WorkspaceDead.MOD_ID, "saturator");
+        public static final ResourceLocation ID = new ResourceLocation(WorkspaceDead.MOD_ID, STATICID);
 
         @Override
         public SaturatorRecipe fromJson(ResourceLocation id, JsonObject json) {

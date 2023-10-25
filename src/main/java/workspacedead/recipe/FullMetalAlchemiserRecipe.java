@@ -78,7 +78,7 @@ public class FullMetalAlchemiserRecipe extends BaseRecipe {
 
     public static class Serializer implements RecipeSerializer<FullMetalAlchemiserRecipe> {
         public static final Serializer INSTANCE = new Serializer();
-        public static final ResourceLocation ID = new ResourceLocation(WorkspaceDead.MOD_ID, "fullmetalalchemiser");
+        public static final ResourceLocation ID = new ResourceLocation(WorkspaceDead.MOD_ID, STATICID);
 
         @Override
         public FullMetalAlchemiserRecipe fromJson(ResourceLocation id, JsonObject json) {

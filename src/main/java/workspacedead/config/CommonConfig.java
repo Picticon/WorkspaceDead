@@ -1,17 +1,11 @@
 package workspacedead.config;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.phys.Vec3;
 
 import net.minecraftforge.common.ForgeConfigSpec;
-import workspacedead.recipe.PurificationRecipe;
 
 // 2023
 

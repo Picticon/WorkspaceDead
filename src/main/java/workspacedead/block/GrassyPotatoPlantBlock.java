@@ -41,7 +41,7 @@ public class GrassyPotatoPlantBlock extends CropBlock {
         if (this.getAge(blockState) >= getMaxAge())
             this.spawnInfestation(level, pos);
         else
-            super.spawnAfterBreak(blockState, level, pos, itemStack); // TODO how do I get around this?
+            super.spawnAfterBreak(blockState, level, pos, itemStack); // TO DO how do I get around this?
 
         // if (p_54189_.getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS)) {
         // }

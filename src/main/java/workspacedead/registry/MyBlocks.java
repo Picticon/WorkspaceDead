@@ -31,6 +31,7 @@ import workspacedead.block.DeadFarmland;
 import workspacedead.block.DeadGrassBlock;
 import workspacedead.block.GrassyPotatoPlantBlock;
 import workspacedead.block.ModFlammableRotatedPillarBlock;
+import workspacedead.block.MutatingFarmland;
 import workspacedead.block.PotatoPortalBlock;
 import workspacedead.block.BioMass.BioMassBlock;
 import workspacedead.block.FullMetalAlchemiser.FullMetalAlchemiserBlock;
@@ -61,7 +62,7 @@ public class MyBlocks {
             () -> new DesaturatorBlock(), ModCreativeModeTab.ITEMS_TAB);
 
     public static final RegistryObject<Block> BIOMASS_BLOCK = registerBlockWithoutBlockItem("biomass_block", //
-            () -> new BioMassBlock(BlockBehaviour.Properties.of(Material.MOSS).strength(.9f).sound(SoundType.FUNGUS)));
+            () -> new   BioMassBlock(BlockBehaviour.Properties.of(Material.MOSS).strength(.9f).sound(SoundType.FUNGUS)));
 
     public static final RegistryObject<Block> MRHANKY_BLOCK = registerBlockWithoutBlockItem("mrhanky_block", //
             () -> new MrHankyBlock(BlockBehaviour.Properties.of(Material.STONE).strength(.9f).sound(SoundType.STONE)));
@@ -75,6 +76,11 @@ public class MyBlocks {
 
     public static final RegistryObject<Block> DEAD_FARMLAND = registerBlockAndItem("deadfarmland",
             () -> new DeadFarmland(BlockBehaviour.Properties.of(Material.DIRT).strength(.9f).sound(SoundType.GRAVEL)),
+            ModCreativeModeTab.ITEMS_TAB);
+
+    public static final RegistryObject<Block> MUTATING_FARMLAND = registerBlockAndItem("mutating_farmland", 
+            () -> new MutatingFarmland(
+                    BlockBehaviour.Properties.of(Material.DIRT).strength(.9f).sound(SoundType.GRAVEL)),
             ModCreativeModeTab.ITEMS_TAB);
 
     public static final RegistryObject<Block> DEADSTONE = registerBlockAndItem("deadstone",
@@ -123,7 +129,6 @@ public class MyBlocks {
 
     /// GENERATORS END
 
-
     public static final RegistryObject<Block> GLOD_BLOCK = registerBlockAndItem("glod_block",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE).strength(1f).sound(SoundType.STONE)),
             ModCreativeModeTab.ITEMS_TAB);
@@ -142,7 +147,8 @@ public class MyBlocks {
     public static final RegistryObject<Block> RETDESON_BLOCK = registerBlockAndItem("retdeson_block",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE).strength(1f).sound(SoundType.STONE)),
             ModCreativeModeTab.ITEMS_TAB);
-    public static final RegistryObject<Block> RETDESON_SATURATED_BLOCK = registerBlockAndItem("retdeson_saturated_block",
+    public static final RegistryObject<Block> RETDESON_SATURATED_BLOCK = registerBlockAndItem(
+            "retdeson_saturated_block",
             () -> new Block(BlockBehaviour.Properties.of(Material.HEAVY_METAL).strength(2f).sound(SoundType.METAL)),
             ModCreativeModeTab.ITEMS_TAB);
 

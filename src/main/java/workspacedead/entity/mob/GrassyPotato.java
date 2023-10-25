@@ -1,6 +1,7 @@
 package workspacedead.entity.mob;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -36,7 +37,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import software.bernie.geckolib3.core.IAnimatable;
@@ -53,17 +53,20 @@ import workspacedead.particle.ModParticles;
 import workspacedead.registry.MySounds;
 
 public class GrassyPotato extends TamableAnimal implements IAnimatable {
+    public static final EntityDataAccessor<Byte> CHANNELINGMODE = SynchedEntityData.defineId(GrassyPotato.class,
+            EntityDataSerializers.BYTE);
+    public static final byte CHANNELING_NONE = 0;
+    public static final byte CHANNELING_PURIFYING = 1;
+    public static final byte CHANNELING_BONEMEALING = 2;
+    public static final byte CHANNELING_COOLDOWN = 3;
     private static final EntityDataAccessor<Float> SCALESIZE = SynchedEntityData.defineId(GrassyPotato.class,
             EntityDataSerializers.FLOAT);
-    public static final EntityDataAccessor<Boolean> CHANNELING = SynchedEntityData.defineId(GrassyPotato.class,
-            EntityDataSerializers.BOOLEAN);
+    private final AnimationFactory factory = GeckoLibUtil.createFactory(this);
 
     public GrassyPotato(EntityType<? extends TamableAnimal> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
         // debugscale = .7f;
     }
-
-    private final AnimationFactory factory = GeckoLibUtil.createFactory(this);
     // private float debugscale;
     // private boolean isChanneling;
 
@@ -76,9 +79,10 @@ public class GrassyPotato extends TamableAnimal implements IAnimatable {
     protected void registerGoals() {
         this.goalSelector.addGoal(1, new FloatGoal(this));
         this.goalSelector.addGoal(2, new SitWhenOrderedToGoal(this));
-        this.goalSelector.addGoal(3, new MoveToDirtBlockGoal(this));
+        this.goalSelector.addGoal(3, new BreedGoal(this, 1.0D));
+        this.goalSelector.addGoal(4, new MoveToDirtBlockGoal(this));
+        this.goalSelector.addGoal(5, new MoveToPlantBlockGoal(this));
         this.goalSelector.addGoal(6, new FollowOwnerGoal(this, .5D, 10.0F, 2.0F, false));
-        this.goalSelector.addGoal(7, new BreedGoal(this, 1.0D));
         this.goalSelector.addGoal(8, new WaterAvoidingRandomStrollGoal(this, 1.0D));
         this.goalSelector.addGoal(10, new LookAtPlayerGoal(this, Player.class, 8.0F));
         this.goalSelector.addGoal(10, new RandomLookAroundGoal(this));
@@ -93,21 +97,15 @@ public class GrassyPotato extends TamableAnimal implements IAnimatable {
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(SCALESIZE, .7f);
-        this.entityData.define(CHANNELING, false);
+        this.entityData.define(CHANNELINGMODE, (byte) 0);
     }
 
-    public boolean isChanneling() {
-        return this.entityData.get(CHANNELING);
+    public byte getChanneling() {
+        return this.entityData.get(CHANNELINGMODE);
     }
 
-    public void setChanneling(boolean channeling) {
-        // if (isChanneling() != channeling)
-        // if (channeling)
-        // WDServer.send("POTATO START channeling");
-        // else
-        // WDServer.send("POTATO STOP channeling");
-        this.entityData.set(CHANNELING, channeling);
-        // isChanneling = channeling;
+    public void setChanneling(byte channeling) {
+        this.entityData.set(CHANNELINGMODE, channeling);
     }
 
     // public float getSize() {
@@ -129,7 +127,7 @@ public class GrassyPotato extends TamableAnimal implements IAnimatable {
 
     protected void setScale(float pSize, boolean pResetHealth) {
         // WDServer.send("Setting size to " + pSize);
-        float f = Mth.clamp(pSize, .7f, 2f);
+        float f = Mth.clamp(pSize, .7f, 1.75f);
         this.entityData.set(SCALESIZE, f);
         // this.debugscale = f;
         this.refreshDimensions();
@@ -161,7 +159,9 @@ public class GrassyPotato extends TamableAnimal implements IAnimatable {
     }
 
     public EntityDimensions getDimensions(Pose pPose) {
-        return super.getDimensions(pPose).scale(this.getScale());
+        return new EntityDimensions(super.getDimensions(pPose).width * .75f,
+                super.getDimensions(pPose).height * this.getScale(), false);
+        //return super.getDimensions(pPose).scale(this.getScale());
     }
 
     public int getMaxHeadXRot() {
@@ -180,6 +180,9 @@ public class GrassyPotato extends TamableAnimal implements IAnimatable {
 
     @Override
     public void tick() {
+        //var a = 5;
+        //var b = a + 2;
+        //Chatter.sendToAllPlayers("b=" + b);
         // if (this.tickCount % 40 == 0)
         // WDServer.send("POTATO " + this.goalSelector.getRunningGoals().count() + "
         // goals are running.");
@@ -195,16 +198,17 @@ public class GrassyPotato extends TamableAnimal implements IAnimatable {
         // this.setSize(1f, true);
         // }
         super.tick();
-        if (level.isClientSide && isChanneling()) {
-            BlockState blockstate = level.getBlockState(this.getOnPos());
-            if (blockstate == null || !blockstate.is(Blocks.DIRT))
-                return;
+        if (level.isClientSide
+                && (getChanneling() == CHANNELING_PURIFYING || getChanneling() == CHANNELING_BONEMEALING)) {
+            // BlockState blockstate = level.getBlockState(this.getOnPos());
+            //if (blockstate == null || !blockstate.is(Blocks.DIRT))
+            //    return;
             if (this.tickCount % 5 == 0)
                 Particleify(level, this.getOnPos(), .9f);
         }
     }
 
-    private void Particleify(Level level, BlockPos pos, double yoffset) {
+    public void Particleify(Level level, BlockPos pos, double yoffset) {
         if (level.isClientSide()) {
             // create particles... client only, sad. not sure how to do it server side
             // (yet?)
@@ -212,8 +216,12 @@ public class GrassyPotato extends TamableAnimal implements IAnimatable {
                 var x = pos.getX() + 0.5d + Math.cos(i) * .9;
                 var y = pos.getY() + .5 + yoffset;
                 var z = pos.getZ() + 0.5d + Math.sin(i) * .9;
-                level.addParticle(ModParticles.PURIFY_PARTICLES.get(), true, x, y, z, Math.cos(i) * -0.11d, -0.05d,
-                        Math.sin(i) * -0.11d);
+                if (getChanneling() == CHANNELING_PURIFYING)
+                    level.addParticle(ModParticles.PURIFY_PARTICLES.get(), true, x, y, z, Math.cos(i) * -0.11d, -0.05d,
+                            Math.sin(i) * -0.11d);
+                else
+                    level.addParticle(ParticleTypes.COMPOSTER.getType(), true, x, y, z, Math.cos(i) * -0.11d, -0.05d,
+                            Math.sin(i) * -0.11d);
             }
         }
     }
@@ -242,7 +250,8 @@ public class GrassyPotato extends TamableAnimal implements IAnimatable {
                     ILoopType.EDefaultLoopTypes.LOOP));
             return PlayState.CONTINUE;
         }
-        if (this.isChanneling()) {
+
+        if (this.getChanneling() == CHANNELING_BONEMEALING || this.getChanneling() == CHANNELING_PURIFYING) {
             event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.grassypotato.channel",
                     ILoopType.EDefaultLoopTypes.LOOP));
             return PlayState.CONTINUE;
@@ -277,8 +286,8 @@ public class GrassyPotato extends TamableAnimal implements IAnimatable {
         } else {
             // server things
             if (this.isTame()) {
-                if (itemstack.is(Items.POTATO)) {
-                    this.setScale(this.getScale() + .1f, true);
+                if (itemstack.is(Items.BONE_MEAL)) {
+                    this.setScale(this.getScale() + .05f, true);
                     if (!pPlayer.getAbilities().instabuild) {
                         itemstack.shrink(1);
                     }

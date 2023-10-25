@@ -1,0 +1,22 @@
+{
+    "type": "workspacedead:cropmutation",
+    "inputs": [
+        {
+            "type": "block",
+            "block": "minecraft:potatoes"
+        },
+        {
+            "type": "block",
+            "block": "minecraft:grass"
+        }
+    ],
+    "output": {
+        "type": "block",
+        "block": "workspacedead:grassypotato_plant"
+    },
+    "catalyst": {
+        "type": "block",
+        "block": "workspacedead:poopblock"
+    },
+    "chance": 0.05
+}

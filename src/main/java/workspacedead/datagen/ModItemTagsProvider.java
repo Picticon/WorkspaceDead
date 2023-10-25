@@ -41,23 +41,39 @@ public class ModItemTagsProvider extends ItemTagsProvider {
 
         this.tag(POOP)//
                 .add(MyItems.POOP.get())//
-                .add(MyItems.SEEDED_POOP.get())//
-                .add(MyItems.ENDER_POOP.get())//
-                .add(MyItems.SKELETON_POOP.get())//
-                .add(MyItems.ZOMBIE_POOP.get())//
-                .add(MyItems.CREEPER_POOP.get())//
-                .add(MyItems.SPIDER_POOP.get())//
-                .add(MyItems.SLIME_POOP.get())//
-                .add(MyItems.DRAGON_POOP.get())//
-                .add(MyItems.WITCH_POOP.get())//
-                .add(MyItems.BLAZE_POOP.get())//
-                .add(MyItems.COW_POOP.get())//
-                .add(MyItems.PHANTOM_POOP.get())//
-                .add(MyItems.PIG_POOP.get())//
-                .add(MyItems.CHICKEN_POOP.get())//
-                .add(MyItems.SHEEP_POOP.get())//
-                .add(MyItems.GOLEM_POOP.get())//
-                .add(MyItems.VILLAGER_POOP.get())//
+                .add(MyItems.POOP_SEEDED.get())//
+                .add(MyItems.POOP_ENDERMAN.get())//
+                .add(MyItems.POOP_SKELETON.get())//
+                .add(MyItems.POOP_ZOMBIE.get())//
+                .add(MyItems.POOP_CREEPER.get())//
+                .add(MyItems.POOP_SPIDER.get())//
+                .add(MyItems.POOP_SLIME.get())//
+                .add(MyItems.POOP_DRAGON.get())//
+                .add(MyItems.POOP_WITCH.get())//
+                .add(MyItems.POOP_BLAZE.get())//
+                .add(MyItems.POOP_COW.get())//
+                .add(MyItems.POOP_PHANTOM.get())//
+                .add(MyItems.POOP_PIG.get())//
+                .add(MyItems.POOP_CHICKEN.get())//
+                .add(MyItems.POOP_SHEEP.get())//
+                .add(MyItems.POOP_IRON_GOLEM.get())//
+                .add(MyItems.POOP_TURTLE.get())//
+                .add(MyItems.POOP_WITHER.get())//
+                .add(MyItems.POOP_WITHER_SKELETON.get())//
+                .add(MyItems.POOP_ZOGLIN.get())//
+                .add(MyItems.POOP_HOGLIN.get())//
+                .add(MyItems.POOP_CAT.get())//
+                .add(MyItems.POOP_BEE.get())//
+                .add(MyItems.POOP_BAT.get())//
+                .add(MyItems.POOP_AXOLOTL.get())//
+                .add(MyItems.POOP_MAGMACUBE.get())//
+                .add(MyItems.POOP_PIGLIN.get())//
+                .add(MyItems.POOP_ZOMBIFIEDPIGLIN.get())//
+                .add(MyItems.POOP_GHAST.get())//
+                .add(MyItems.POOP_SHULKER.get())//
+                .add(MyItems.POOP_MOOSHROOM.get())//
+                .add(MyItems.POOP_SQUID.get())//
+                .add(MyItems.POOP_GUARDIAN.get())//
         ;
         //this.tag(FIREPROOFITEM).add(ModItems.POOP.get());
     }

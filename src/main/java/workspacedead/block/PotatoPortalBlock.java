@@ -170,7 +170,7 @@ public class PotatoPortalBlock extends Block {
             }
              */
 
-            // TODO: Particles
+            // TO:DO: Particles
             // worldIn.addParticle(PARTICLE_TYPE, x, y, z, xSpeed, ySpeed, zSpeed);
         }
     }

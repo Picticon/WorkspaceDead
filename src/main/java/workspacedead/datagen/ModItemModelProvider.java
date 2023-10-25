@@ -30,23 +30,44 @@ public class ModItemModelProvider extends ItemModelProvider {
         handheldItem(MyItems.DIRTY_BOW.get());
 
         simpleItem(MyItems.POOP.get());
-        simpleItem(MyItems.SEEDED_POOP.get());
-        simpleItem(MyItems.CREEPER_POOP.get());
-        simpleItem(MyItems.SKELETON_POOP.get());
-        simpleItem(MyItems.ZOMBIE_POOP.get());
-        simpleItem(MyItems.ENDER_POOP.get());
-        simpleItem(MyItems.SPIDER_POOP.get());
-        simpleItem(MyItems.SLIME_POOP.get());
-        simpleItem(MyItems.DRAGON_POOP.get());
-        simpleItem(MyItems.WITCH_POOP.get());
-        simpleItem(MyItems.BLAZE_POOP.get());
-        simpleItem(MyItems.COW_POOP.get());
-        simpleItem(MyItems.PHANTOM_POOP.get());
-        simpleItem(MyItems.CHICKEN_POOP.get());
-        simpleItem(MyItems.SHEEP_POOP.get());
-        simpleItem(MyItems.PIG_POOP.get());
-        simpleItem(MyItems.GOLEM_POOP.get());
-        simpleItem(MyItems.VILLAGER_POOP.get());
+        simpleItem(MyItems.POOP_SEEDED.get());
+        simpleItem(MyItems.POOP_CREEPER.get());
+        simpleItem(MyItems.POOP_SKELETON.get());
+        simpleItem(MyItems.POOP_ZOMBIE.get());
+        simpleItem(MyItems.POOP_ENDERMAN.get());
+        simpleItem(MyItems.POOP_SPIDER.get());
+        simpleItem(MyItems.POOP_SLIME.get());
+        simpleItem(MyItems.POOP_DRAGON.get());
+        simpleItem(MyItems.POOP_WITCH.get());
+        simpleItem(MyItems.POOP_BLAZE.get());
+        simpleItem(MyItems.POOP_COW.get());
+        simpleItem(MyItems.POOP_PHANTOM.get());
+        simpleItem(MyItems.POOP_CHICKEN.get());
+        simpleItem(MyItems.POOP_SHEEP.get());
+        simpleItem(MyItems.POOP_PIG.get());
+        simpleItem(MyItems.POOP_IRON_GOLEM.get());
+        simpleItem(MyItems.POOP_VILLAGER.get());
+
+        simpleItem(MyItems.POOP_TURTLE.get());
+        simpleItem(MyItems.POOP_WITHER.get());
+        simpleItem(MyItems.POOP_WITHER_SKELETON.get());
+        simpleItem(MyItems.POOP_ZOGLIN.get());
+        simpleItem(MyItems.POOP_HOGLIN.get());
+        simpleItem(MyItems.POOP_CAT.get());
+        simpleItem(MyItems.POOP_BEE.get());
+        simpleItem(MyItems.POOP_BAT.get());
+        simpleItem(MyItems.POOP_AXOLOTL.get());
+        simpleItem(MyItems.POOP_MAGMACUBE.get());
+        simpleItem(MyItems.POOP_PIGLIN.get());
+        simpleItem(MyItems.POOP_ZOMBIFIEDPIGLIN.get());
+        simpleItem(MyItems.POOP_GHAST.get());
+        simpleItem(MyItems.POOP_SHULKER.get());
+        simpleItem(MyItems.POOP_MOOSHROOM.get());
+        simpleItem(MyItems.POOP_SQUID.get());
+        simpleItem(MyItems.POOP_GUARDIAN.get());
+
+
+
         simpleItem(MyItems.POTATO_PORTAL_CATALYST.get());
         simpleItem(MyItems.DEADGRASS_SCRAPS.get());
         

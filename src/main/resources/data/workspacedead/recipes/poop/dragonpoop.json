@@ -1,7 +1,0 @@
-{
-    "type": "workspacedead:deadinsideeffect",
-    "output": {
-        "item": "workspacedead:dragonpoop"
-    },
-    "input": "workspacedead:draconicblaze"
-}

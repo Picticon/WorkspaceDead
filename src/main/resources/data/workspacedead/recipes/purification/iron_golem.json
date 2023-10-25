@@ -1,0 +1,6 @@
+{
+    "type": "workspacedead:purification",
+    "output": "minecraft:iron_golem",
+    "input": "workspacedead:bonegolem",
+    "power": 1
+}

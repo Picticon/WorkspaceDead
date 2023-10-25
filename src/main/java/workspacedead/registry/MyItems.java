@@ -35,40 +35,76 @@ public class MyItems {
 
     public static final RegistryObject<Item> POOP = ITEMS.register("poop",
             () -> new PoopItem(new Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB)));
-    public static final RegistryObject<Item> SEEDED_POOP = ITEMS.register("seededpoop",
+    public static final RegistryObject<Item> POOP_SEEDED = ITEMS.register("poop_seeded",
             () -> new PoopItem(new Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB), 6000));
-    public static final RegistryObject<Item> SKELETON_POOP = ITEMS.register("skeletonpoop",
+    public static final RegistryObject<Item> POOP_SKELETON = ITEMS.register("poop_skeleton",
             () -> new PoopItem(new Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB)));
-    public static final RegistryObject<Item> CREEPER_POOP = ITEMS.register("creeperpoop",
+    public static final RegistryObject<Item> POOP_CREEPER = ITEMS.register("poop_creeper",
             () -> new PoopItem(new Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB)));
-    public static final RegistryObject<Item> ZOMBIE_POOP = ITEMS.register("zombiepoop",
+    public static final RegistryObject<Item> POOP_ZOMBIE = ITEMS.register("poop_zombie",
             () -> new PoopItem(new Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB)));
-    public static final RegistryObject<Item> ENDER_POOP = ITEMS.register("enderpoop",
+    public static final RegistryObject<Item> POOP_ENDERMAN = ITEMS.register("poop_enderman",
             () -> new PoopItem(new Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB)));
-    public static final RegistryObject<Item> COW_POOP = ITEMS.register("cowpoop",
+    public static final RegistryObject<Item> POOP_COW = ITEMS.register("poop_cow",
             () -> new PoopItem(new Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB)));
-    public static final RegistryObject<Item> CHICKEN_POOP = ITEMS.register("chickenpoop",
+    public static final RegistryObject<Item> POOP_CHICKEN = ITEMS.register("poop_chicken",
             () -> new PoopItem(new Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB)));
-    public static final RegistryObject<Item> SHEEP_POOP = ITEMS.register("sheeppoop",
+    public static final RegistryObject<Item> POOP_SHEEP = ITEMS.register("poop_sheep",
             () -> new PoopItem(new Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB)));
-    public static final RegistryObject<Item> PIG_POOP = ITEMS.register("pigpoop",
+    public static final RegistryObject<Item> POOP_PIG = ITEMS.register("poop_pig",
             () -> new PoopItem(new Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB)));
-    public static final RegistryObject<Item> GOLEM_POOP = ITEMS.register("golempoop",
+    public static final RegistryObject<Item> POOP_IRON_GOLEM = ITEMS.register("poop_iron_golem",
             () -> new PoopItem(new Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB)));
-    public static final RegistryObject<Item> SPIDER_POOP = ITEMS.register("spiderpoop",
+    public static final RegistryObject<Item> POOP_SPIDER = ITEMS.register("poop_spider",
             () -> new PoopItem(new Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB)));
-    public static final RegistryObject<Item> VILLAGER_POOP = ITEMS.register("villagerpoop",
+    public static final RegistryObject<Item> POOP_VILLAGER = ITEMS.register("poop_villager",
             () -> new PoopItem(new Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB)));
-    public static final RegistryObject<Item> SLIME_POOP = ITEMS.register("slimepoop",
+    public static final RegistryObject<Item> POOP_SLIME = ITEMS.register("poop_slime",
             () -> new PoopItem(new Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB)));
-    public static final RegistryObject<Item> DRAGON_POOP = ITEMS.register("dragonpoop",
+    public static final RegistryObject<Item> POOP_DRAGON = ITEMS.register("poop_dragon",
             () -> new PoopItem(new Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB)));
-    public static final RegistryObject<Item> WITCH_POOP = ITEMS.register("witchpoop",
+    public static final RegistryObject<Item> POOP_WITCH = ITEMS.register("poop_witch",
             () -> new PoopItem(new Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB)));
-    public static final RegistryObject<Item> BLAZE_POOP = ITEMS.register("blazepoop",
+    public static final RegistryObject<Item> POOP_BLAZE = ITEMS.register("poop_blaze",
             () -> new PoopItem(new Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB)));
-    public static final RegistryObject<Item> PHANTOM_POOP = ITEMS.register("phantompoop",
+    public static final RegistryObject<Item> POOP_PHANTOM = ITEMS.register("poop_phantom",
             () -> new PoopItem(new Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB)));
+    // new poop
+    public static final RegistryObject<Item> POOP_TURTLE = ITEMS.register("poop_turtle",
+            () -> new PoopItem(new Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB)));
+    public static final RegistryObject<Item> POOP_WITHER = ITEMS.register("poop_wither",
+            () -> new PoopItem(new Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB)));
+    public static final RegistryObject<Item> POOP_WITHER_SKELETON = ITEMS.register("poop_wither_skeleton",
+            () -> new PoopItem(new Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB)));
+    public static final RegistryObject<Item> POOP_ZOGLIN = ITEMS.register("poop_zoglin",
+            () -> new PoopItem(new Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB)));
+    public static final RegistryObject<Item> POOP_HOGLIN = ITEMS.register("poop_hoglin",
+            () -> new PoopItem(new Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB)));
+    public static final RegistryObject<Item> POOP_CAT = ITEMS.register("poop_cat",
+            () -> new PoopItem(new Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB)));
+    public static final RegistryObject<Item> POOP_BEE = ITEMS.register("poop_bee",
+            () -> new PoopItem(new Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB)));
+    public static final RegistryObject<Item> POOP_BAT = ITEMS.register("poop_bat",
+            () -> new PoopItem(new Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB)));
+    public static final RegistryObject<Item> POOP_AXOLOTL = ITEMS.register("poop_axolotl",
+            () -> new PoopItem(new Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB)));
+    public static final RegistryObject<Item> POOP_MAGMACUBE = ITEMS.register("poop_magmacube",
+            () -> new PoopItem(new Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB)));
+    public static final RegistryObject<Item> POOP_PIGLIN = ITEMS.register("poop_piglin",
+            () -> new PoopItem(new Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB)));
+    public static final RegistryObject<Item> POOP_ZOMBIFIEDPIGLIN = ITEMS.register("poop_zombifiedpiglin",
+            () -> new PoopItem(new Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB)));
+    public static final RegistryObject<Item> POOP_GHAST = ITEMS.register("poop_ghast",
+            () -> new PoopItem(new Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB)));
+    public static final RegistryObject<Item> POOP_SHULKER = ITEMS.register("poop_shulker",
+            () -> new PoopItem(new Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB)));
+    public static final RegistryObject<Item> POOP_MOOSHROOM = ITEMS.register("poop_mooshroom",
+            () -> new PoopItem(new Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB)));
+    public static final RegistryObject<Item> POOP_SQUID = ITEMS.register("poop_squid",
+            () -> new PoopItem(new Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB)));
+    public static final RegistryObject<Item> POOP_GUARDIAN = ITEMS.register("poop_guardian",
+            () -> new PoopItem(new Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB)));
+    // end new poop
 
     public static final RegistryObject<Item> ENDER_ROD = ITEMS.register("ender_rod",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ITEMS_TAB)));

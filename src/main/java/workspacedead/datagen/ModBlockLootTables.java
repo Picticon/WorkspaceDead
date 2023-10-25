@@ -73,12 +73,12 @@ public class ModBlockLootTables extends BlockLoot {
         this.dropSelf(MyBlocks.BIOMASS_BLOCK.get());
         this.dropSelf(MyBlocks.MRHANKY_BLOCK.get());
         this.dropSelf(MyBlocks.DEAD_FARMLAND.get());
+        this.dropSelf(MyBlocks.MUTATING_FARMLAND.get());
 
         this.dropSelf(MyBlocks.YELLOW_GENERATOR.get());
         this.dropSelf(MyBlocks.SATURATOR_BLOCK.get());
         this.dropSelf(MyBlocks.DESATURATOR_BLOCK.get());
         this.dropSelf(MyBlocks.FULLMETALALCHEMISER_BLOCK.get());
-
 
         this.dropSelf(MyBlocks.GLOD_BLOCK.get());
         this.dropSelf(MyBlocks.GLOD_SATURATED_BLOCK.get());

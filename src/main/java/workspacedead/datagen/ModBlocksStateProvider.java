@@ -113,6 +113,10 @@ public class ModBlocksStateProvider extends BlockStateProvider {
                 new ResourceLocation(WorkspaceDead.MOD_ID, "block/deadfarmland"));
         itemBlock(MyBlocks.DEAD_FARMLAND);
 
+        cubeColumn(MyBlocks.MUTATING_FARMLAND.get(), blockTexture(Blocks.DIRT),
+                new ResourceLocation(WorkspaceDead.MOD_ID, "block/mutating_farmland"));
+        itemBlock(MyBlocks.MUTATING_FARMLAND);
+
         makeFacingBlock(MyBlocks.CARVED_POOPBLOCK);
         itemFromBlock(MyBlocks.CARVED_POOPBLOCK);
         makeFacingBlock(MyBlocks.POOP_O_LANTERN);

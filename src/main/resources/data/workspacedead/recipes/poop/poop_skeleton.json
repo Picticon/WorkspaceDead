@@ -1,0 +1,7 @@
+{
+    "type": "workspacedead:deadinsideeffect",
+    "output": {
+        "item": "workspacedead:poop_skeleton"
+    },
+    "input": "minecraft:skeleton"
+}

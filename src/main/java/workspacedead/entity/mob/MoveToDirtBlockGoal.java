@@ -21,7 +21,7 @@ public class MoveToDirtBlockGoal extends MoveToBlockGoal {
 
     @Override
     public double acceptedDistance() {
-        return 1.5D; // would like less... but...
+        return 1.75D; // would like less... but...
     }
 
     @Override
@@ -59,7 +59,7 @@ public class MoveToDirtBlockGoal extends MoveToBlockGoal {
         if (this.isReachedTarget()) {
             this.grassyPotato.setPos((this.grassyPotato.getX() + this.blockPos.getX() + .5f) / 2.0f,
                     this.grassyPotato.getY(), (this.grassyPotato.getZ() + this.blockPos.getZ() + .5f) / 2.0f);
-            grassyPotato.setChanneling(true);
+            grassyPotato.setChanneling(GrassyPotato.CHANNELING_PURIFYING);
             timechanneling++;
             if (timechanneling > 80) {
                 Level level = this.grassyPotato.level;
@@ -68,7 +68,7 @@ public class MoveToDirtBlockGoal extends MoveToBlockGoal {
                     if (!level.isClientSide())
                         level.setBlock(this.blockPos, Blocks.GRASS_BLOCK.defaultBlockState(), 1 | 2);
                 }
-                this.nextStartTick = 20;
+                this.nextStartTick = 60;
                 stop();
             }
         } else {
@@ -86,7 +86,7 @@ public class MoveToDirtBlockGoal extends MoveToBlockGoal {
     public void stop() {
         // WDServer.send("POTATO stopping");
         super.stop();
-        grassyPotato.setChanneling(false);
+        grassyPotato.setChanneling(GrassyPotato.CHANNELING_NONE);
         timechanneling = 0;
     }
 

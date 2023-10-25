@@ -57,9 +57,6 @@ public class DeadInsideEffectRecipeCategory implements IRecipeCategory<DeadInsid
     protected int ox = 96;
     protected int oy = 32;
 
-    protected class IDrawableBuilder {
-    }
-
     @Override
     public ResourceLocation getUid() {
         return UID;

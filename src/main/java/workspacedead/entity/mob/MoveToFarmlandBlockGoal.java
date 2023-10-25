@@ -25,7 +25,7 @@ public class MoveToFarmlandBlockGoal extends MoveToBlockGoal {
 
     @Override
     public double acceptedDistance() {
-        return 1.5D; // would like less... but...
+        return 1.75D; // would like less... but...
     }
 
     @Override

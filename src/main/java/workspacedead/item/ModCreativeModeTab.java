@@ -12,5 +12,9 @@ public class ModCreativeModeTab {
             return new ItemStack(MyItems.POOP.get());
         }
 
+        @Override
+        public void fillItemList(net.minecraft.core.NonNullList<ItemStack> pItems) {
+            super.fillItemList(pItems);
+        };
     };
 }

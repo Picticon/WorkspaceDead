@@ -2,10 +2,7 @@ package workspacedead.effect;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
-
 import net.minecraft.client.Minecraft;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -13,10 +10,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeManager;
-import net.minecraftforge.registries.ForgeRegistries;
-import workspacedead.config.CommonConfig;
 import workspacedead.recipe.DeadInsideEffectRecipe;
-import workspacedead.recipe.PurificationRecipe;
 import workspacedead.registry.MyItems;
 
 public class DeadInsideEffect extends MobEffect {
@@ -44,11 +38,14 @@ public class DeadInsideEffect extends MobEffect {
                 //List<DeadInsideEffectRecipe> recipes3 = rm.getAllRecipesFor(DeadInsideEffectRecipe.Type.INSTANCE);
                 if (poop_mobs_cache == null)
                     buildCaches();
-                var entry = poop_mobs_cache.get(pLivingEntity.getType().getRegistryName().toString());
-                if (entry != null) {
-                    var testitem = entry.getResultItem();
-                    if (testitem != null) {
-                        itemToDrop = testitem;
+                if (poop_mobs_cache != null) {
+                    // if cache is null, oops...
+                    var entry = poop_mobs_cache.get(pLivingEntity.getType().getRegistryName().toString());
+                    if (entry != null) {
+                        var testitem = entry.getResultItem();
+                        if (testitem != null) {
+                            itemToDrop = testitem;
+                        }
                     }
                 }
                 // var c = pLivingEntity.getClass().toString();
@@ -56,7 +53,7 @@ public class DeadInsideEffect extends MobEffect {
 
                 {
                     if (pLivingEntity.level.random.nextDouble() < .05) {
-                        itemToDrop = new ItemStack(MyItems.SEEDED_POOP.get());
+                        itemToDrop = new ItemStack(MyItems.POOP_SEEDED.get());
                     }
                 }
                 // var stack =
