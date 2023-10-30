@@ -1,16 +1,13 @@
 package workspacedead.client;
 
 import net.minecraft.client.gui.screens.MenuScreens;
-import net.minecraft.client.renderer.ItemBlockRenderTypes;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.gui.ForgeIngameGui;
 import net.minecraftforge.client.gui.OverlayRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import workspacedead.WorkspaceDead;
-import workspacedead.block.generators.YellowPowergenScreen;
-import workspacedead.registry.MyBlocks;
+import workspacedead.block.generators.BasePowergenScreen;
 import workspacedead.registry.MyContainers;
 
 @Mod.EventBusSubscriber(modid = WorkspaceDead.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -18,8 +15,23 @@ public class ClientSetup {
 
     public static void init(FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
-            MenuScreens.register(MyContainers.YELLOW_POWERGEN_CONTAINER.get(), YellowPowergenScreen::new);
-            ItemBlockRenderTypes.setRenderLayer(MyBlocks.YELLOW_GENERATOR.get(), RenderType.translucent());
+            MenuScreens.register(MyContainers.YELLOW_POWERGEN_CONTAINER.get(), BasePowergenScreen::new);
+            MenuScreens.register(MyContainers.YELLOW_POWERGEN_CONTAINER.get(), BasePowergenScreen::new);
+            MenuScreens.register(MyContainers.YELLOW_POWERGEN_CONTAINER.get(), BasePowergenScreen::new);
+            MenuScreens.register(MyContainers.YELLOW_POWERGEN_CONTAINER.get(), BasePowergenScreen::new);
+            MenuScreens.register(MyContainers.YELLOW_POWERGEN_CONTAINER.get(), BasePowergenScreen::new);
+            MenuScreens.register(MyContainers.YELLOW_POWERGEN_CONTAINER.get(), BasePowergenScreen::new);
+            MenuScreens.register(MyContainers.YELLOW_POWERGEN_CONTAINER.get(), BasePowergenScreen::new);
+            MenuScreens.register(MyContainers.YELLOW_POWERGEN_CONTAINER.get(), BasePowergenScreen::new);
+            MenuScreens.register(MyContainers.YELLOW_POWERGEN_CONTAINER.get(), BasePowergenScreen::new);
+            MenuScreens.register(MyContainers.YELLOW_POWERGEN_CONTAINER.get(), BasePowergenScreen::new);
+            MenuScreens.register(MyContainers.YELLOW_POWERGEN_CONTAINER.get(), BasePowergenScreen::new);
+            MenuScreens.register(MyContainers.YELLOW_POWERGEN_CONTAINER.get(), BasePowergenScreen::new);
+            MenuScreens.register(MyContainers.YELLOW_POWERGEN_CONTAINER.get(), BasePowergenScreen::new);
+            MenuScreens.register(MyContainers.YELLOW_POWERGEN_CONTAINER.get(), BasePowergenScreen::new);
+            MenuScreens.register(MyContainers.YELLOW_POWERGEN_CONTAINER.get(), BasePowergenScreen::new);
+            MenuScreens.register(MyContainers.YELLOW_POWERGEN_CONTAINER.get(), BasePowergenScreen::new);
+            //ItemBlockRenderTypes.setRenderLayer(MyBlocks.YELLOW_GENERATOR.get(), RenderType.translucent());
             //PowergenRenderer.register();
         });
 

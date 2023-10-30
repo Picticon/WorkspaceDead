@@ -12,6 +12,21 @@ import workspacedead.block.MrHanky.MrHankyBlockEntity;
 import workspacedead.block.Saturator.DesaturatorBlockEntity;
 import workspacedead.block.Saturator.SaturatorBlockEntity;
 import workspacedead.block.SpawnEggPlant.SpawnEggBlockEntity;
+import workspacedead.block.generators.BlackGeneratorBlockEntity;
+import workspacedead.block.generators.BlueGeneratorBlockEntity;
+import workspacedead.block.generators.BrownGeneratorBlockEntity;
+import workspacedead.block.generators.CyanGeneratorBlockEntity;
+import workspacedead.block.generators.GrayGeneratorBlockEntity;
+import workspacedead.block.generators.GreenGeneratorBlockEntity;
+import workspacedead.block.generators.LightBlueGeneratorBlockEntity;
+import workspacedead.block.generators.LightGrayGeneratorBlockEntity;
+import workspacedead.block.generators.LimeGeneratorBlockEntity;
+import workspacedead.block.generators.MagentaGeneratorBlockEntity;
+import workspacedead.block.generators.OrangeGeneratorBlockEntity;
+import workspacedead.block.generators.PinkGeneratorBlockEntity;
+import workspacedead.block.generators.PurpleGeneratorBlockEntity;
+import workspacedead.block.generators.RedGeneratorBlockEntity;
+import workspacedead.block.generators.WhiteGeneratorBlockEntity;
 import workspacedead.block.generators.YellowGeneratorBlockEntity;
 
 public class MyBlockEntities {
@@ -45,6 +60,66 @@ public class MyBlockEntities {
     public static final RegistryObject<BlockEntityType<YellowGeneratorBlockEntity>> YELLOW_GENERATOR_ENTITY = BLOCK_ENTITIES
             .register("yellow_generator_entity", () -> BlockEntityType.Builder
                     .of(YellowGeneratorBlockEntity::new, MyBlocks.YELLOW_GENERATOR.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<BlackGeneratorBlockEntity>> BLACK_GENERATOR_ENTITY = BLOCK_ENTITIES
+            .register("black_generator_entity", () -> BlockEntityType.Builder
+                    .of(BlackGeneratorBlockEntity::new, MyBlocks.BLACK_GENERATOR.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<BlueGeneratorBlockEntity>> BLUE_GENERATOR_ENTITY = BLOCK_ENTITIES
+            .register("blue_generator_entity", () -> BlockEntityType.Builder
+                    .of(BlueGeneratorBlockEntity::new, MyBlocks.BLUE_GENERATOR.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<BrownGeneratorBlockEntity>> BROWN_GENERATOR_ENTITY = BLOCK_ENTITIES
+            .register("brown_generator_entity", () -> BlockEntityType.Builder
+                    .of(BrownGeneratorBlockEntity::new, MyBlocks.BROWN_GENERATOR.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<CyanGeneratorBlockEntity>> CYAN_GENERATOR_ENTITY = BLOCK_ENTITIES
+            .register("cyan_generator_entity", () -> BlockEntityType.Builder
+                    .of(CyanGeneratorBlockEntity::new, MyBlocks.CYAN_GENERATOR.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<GrayGeneratorBlockEntity>> GRAY_GENERATOR_ENTITY = BLOCK_ENTITIES
+            .register("gray_generator_entity", () -> BlockEntityType.Builder
+                    .of(GrayGeneratorBlockEntity::new, MyBlocks.GRAY_GENERATOR.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<GreenGeneratorBlockEntity>> GREEN_GENERATOR_ENTITY = BLOCK_ENTITIES
+            .register("green_generator_entity", () -> BlockEntityType.Builder
+                    .of(GreenGeneratorBlockEntity::new, MyBlocks.GREEN_GENERATOR.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<LightBlueGeneratorBlockEntity>> LIGHTBLUE_GENERATOR_ENTITY = BLOCK_ENTITIES
+            .register("light_blue_generator_entity", () -> BlockEntityType.Builder
+                    .of(LightBlueGeneratorBlockEntity::new, MyBlocks.LIGHTBLUE_GENERATOR.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<LightGrayGeneratorBlockEntity>> LIGHTGRAY_GENERATOR_ENTITY = BLOCK_ENTITIES
+            .register("light_gray_generator_entity", () -> BlockEntityType.Builder
+                    .of(LightGrayGeneratorBlockEntity::new, MyBlocks.LIGHTGRAY_GENERATOR.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<LimeGeneratorBlockEntity>> LIME_GENERATOR_ENTITY = BLOCK_ENTITIES
+            .register("lime_generator_entity", () -> BlockEntityType.Builder
+                    .of(LimeGeneratorBlockEntity::new, MyBlocks.LIME_GENERATOR.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<MagentaGeneratorBlockEntity>> MAGENTA_GENERATOR_ENTITY = BLOCK_ENTITIES
+            .register("magenta_generator_entity", () -> BlockEntityType.Builder
+                    .of(MagentaGeneratorBlockEntity::new, MyBlocks.MAGENTA_GENERATOR.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<OrangeGeneratorBlockEntity>> ORANGE_GENERATOR_ENTITY = BLOCK_ENTITIES
+            .register("orange_generator_entity", () -> BlockEntityType.Builder
+                    .of(OrangeGeneratorBlockEntity::new, MyBlocks.ORANGE_GENERATOR.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<PinkGeneratorBlockEntity>> PINK_GENERATOR_ENTITY = BLOCK_ENTITIES
+            .register("pink_generator_entity", () -> BlockEntityType.Builder
+                    .of(PinkGeneratorBlockEntity::new, MyBlocks.PINK_GENERATOR.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<PurpleGeneratorBlockEntity>> PURPLE_GENERATOR_ENTITY = BLOCK_ENTITIES
+            .register("purple_generator_entity", () -> BlockEntityType.Builder
+                    .of(PurpleGeneratorBlockEntity::new, MyBlocks.PURPLE_GENERATOR.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<RedGeneratorBlockEntity>> RED_GENERATOR_ENTITY = BLOCK_ENTITIES
+            .register("red_generator_entity", () -> BlockEntityType.Builder
+                    .of(RedGeneratorBlockEntity::new, MyBlocks.RED_GENERATOR.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<WhiteGeneratorBlockEntity>> WHITE_GENERATOR_ENTITY = BLOCK_ENTITIES
+            .register("white_generator_entity", () -> BlockEntityType.Builder
+                    .of(WhiteGeneratorBlockEntity::new, MyBlocks.WHITE_GENERATOR.get()).build(null));
 
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);

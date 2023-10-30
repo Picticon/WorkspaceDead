@@ -67,6 +67,7 @@ public class ModEntityLootTables extends EntityLoot {
                                         .lootingMultiplier(UniformGenerator.between(0.0F, 1.0F)))));
 
         this.add(ModEntityTypes.GRASSYPOTATO.get(), potatoes);
+        this.add(ModEntityTypes.KILLER_DONUT.get(), LootTable.lootTable());
     }
 
     @Override

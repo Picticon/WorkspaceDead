@@ -42,6 +42,7 @@ public class StateIngredientBlock implements StateIngredient {
 		return block.defaultBlockState();
 	}
 
+    @SuppressWarnings("deprecation")
 	@Override
 	public JsonObject serialize() {
 		JsonObject object = new JsonObject();
@@ -50,6 +51,7 @@ public class StateIngredientBlock implements StateIngredient {
 		return object;
 	}
 
+    @SuppressWarnings("deprecation")
 	@Override
 	public void write(FriendlyByteBuf buffer) {
 		buffer.writeVarInt(1);

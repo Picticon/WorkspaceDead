@@ -127,6 +127,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleEgg(SpawnEggs.SKELETONSPIDER_SPAWNEGG.get());
         simpleEgg(SpawnEggs.GRASSYPOTATO_SPAWN_EGG.get());
         simpleEgg(SpawnEggs.ROTTENPOTATO_SPAWN_EGG.get());
+        simpleEgg(SpawnEggs.KILLER_DONUT_SPAWN_EGG.get());
         simpleEgg(SpawnEggs.BONE_GOLEM_SPAWNEGG.get());
         simpleEgg(SpawnEggs.DRACONICBLAZE_SPAWNEGG.get());
     }

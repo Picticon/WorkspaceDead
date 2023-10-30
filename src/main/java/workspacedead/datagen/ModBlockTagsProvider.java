@@ -62,6 +62,21 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
         this.tag(BlockTags.LEAVES).add(MyBlocks.DEADLEAVES.get());
 
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(MyBlocks.YELLOW_GENERATOR.get());
+        this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(MyBlocks.BLACK_GENERATOR.get());
+        this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(MyBlocks.BLUE_GENERATOR.get());
+        this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(MyBlocks.BROWN_GENERATOR.get());
+        this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(MyBlocks.CYAN_GENERATOR.get());
+        this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(MyBlocks.GRAY_GENERATOR.get());
+        this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(MyBlocks.GREEN_GENERATOR.get());
+        this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(MyBlocks.LIGHTBLUE_GENERATOR.get());
+        this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(MyBlocks.LIGHTGRAY_GENERATOR.get());
+        this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(MyBlocks.LIME_GENERATOR.get());
+        this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(MyBlocks.MAGENTA_GENERATOR.get());
+        this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(MyBlocks.ORANGE_GENERATOR.get());
+        this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(MyBlocks.PINK_GENERATOR.get());
+        this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(MyBlocks.PURPLE_GENERATOR.get());
+        this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(MyBlocks.RED_GENERATOR.get());
+        this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(MyBlocks.WHITE_GENERATOR.get());
 
         this.tag(ModTags.Blocks.POTATO_PORTAL_FRAME).add(MyBlocks.POTATOBLOCK.get());
 

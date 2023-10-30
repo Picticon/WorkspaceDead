@@ -13,28 +13,19 @@ package workspacedead.recipe;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
-import com.mojang.serialization.Dynamic;
-import com.mojang.serialization.JsonOps;
-
 import net.minecraft.core.Registry;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.NbtOps;
-import net.minecraft.nbt.NbtUtils;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockState;
+
 
 //import vazkii.botania.api.recipe.StateIngredient;
 //import vazkii.botania.common.helper.ItemNBTHelper;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
 import java.util.*;
 
 public class StateIngredientHelper {
@@ -84,6 +75,7 @@ public class StateIngredientHelper {
 	// 	return new StateIngredientTagExcluding(tag.location(), List.of(excluded));
 	// }
 
+    @SuppressWarnings("deprecation")
 	public static StateIngredient deserialize(JsonObject object) {
 		switch (GsonHelper.getAsString(object, "type")) {
 			case "tag":
@@ -159,6 +151,7 @@ public class StateIngredientHelper {
 	// 	return ingredient;
 	// }
 
+    @SuppressWarnings("deprecation")
 	public static StateIngredient read(FriendlyByteBuf buffer) {
 		switch (buffer.readVarInt()) {
 			case 0: // StateIngredientBlocks

@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column",
-  "textures": {
-    "side": "minecraft:block/dirt",
-    "end": "workspacedead:block/mutating_farmland"
-  }
-}

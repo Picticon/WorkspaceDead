@@ -9,7 +9,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.FarmBlock;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
@@ -17,7 +17,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import workspacedead.recipe.CropMutationRecipe;
 
-public class MutatingFarmland extends Block {
+public class MutatingFarmland extends FarmBlock {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
 
     public MutatingFarmland(Properties pProperties) {
@@ -56,6 +56,7 @@ public class MutatingFarmland extends Block {
                                 yea = true;
                         }
                         if (yea) {
+                            //level.sendParticles(new ItemParticleOption
                             level.setBlock(pos.above(1), recipe.getOutputBlock().pick(rand),
                                     UPDATE_ALL_IMMEDIATE | UPDATE_ALL);
                             level.playSound((Player) null, pos, SoundEvents.CHORUS_FLOWER_GROW, SoundSource.BLOCKS,

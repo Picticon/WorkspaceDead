@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "side": "workspacedead:block/light_blue_generator_block_side",
+    "front": "workspacedead:block/light_blue_generator_block_front",
+    "top": "workspacedead:block/light_blue_generator_block_top"
+  }
+}

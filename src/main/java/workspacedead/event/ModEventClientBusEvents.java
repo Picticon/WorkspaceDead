@@ -29,6 +29,7 @@ import workspacedead.client.renderer.mob.SkeletonPigRenderer;
 import workspacedead.client.renderer.mob.SkeletonSheepRenderer;
 import workspacedead.client.renderer.mob.SkeletonSlimeRenderer;
 import workspacedead.client.renderer.mob.SkeletonSpiderRenderer;
+import workspacedead.client.renderer.mob.KillerDonut.KillerDonutRenderer;
 import workspacedead.client.renderer.projectile.DeadArrowRenderer;
 import workspacedead.client.renderer.projectile.DirtyArrowRenderer;
 import workspacedead.entity.ModEntityTypes;
@@ -84,6 +85,7 @@ public class ModEventClientBusEvents {
         EntityRenderers.register(ModEntityTypes.SKELETONSPIDER.get(), SkeletonSpiderRenderer::new);
         EntityRenderers.register(ModEntityTypes.GRASSYPOTATO.get(), GrassyPotatoRenderer::new);
         EntityRenderers.register(ModEntityTypes.ROTTENPOTATO.get(), RottenPotatoRenderer::new);
+        EntityRenderers.register(ModEntityTypes.KILLER_DONUT.get(), KillerDonutRenderer::new);
         EntityRenderers.register(ModEntityTypes.BONE_GOLEM.get(), BoneGolemRenderer::new);
         EntityRenderers.register(ModEntityTypes.DRACONICBLAZE.get(), DraconicBlazeRenderer::new);
     }

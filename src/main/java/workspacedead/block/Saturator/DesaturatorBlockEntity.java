@@ -30,6 +30,7 @@ public class DesaturatorBlockEntity extends InventoryEntityBaseBlock implements 
     public ElectricityGFX[] bolts = null;
     private float[] _colors = new float[] { 0, 0, 0, 0 };
     private int _craftingClock;
+    private boolean _starved;
 
     public DesaturatorBlockEntity(BlockPos position, BlockState state) {
         super(MyBlockEntities.DESATURATOR_BLOCK_ENTITY.get(), position, state);
@@ -86,6 +87,10 @@ public class DesaturatorBlockEntity extends InventoryEntityBaseBlock implements 
         };
     }
 
+    public int storedenergy() {
+        return energy.getEnergyStored();
+    }
+
     // normally this shouldn't be done, but since this is part of a pseudo-multiblock, we'll let the saturator take energy.
     public int extractEnergy(int amount) {
         return energy.extractEnergy(amount, false);
@@ -95,12 +100,14 @@ public class DesaturatorBlockEntity extends InventoryEntityBaseBlock implements 
     public void load(CompoundTag tag) {
         super.load(tag);
         this.energy.deserializeNBT(tag.get("energy"));
+        _starved = tag.getBoolean("starved");
     }
 
     @Override
     public void saveAdditional(CompoundTag tag) {
         super.saveAdditional(tag);
         tag.put("energy", this.energy.serializeNBT());
+        tag.putBoolean("starved", this._starved);
     }
 
     @Override
@@ -115,5 +122,18 @@ public class DesaturatorBlockEntity extends InventoryEntityBaseBlock implements 
 
     public void setCrafting(boolean b) {
         _craftingClock = b ? 2 : 0;
+    }
+
+    public void setStarved(boolean b) {
+        var needupdate = false;
+        if (!this.level.isClientSide() && b != _starved)
+            needupdate = true;
+        _starved = b;
+        if (needupdate)
+            updateBlock();
+    }
+
+    public boolean getStarved() {
+        return _starved;
     }
 }

@@ -4,6 +4,21 @@
     "workspacedead:deadstone",
     "workspacedead:deadslate",
     "workspacedead:deadore",
-    "workspacedead:yellow_generator"
+    "workspacedead:yellow_generator_block",
+    "workspacedead:black_generator_block",
+    "workspacedead:blue_generator_block",
+    "workspacedead:brown_generator_block",
+    "workspacedead:cyan_generator_block",
+    "workspacedead:gray_generator_block",
+    "workspacedead:green_generator_block",
+    "workspacedead:light_blue_generator_block",
+    "workspacedead:light_gray_generator_block",
+    "workspacedead:lime_generator_block",
+    "workspacedead:magenta_generator_block",
+    "workspacedead:orange_generator_block",
+    "workspacedead:pink_generator_block",
+    "workspacedead:purple_generator_block",
+    "workspacedead:red_generator_block",
+    "workspacedead:white_generator_block"
   ]
 }

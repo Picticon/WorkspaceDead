@@ -75,7 +75,6 @@ public class ModBlockLootTables extends BlockLoot {
         this.dropSelf(MyBlocks.DEAD_FARMLAND.get());
         this.dropSelf(MyBlocks.MUTATING_FARMLAND.get());
 
-        this.dropSelf(MyBlocks.YELLOW_GENERATOR.get());
         this.dropSelf(MyBlocks.SATURATOR_BLOCK.get());
         this.dropSelf(MyBlocks.DESATURATOR_BLOCK.get());
         this.dropSelf(MyBlocks.FULLMETALALCHEMISER_BLOCK.get());
@@ -96,6 +95,24 @@ public class ModBlockLootTables extends BlockLoot {
         this.dropSelf(MyBlocks.RETDESON_SATURATED_BLOCK.get());
         this.dropSelf(MyBlocks.INRO_BLOCK.get());
         this.dropSelf(MyBlocks.INRO_SATURATED_BLOCK.get());
+
+        this.dropSelf(MyBlocks.YELLOW_GENERATOR.get());
+        this.dropSelf(MyBlocks.BLACK_GENERATOR.get());
+        this.dropSelf(MyBlocks.BLUE_GENERATOR.get());
+        this.dropSelf(MyBlocks.BROWN_GENERATOR.get());
+        this.dropSelf(MyBlocks.CYAN_GENERATOR.get());
+        this.dropSelf(MyBlocks.GRAY_GENERATOR.get());
+        this.dropSelf(MyBlocks.GREEN_GENERATOR.get());
+        this.dropSelf(MyBlocks.LIGHTBLUE_GENERATOR.get());
+        this.dropSelf(MyBlocks.LIGHTGRAY_GENERATOR.get());
+        this.dropSelf(MyBlocks.LIME_GENERATOR.get());
+        this.dropSelf(MyBlocks.MAGENTA_GENERATOR.get());
+        this.dropSelf(MyBlocks.ORANGE_GENERATOR.get());
+        this.dropSelf(MyBlocks.PINK_GENERATOR.get());
+        this.dropSelf(MyBlocks.PURPLE_GENERATOR.get());
+        this.dropSelf(MyBlocks.RED_GENERATOR.get());
+        this.dropSelf(MyBlocks.WHITE_GENERATOR.get());
+
 
         LootItemCondition.Builder lootitemcondition$builder = //
                 LootItemBlockStatePropertyCondition.hasBlockStateProperties(MyBlocks.GRASSYPOTATO_PLANT.get())//

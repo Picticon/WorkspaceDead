@@ -7,6 +7,7 @@ import org.jetbrains.annotations.Nullable;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
@@ -348,7 +349,9 @@ public class SaturatorBlockEntity extends BlockEntity implements IPowerHUD {
         var desats = getDesaturators();
         if (_recipe != null && ValidDesaturators(desats)) {
             for (var i = 0; i < 4; i++) {
-                _powerremaining[i] -= desats[i].extractEnergy(Math.min(_energyPerTick, _powerremaining[i]));
+                var extracted = desats[i].extractEnergy(Math.min(_energyPerTick, _powerremaining[i]));
+                desats[i].setStarved(extracted < _energyPerTick && _powerremaining[i] > extracted);
+                _powerremaining[i] -= extracted;
                 desats[i].setCrafting(true);
             }
             _ticksRemaining--;
@@ -372,7 +375,13 @@ public class SaturatorBlockEntity extends BlockEntity implements IPowerHUD {
                         && _powerremaining[3] <= 0) {
                     finishCraft(pLevel, pPos, pBlockEntity);
                 }
-            }
+            } /* else {
+                 if (pLevel instanceof ServerLevel) {
+                     ((ServerLevel) pLevel).sendParticles(
+                             new ItemParticleOption(ParticleTypes.ITEM, _recipe.getIngredients().get(0).getItems()[0]),
+                             pPos.getX(), pPos.getY() + 1.5f, pPos.getZ(), 1, 0, 0.5D, 0, .1);
+                 }
+              }*/
         } else
             stopCrafting();
         updateBlock();

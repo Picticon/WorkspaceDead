@@ -41,6 +41,21 @@ import workspacedead.block.PoopLantern.PoopBlock;
 import workspacedead.block.Saturator.DesaturatorBlock;
 import workspacedead.block.Saturator.SaturatorBlock;
 import workspacedead.block.SpawnEggPlant.SpawnEggPlantBlock;
+import workspacedead.block.generators.BlackGeneratorBlock;
+import workspacedead.block.generators.BlueGeneratorBlock;
+import workspacedead.block.generators.BrownGeneratorBlock;
+import workspacedead.block.generators.CyanGeneratorBlock;
+import workspacedead.block.generators.GrayGeneratorBlock;
+import workspacedead.block.generators.GreenGeneratorBlock;
+import workspacedead.block.generators.LightBlueGeneratorBlock;
+import workspacedead.block.generators.LightGrayGeneratorBlock;
+import workspacedead.block.generators.LimeGeneratorBlock;
+import workspacedead.block.generators.MagentaGeneratorBlock;
+import workspacedead.block.generators.OrangeGeneratorBlock;
+import workspacedead.block.generators.PinkGeneratorBlock;
+import workspacedead.block.generators.PurpleGeneratorBlock;
+import workspacedead.block.generators.RedGeneratorBlock;
+import workspacedead.block.generators.WhiteGeneratorBlock;
 import workspacedead.block.generators.YellowGeneratorBlock;
 import workspacedead.item.ModCreativeModeTab;
 import workspacedead.item.custom.PoopBlock2xItem;
@@ -124,8 +139,54 @@ public class MyBlocks {
 
     /// GENERATORS
 
-    public static final RegistryObject<Block> YELLOW_GENERATOR = registerBlockAndItem("yellow_generator",
+    public static final RegistryObject<Block> YELLOW_GENERATOR = registerBlockAndItem("yellow_generator_block",
             () -> new YellowGeneratorBlock(BlockBehaviour.Properties.of(Material.STONE)), ModCreativeModeTab.ITEMS_TAB);
+
+    public static final RegistryObject<Block> BLACK_GENERATOR = registerBlockAndItem("black_generator_block",
+            () -> new BlackGeneratorBlock(BlockBehaviour.Properties.of(Material.STONE)), ModCreativeModeTab.ITEMS_TAB);
+
+    public static final RegistryObject<Block> BLUE_GENERATOR = registerBlockAndItem("blue_generator_block",
+            () -> new BlueGeneratorBlock(BlockBehaviour.Properties.of(Material.STONE)), ModCreativeModeTab.ITEMS_TAB);
+
+    public static final RegistryObject<Block> BROWN_GENERATOR = registerBlockAndItem("brown_generator_block",
+            () -> new BrownGeneratorBlock(BlockBehaviour.Properties.of(Material.STONE)), ModCreativeModeTab.ITEMS_TAB);
+
+    public static final RegistryObject<Block> CYAN_GENERATOR = registerBlockAndItem("cyan_generator_block",
+            () -> new CyanGeneratorBlock(BlockBehaviour.Properties.of(Material.STONE)), ModCreativeModeTab.ITEMS_TAB);
+
+    public static final RegistryObject<Block> GRAY_GENERATOR = registerBlockAndItem("gray_generator_block",
+            () -> new GrayGeneratorBlock(BlockBehaviour.Properties.of(Material.STONE)), ModCreativeModeTab.ITEMS_TAB);
+
+    public static final RegistryObject<Block> GREEN_GENERATOR = registerBlockAndItem("green_generator_block",
+            () -> new GreenGeneratorBlock(BlockBehaviour.Properties.of(Material.STONE)), ModCreativeModeTab.ITEMS_TAB);
+
+    public static final RegistryObject<Block> LIGHTBLUE_GENERATOR = registerBlockAndItem("light_blue_generator_block",
+            () -> new LightBlueGeneratorBlock(BlockBehaviour.Properties.of(Material.STONE)), ModCreativeModeTab.ITEMS_TAB);
+
+    public static final RegistryObject<Block> LIGHTGRAY_GENERATOR = registerBlockAndItem("light_gray_generator_block",
+            () -> new LightGrayGeneratorBlock(BlockBehaviour.Properties.of(Material.STONE)), ModCreativeModeTab.ITEMS_TAB);
+
+    public static final RegistryObject<Block> LIME_GENERATOR = registerBlockAndItem("lime_generator_block",
+            () -> new LimeGeneratorBlock(BlockBehaviour.Properties.of(Material.STONE)), ModCreativeModeTab.ITEMS_TAB);
+
+    public static final RegistryObject<Block> MAGENTA_GENERATOR = registerBlockAndItem("magenta_generator_block",
+            () -> new MagentaGeneratorBlock(BlockBehaviour.Properties.of(Material.STONE)), ModCreativeModeTab.ITEMS_TAB);
+
+    public static final RegistryObject<Block> ORANGE_GENERATOR = registerBlockAndItem("orange_generator_block",
+            () -> new OrangeGeneratorBlock(BlockBehaviour.Properties.of(Material.STONE)), ModCreativeModeTab.ITEMS_TAB);
+
+    public static final RegistryObject<Block> PINK_GENERATOR = registerBlockAndItem("pink_generator_block",
+            () -> new PinkGeneratorBlock(BlockBehaviour.Properties.of(Material.STONE)), ModCreativeModeTab.ITEMS_TAB);
+
+    public static final RegistryObject<Block> PURPLE_GENERATOR = registerBlockAndItem("purple_generator_block",
+            () -> new PurpleGeneratorBlock(BlockBehaviour.Properties.of(Material.STONE)), ModCreativeModeTab.ITEMS_TAB);
+
+    public static final RegistryObject<Block> RED_GENERATOR = registerBlockAndItem("red_generator_block",
+            () -> new RedGeneratorBlock(BlockBehaviour.Properties.of(Material.STONE)), ModCreativeModeTab.ITEMS_TAB);
+
+    public static final RegistryObject<Block> WHITE_GENERATOR = registerBlockAndItem("white_generator_block",
+            () -> new WhiteGeneratorBlock(BlockBehaviour.Properties.of(Material.STONE)), ModCreativeModeTab.ITEMS_TAB);
+
 
     /// GENERATORS END
 

@@ -113,8 +113,8 @@ public class ModBlocksStateProvider extends BlockStateProvider {
                 new ResourceLocation(WorkspaceDead.MOD_ID, "block/deadfarmland"));
         itemBlock(MyBlocks.DEAD_FARMLAND);
 
-        cubeColumn(MyBlocks.MUTATING_FARMLAND.get(), blockTexture(Blocks.DIRT),
-                new ResourceLocation(WorkspaceDead.MOD_ID, "block/mutating_farmland"));
+        // cubeColumn(MyBlocks.MUTATING_FARMLAND.get(), blockTexture(Blocks.DIRT),
+        //         new ResourceLocation(WorkspaceDead.MOD_ID, "block/mutating_farmland"));
         itemBlock(MyBlocks.MUTATING_FARMLAND);
 
         makeFacingBlock(MyBlocks.CARVED_POOPBLOCK);
@@ -151,6 +151,37 @@ public class ModBlocksStateProvider extends BlockStateProvider {
 
         makeFacingBlock(MyBlocks.YELLOW_GENERATOR);
         itemFromBlock(MyBlocks.YELLOW_GENERATOR);
+
+        makeFacingBlock(MyBlocks.BLACK_GENERATOR);
+        itemFromBlock(MyBlocks.BLACK_GENERATOR);
+        makeFacingBlock(MyBlocks.BLUE_GENERATOR);
+        itemFromBlock(MyBlocks.BLUE_GENERATOR);
+        makeFacingBlock(MyBlocks.BROWN_GENERATOR);
+        itemFromBlock(MyBlocks.BROWN_GENERATOR);
+        makeFacingBlock(MyBlocks.CYAN_GENERATOR);
+        itemFromBlock(MyBlocks.CYAN_GENERATOR);
+        makeFacingBlock(MyBlocks.GRAY_GENERATOR);
+        itemFromBlock(MyBlocks.GRAY_GENERATOR);
+        makeFacingBlock(MyBlocks.GREEN_GENERATOR);
+        itemFromBlock(MyBlocks.GREEN_GENERATOR);
+        makeFacingBlock(MyBlocks.LIGHTBLUE_GENERATOR);
+        itemFromBlock(MyBlocks.LIGHTBLUE_GENERATOR);
+        makeFacingBlock(MyBlocks.LIGHTGRAY_GENERATOR);
+        itemFromBlock(MyBlocks.LIGHTGRAY_GENERATOR);
+        makeFacingBlock(MyBlocks.LIME_GENERATOR);
+        itemFromBlock(MyBlocks.LIME_GENERATOR);
+        makeFacingBlock(MyBlocks.MAGENTA_GENERATOR);
+        itemFromBlock(MyBlocks.MAGENTA_GENERATOR);
+        makeFacingBlock(MyBlocks.ORANGE_GENERATOR);
+        itemFromBlock(MyBlocks.ORANGE_GENERATOR);
+        makeFacingBlock(MyBlocks.PINK_GENERATOR);
+        itemFromBlock(MyBlocks.PINK_GENERATOR);
+        makeFacingBlock(MyBlocks.PURPLE_GENERATOR);
+        itemFromBlock(MyBlocks.PURPLE_GENERATOR);
+        makeFacingBlock(MyBlocks.RED_GENERATOR);
+        itemFromBlock(MyBlocks.RED_GENERATOR);
+        makeFacingBlock(MyBlocks.WHITE_GENERATOR);
+        itemFromBlock(MyBlocks.WHITE_GENERATOR);
 
         // makeSimpleBlockAndItem(ModBlocks.POTATOBLOCK.get());
         // simpleBlock(ModBlocks.POTATOBLOCK.get(), (a) -> {

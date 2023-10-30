@@ -18,7 +18,6 @@ import net.minecraft.core.Registry;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
@@ -55,7 +54,8 @@ public class StateIngredientBlocks implements StateIngredient {
     }
 
 
-	@Override
+    @SuppressWarnings("deprecation")
+    @Override
 	public JsonObject serialize() {
 		JsonObject object = new JsonObject();
 		object.addProperty("type", "blocks");
@@ -67,7 +67,8 @@ public class StateIngredientBlocks implements StateIngredient {
 		return object;
 	}
 
-	@Override
+    @SuppressWarnings("deprecation")
+    @Override
 	public void write(FriendlyByteBuf buffer) {
 		List<Block> blocks = getBlocks();
 		buffer.writeVarInt(0);

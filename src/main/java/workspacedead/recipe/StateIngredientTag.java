@@ -38,12 +38,14 @@ public class StateIngredientTag extends StateIngredientBlocks {
 		this.tag = TagKey.create(Registry.BLOCK_REGISTRY, tag);
 	}
 
-	public Stream<Block> resolve() {
+    @SuppressWarnings("deprecation")
+    public Stream<Block> resolve() {
 		return StreamSupport.stream(Registry.BLOCK.getTagOrEmpty(tag).spliterator(), false)
 				.map(Holder::value);
 	}
 
-	@Override
+    @SuppressWarnings("deprecation")
+    @Override
 	public boolean test(BlockState state) {
 		return state.getBlock().builtInRegistryHolder().is(tag);
 	}

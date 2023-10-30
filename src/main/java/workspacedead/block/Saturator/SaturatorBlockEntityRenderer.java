@@ -30,8 +30,8 @@ public class SaturatorBlockEntityRenderer implements BlockEntityRenderer<Saturat
         if (itemStack == null || itemStack.getCount() == 0)
             return;
 
-        if (entity.bolts == null) 
-        {
+        var random = entity.getLevel().getRandom();
+        if (entity.bolts == null) {
             entity.bolts = new ElectricityGFX[4];
             var off = .36f;
             var inoff = .1f;
@@ -40,20 +40,19 @@ public class SaturatorBlockEntityRenderer implements BlockEntityRenderer<Saturat
             var cy2 = entity.getBlockPos().getY() + .565f;
             var cz = entity.getBlockPos().getZ() + .5f;
 
-            entity.bolts[0] = new ElectricityGFX(entity.getLevel().getRandom(), //
+            entity.bolts[0] = new ElectricityGFX(random, //
                     new Vec3(cx + inoff, cy, cz), //
                     new Vec3(cx + off, cy2, cz));
-            entity.bolts[1] = new ElectricityGFX(entity.getLevel().getRandom(), //
+            entity.bolts[1] = new ElectricityGFX(random, //
                     new Vec3(cx - inoff, cy, cz), //
                     new Vec3(cx - off, cy2, cz));
-            entity.bolts[2] = new ElectricityGFX(entity.getLevel().getRandom(), //
+            entity.bolts[2] = new ElectricityGFX(random, //
                     new Vec3(cx, cy, cz + inoff), //
                     new Vec3(cx, cy2, cz + off));
-            entity.bolts[3] = new ElectricityGFX(entity.getLevel().getRandom(), //
+            entity.bolts[3] = new ElectricityGFX(random, //
                     new Vec3(cx, cy, cz - inoff), //
                     new Vec3(cx, cy2, cz - off));
         }
-
 
         int bLight = entity.getLevel().getBrightness(LightLayer.BLOCK, entity.getBlockPos());
         int sLight = entity.getLevel().getBrightness(LightLayer.SKY, entity.getBlockPos());
@@ -91,17 +90,31 @@ public class SaturatorBlockEntityRenderer implements BlockEntityRenderer<Saturat
         poseStack.popPose();
 
         var e1 = entity.getLevel().getBlockEntity(entity.getBlockPos().north(3));
-        if (e1 instanceof DesaturatorBlockEntity)
-            ((DesaturatorBlockEntity) e1).setCrafting(entity.isCrafting());
+        DesaturatorBlockEntity dbe1, dbe2, dbe3, dbe4;
+        boolean se1 = false, se2 = false, se3 = false, se4 = false;
+        if (e1 instanceof DesaturatorBlockEntity) {
+            dbe1 = (DesaturatorBlockEntity) e1;
+            se1 = !dbe1.getStarved() || random.nextFloat() > .85f;
+            dbe1.setCrafting(entity.isCrafting());
+        }
         var e2 = entity.getLevel().getBlockEntity(entity.getBlockPos().south(3));
-        if (e2 instanceof DesaturatorBlockEntity)
-            ((DesaturatorBlockEntity) e2).setCrafting(entity.isCrafting());
+        if (e2 instanceof DesaturatorBlockEntity) {
+            dbe2 = (DesaturatorBlockEntity) e2;
+            se2 = !dbe2.getStarved() || random.nextFloat() > .85f;
+            dbe2.setCrafting(entity.isCrafting());
+        }
         var e3 = entity.getLevel().getBlockEntity(entity.getBlockPos().east(3));
-        if (e3 instanceof DesaturatorBlockEntity)
-            ((DesaturatorBlockEntity) e3).setCrafting(entity.isCrafting());
+        if (e3 instanceof DesaturatorBlockEntity) {
+            dbe3 = (DesaturatorBlockEntity) e3;
+            se3 = !dbe3.getStarved() || random.nextFloat() > .85f;
+            dbe3.setCrafting(entity.isCrafting());
+        }
         var e4 = entity.getLevel().getBlockEntity(entity.getBlockPos().west(3));
-        if (e4 instanceof DesaturatorBlockEntity)
-            ((DesaturatorBlockEntity) e4).setCrafting(entity.isCrafting());
+        if (e4 instanceof DesaturatorBlockEntity) {
+            dbe4 = (DesaturatorBlockEntity) e4;
+            se4 = !dbe4.getStarved() || random.nextFloat() > .85f;
+            dbe4.setCrafting(entity.isCrafting());
+        }
 
         if (entity.isCrafting()) {
             poseStack.pushPose();
@@ -119,37 +132,63 @@ public class SaturatorBlockEntityRenderer implements BlockEntityRenderer<Saturat
                     ((rgb & 0xFF) / 255f), 1f };
             entity.setColors(colors);
 
-            poseStack.pushPose();
-            poseStack.translate(-0.5f, 0.0f, 0.0f);
-            poseStack.mulPose(Vector3f.ZP.rotationDegrees(79.9f));
-            LaserGFX.renderLaser(poseStack, bufferSource, partialTicks, texscale, gametime, 2.06f, colors, .02f, .03f);
+            if (se4) {
+                poseStack.pushPose();
+                poseStack.translate(-0.5f, 0.0f, 0.0f);
+                poseStack.mulPose(Vector3f.ZP.rotationDegrees(79.9f));
+                LaserGFX.renderLaser(poseStack, bufferSource, partialTicks, texscale, gametime, 2.06f, colors, .035f,
+                        .06f);
+                poseStack.popPose();
+            }
+
+            if (se2 || random.nextFloat() > .85f) {
+                poseStack.pushPose();
+                poseStack.mulPose(Vector3f.YP.rotationDegrees(90f));
+                poseStack.translate(-0.5f, 0.0f, 0.0f);
+                poseStack.mulPose(Vector3f.ZP.rotationDegrees(79.9f));
+                LaserGFX.renderLaser(poseStack, bufferSource, partialTicks, texscale, gametime, 2.06f, colors, .035f,
+                        .06f);
+                poseStack.popPose();
+            }
+
+            if (se3) {
+                poseStack.pushPose();
+                poseStack.mulPose(Vector3f.YP.rotationDegrees(180f));
+                poseStack.translate(-0.5f, 0.0f, 0.0f);
+                poseStack.mulPose(Vector3f.ZP.rotationDegrees(79.9f));
+                LaserGFX.renderLaser(poseStack, bufferSource, partialTicks, texscale, gametime, 2.06f, colors, .035f,
+                        .06f);
+                poseStack.popPose();
+            }
+
+            if (se1) {
+                poseStack.pushPose();
+                poseStack.mulPose(Vector3f.YP.rotationDegrees(270f));
+                poseStack.translate(-0.5f, 0.0f, 0.0f);
+                poseStack.mulPose(Vector3f.ZP.rotationDegrees(79.9f));
+                LaserGFX.renderLaser(poseStack, bufferSource, partialTicks, texscale, gametime, 2.06f, colors, .035f,
+                        .06f);
+                poseStack.popPose();
+            }
+
             poseStack.popPose();
 
             poseStack.pushPose();
-            poseStack.mulPose(Vector3f.YP.rotationDegrees(90f));
-            poseStack.translate(-0.5f, 0.0f, 0.0f);
-            poseStack.mulPose(Vector3f.ZP.rotationDegrees(79.9f));
-            LaserGFX.renderLaser(poseStack, bufferSource, partialTicks, texscale, gametime, 2.06f, colors, .02f, .03f);
-            poseStack.popPose();
-
-            poseStack.pushPose();
-            poseStack.mulPose(Vector3f.YP.rotationDegrees(180f));
-            poseStack.translate(-0.5f, 0.0f, 0.0f);
-            poseStack.mulPose(Vector3f.ZP.rotationDegrees(79.9f));
-            LaserGFX.renderLaser(poseStack, bufferSource, partialTicks, texscale, gametime, 2.06f, colors, .02f, .03f);
-            poseStack.popPose();
-
-            poseStack.pushPose();
-            poseStack.mulPose(Vector3f.YP.rotationDegrees(270f));
-            poseStack.translate(-0.5f, 0.0f, 0.0f);
-            poseStack.mulPose(Vector3f.ZP.rotationDegrees(79.9f));
-            LaserGFX.renderLaser(poseStack, bufferSource, partialTicks, texscale, gametime, 2.06f, colors, .02f, .03f);
-            poseStack.popPose();
-            poseStack.popPose();
-
-            poseStack.pushPose();
-            for (var i = 0; i < 4; i++)
-                entity.bolts[i].drawAnimation(entity.getBlockPos().getX(), entity.getBlockPos().getY(), entity.getBlockPos().getZ(), colors, 1f, bufferSource,
+            if (se1)
+                entity.bolts[3].drawAnimation(entity.getBlockPos().getX(), entity.getBlockPos().getY(),
+                        entity.getBlockPos().getZ(), colors, 1f, bufferSource,
+                        poseStack);
+            if (se4)
+                entity.bolts[1].drawAnimation(entity.getBlockPos().getX(), entity.getBlockPos().getY(),
+                        entity.getBlockPos().getZ(), colors, 1f, bufferSource,
+                        poseStack);
+            if (se2)
+                entity.bolts[2].drawAnimation(entity.getBlockPos().getX(), entity.getBlockPos().getY(),
+                        entity.getBlockPos().getZ(), colors, 1f, bufferSource,
+                        poseStack);
+            if (se3)
+                entity.bolts[0].drawAnimation(entity.getBlockPos().getX(), entity.getBlockPos().getY(),
+                        entity.getBlockPos().getZ(), colors, 1f, bufferSource,
                         poseStack);
             poseStack.popPose();
 

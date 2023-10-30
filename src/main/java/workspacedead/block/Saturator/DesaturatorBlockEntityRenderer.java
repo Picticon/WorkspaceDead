@@ -36,6 +36,9 @@ public class DesaturatorBlockEntityRenderer implements BlockEntityRenderer<Desat
         _colors[1] = colors[1];
         _colors[2] = colors[2];
 
+        var level = entity.getLevel();
+        var random = level.getRandom();
+
         if (entity.bolts == null) {
             entity.bolts = new ElectricityGFX[4];
             var off = .43f;
@@ -45,16 +48,16 @@ public class DesaturatorBlockEntityRenderer implements BlockEntityRenderer<Desat
             var cy2 = entity.getY() + .932f;
             var cz = entity.getZ() + .5f;
 
-            entity.bolts[0] = new ElectricityGFX(entity.getLevel().getRandom(), //
+            entity.bolts[0] = new ElectricityGFX(random, //
                     new Vec3(cx + inoff, cy, cz), //
                     new Vec3(cx + off, cy2, cz));
-            entity.bolts[1] = new ElectricityGFX(entity.getLevel().getRandom(), //
+            entity.bolts[1] = new ElectricityGFX(random, //
                     new Vec3(cx - inoff, cy, cz), //
                     new Vec3(cx - off, cy2, cz));
-            entity.bolts[2] = new ElectricityGFX(entity.getLevel().getRandom(), //
+            entity.bolts[2] = new ElectricityGFX(random, //
                     new Vec3(cx, cy, cz + inoff), //
                     new Vec3(cx, cy2, cz + off));
-            entity.bolts[3] = new ElectricityGFX(entity.getLevel().getRandom(), //
+            entity.bolts[3] = new ElectricityGFX(random, //
                     new Vec3(cx, cy, cz - inoff), //
                     new Vec3(cx, cy2, cz - off));
         }
@@ -63,8 +66,8 @@ public class DesaturatorBlockEntityRenderer implements BlockEntityRenderer<Desat
         if (itemStack == null || itemStack.getCount() == 0)
             return;
 
-        int bLight = entity.getLevel().getBrightness(LightLayer.BLOCK, entity.getBlockPos());
-        int sLight = entity.getLevel().getBrightness(LightLayer.SKY, entity.getBlockPos());
+        int bLight = level.getBrightness(LightLayer.BLOCK, entity.getBlockPos());
+        int sLight = level.getBrightness(LightLayer.SKY, entity.getBlockPos());
         var light = LightTexture.pack(bLight, sLight);
 
         double boop = Util.getMillis() / 500D;
@@ -96,27 +99,27 @@ public class DesaturatorBlockEntityRenderer implements BlockEntityRenderer<Desat
         }
         poseStack.popPose();
 
-        if (iscrafting) {
+        if (iscrafting && (!entity.getStarved() || random.nextFloat() > .85f)) {
             poseStack.pushPose();
-            var e1 = entity.getLevel().getBlockEntity(entity.getBlockPos().north(3));
+            var e1 = level.getBlockEntity(entity.getBlockPos().north(3));
             if (e1 instanceof SaturatorBlockEntity)
                 entity.bolts[3].drawAnimation(entity.getX(), entity.getY(), entity.getZ(), _colors, 1f, bufferSource,
                         poseStack);
-             var e2 = entity.getLevel().getBlockEntity(entity.getBlockPos().south(3));
+            var e2 = level.getBlockEntity(entity.getBlockPos().south(3));
             if (e2 instanceof SaturatorBlockEntity)
                 entity.bolts[2].drawAnimation(entity.getX(), entity.getY(), entity.getZ(), _colors, 1f, bufferSource,
                         poseStack);
-            var e3 = entity.getLevel().getBlockEntity(entity.getBlockPos().east(3));
+            var e3 = level.getBlockEntity(entity.getBlockPos().east(3));
             if (e3 instanceof SaturatorBlockEntity)
                 entity.bolts[0].drawAnimation(entity.getX(), entity.getY(), entity.getZ(), _colors, 1f, bufferSource,
                         poseStack);
-             var e4 = entity.getLevel().getBlockEntity(entity.getBlockPos().west(3));
+            var e4 = level.getBlockEntity(entity.getBlockPos().west(3));
             if (e4 instanceof SaturatorBlockEntity)
                 entity.bolts[1].drawAnimation(entity.getX(), entity.getY(), entity.getZ(), _colors, 1f, bufferSource,
                         poseStack);
-    
+
             //for (var i = 0; i < 4; i++)
-                
+
             poseStack.popPose();
         }
 

@@ -64,9 +64,7 @@ public class SaturatorBlock extends BaseEntityBlock {
         if (!world.isClientSide && world.getBlockEntity(pos) instanceof SaturatorBlockEntity tile) {
             // boolean insert = false;
             // regardless of what the player has, pop anything out of the block, be it input
-            // or output
-            // then, insert the item the player has.
-
+            // or output then, insert the item the player has.
             // if output has something in it, we're going to pop it out.
             if (tile.getOutputStack() != null && !tile.getOutputStack().isEmpty()) {
                 ItemEntity item = new ItemEntity(world, player.getX(), player.getY(), player.getZ(),

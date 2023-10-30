@@ -10,6 +10,7 @@ import workspacedead.WorkspaceDead;
 import workspacedead.entity.mob.BoneGolem;
 import workspacedead.entity.mob.DraconicBlaze;
 import workspacedead.entity.mob.GrassyPotato;
+import workspacedead.entity.mob.KillerDonut;
 import workspacedead.entity.mob.RottenPotato;
 import workspacedead.entity.mob.SkeletonChicken;
 import workspacedead.entity.mob.SkeletonCow;
@@ -58,6 +59,10 @@ public class ModEntityTypes {
     public static final RegistryObject<EntityType<RottenPotato>> ROTTENPOTATO = ENTITY_TYPES.register("rottenpotato", //
             () -> EntityType.Builder.<RottenPotato>of(RottenPotato::new, MobCategory.MONSTER)//
                     .sized(1F, 1F).clientTrackingRange(20).build("rottenpotato"));
+
+    public static final RegistryObject<EntityType<KillerDonut>> KILLER_DONUT = ENTITY_TYPES.register("killer_donut", //
+            () -> EntityType.Builder.<KillerDonut>of(KillerDonut::new, MobCategory.MONSTER)//
+                    .sized(1F, 1F).clientTrackingRange(20).build("killer_donut"));
 
     public static final RegistryObject<EntityType<BoneGolem>> BONE_GOLEM = ENTITY_TYPES.register("bonegolem", //
             () -> EntityType.Builder.<BoneGolem>of(BoneGolem::new, MobCategory.CREATURE)//

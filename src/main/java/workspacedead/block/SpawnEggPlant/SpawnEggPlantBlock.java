@@ -1,9 +1,16 @@
 package workspacedead.block.SpawnEggPlant;
 
+import java.util.List;
+
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
@@ -24,6 +31,12 @@ public class SpawnEggPlantBlock extends CropBlock implements EntityBlock {
     }
 
     @Override
+    public void appendHoverText(ItemStack pStack, BlockGetter pLevel, List<Component> pTooltip, TooltipFlag pFlag) {
+        super.appendHoverText(pStack, pLevel, pTooltip, pFlag);
+        //pTooltip.add(new TextComponent("aaa"));
+    }
+
+    @Override
     public int getMaxAge() {
         return 7;
     }
@@ -34,7 +47,7 @@ public class SpawnEggPlantBlock extends CropBlock implements EntityBlock {
     }
 
     public boolean canSurvive(BlockState pState, LevelReader pLevel, BlockPos pPos) {
-         return true;
+        return true;
     }
 
     @Override
@@ -55,13 +68,11 @@ public class SpawnEggPlantBlock extends CropBlock implements EntityBlock {
         return super.getStateForPlacement(pContext);
     }
 
-    @Override 
-    public void growCrops(Level pLevel, BlockPos pPos, BlockState pState)
-    {
+    @Override
+    public void growCrops(Level pLevel, BlockPos pPos, BlockState pState) {
         super.growCrops(pLevel, pPos, pState);
-        if (getAge(pState) == getMaxAge())
-        {
-            
+        if (getAge(pState) == getMaxAge()) {
+
         }
     }
 
