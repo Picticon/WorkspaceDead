@@ -2,19 +2,24 @@ package workspacedead.block;
 
 import java.util.Random;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.BeetrootBlock;
 import net.minecraft.world.level.block.FarmBlock;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.IPlantable;
+import net.minecraftforge.common.PlantType;
 import workspacedead.recipe.CropMutationRecipe;
 
 public class MutatingFarmland extends FarmBlock {
@@ -28,6 +33,13 @@ public class MutatingFarmland extends FarmBlock {
     public void onPlace(BlockState state, Level level, BlockPos pos, BlockState oldState, boolean isMoving) {
         // super.onPlace(state, level, pos, oldState, isMoving);
         level.scheduleTick(pos, this, Mth.nextInt(RANDOM, 20, 60)); // initial tick is smaller than the ongoing tick
+    }
+
+    @Override
+    public boolean canSustainPlant(BlockState state, BlockGetter world, BlockPos pos, Direction direction,
+            IPlantable plantable) {
+        var type = plantable.getPlantType(world, pos.relative(direction));
+        return type == PlantType.CROP || type == PlantType.PLAINS;
     }
 
     @Override
@@ -51,10 +63,10 @@ public class MutatingFarmland extends FarmBlock {
                             ||
                             (recipe.getInput1Block().test(desats[i + 1]) && recipe.getInput2Block().test(desats[i]))) {
                         boolean yea = false;
-                        for (var r = 0; r < 5; r++) {
-                            if (rand.nextFloat() < recipe.getChance())
-                                yea = true;
-                        }
+                        //                        for (var r = 0; r < 5; r++) {
+                        if (rand.nextFloat() < recipe.getChance())
+                            yea = true;
+                        //                      }
                         if (yea) {
                             //level.sendParticles(new ItemParticleOption
                             level.setBlock(pos.above(1), recipe.getOutputBlock().pick(rand),
@@ -65,7 +77,7 @@ public class MutatingFarmland extends FarmBlock {
                             // level.playSound((Player) null, pos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS,
                             //         1.0F, 1.0F);
                             ((ServerLevel) level).sendParticles(ParticleTypes.SMOKE, pos.getX() + .5f,
-                                   pos.getY() + .5f, pos.getZ() + .5f, 20, .1f, .1f, .1f, .1f);
+                                    pos.getY() + .5f, pos.getZ() + .5f, 20, .1f, .1f, .1f, .1f);
                         }
                         return;
                     }

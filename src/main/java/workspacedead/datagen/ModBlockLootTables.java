@@ -7,6 +7,7 @@ import net.minecraft.data.loot.BlockLoot;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
@@ -72,8 +73,8 @@ public class ModBlockLootTables extends BlockLoot {
 
         this.dropSelf(MyBlocks.BIOMASS_BLOCK.get());
         this.dropSelf(MyBlocks.MRHANKY_BLOCK.get());
-        this.dropSelf(MyBlocks.DEAD_FARMLAND.get());
-        this.dropSelf(MyBlocks.MUTATING_FARMLAND.get());
+        this.dropOther(MyBlocks.DEAD_FARMLAND.get(), Blocks.DIRT);
+        this.dropOther(MyBlocks.MUTATING_FARMLAND.get(), Blocks.DIRT);
 
         this.dropSelf(MyBlocks.SATURATOR_BLOCK.get());
         this.dropSelf(MyBlocks.DESATURATOR_BLOCK.get());
@@ -112,7 +113,6 @@ public class ModBlockLootTables extends BlockLoot {
         this.dropSelf(MyBlocks.PURPLE_GENERATOR.get());
         this.dropSelf(MyBlocks.RED_GENERATOR.get());
         this.dropSelf(MyBlocks.WHITE_GENERATOR.get());
-
 
         LootItemCondition.Builder lootitemcondition$builder = //
                 LootItemBlockStatePropertyCondition.hasBlockStateProperties(MyBlocks.GRASSYPOTATO_PLANT.get())//

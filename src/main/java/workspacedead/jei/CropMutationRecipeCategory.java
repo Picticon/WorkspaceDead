@@ -32,7 +32,7 @@ public class CropMutationRecipeCategory implements IRecipeCategory<CropMutationR
         db.setTextureSize(128, 128);
         this.background1 = db.build();
 
-        var tex2 = new ResourceLocation(WorkspaceDead.MOD_ID, "textures/mob_effect/deadinside.png");
+        var tex2 = new ResourceLocation(WorkspaceDead.MOD_ID, "textures/block/mutating_farmland.png");
         var db2 = helper.drawableBuilder(tex2, 0, 0, 16, 16);
         db2.setTextureSize(16, 16);
         this.icon = db2.build();
@@ -102,7 +102,7 @@ public class CropMutationRecipeCategory implements IRecipeCategory<CropMutationR
             double mouseX, double mouseY) {
         IRecipeCategory.super.draw(recipe, recipeSlotsView, poseStack, mouseX, mouseY);
         var minecraft = Minecraft.getInstance();
-        var percent = Math.round(recipe.getChance() * 100f) + "% / s";
+        var percent = Math.round(recipe.getChance() * 100f) + "% / 5s";
         minecraft.font.drawShadow(poseStack, percent, 80, 67, 0xFFFFFF);
 
     }

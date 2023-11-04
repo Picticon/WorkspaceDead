@@ -158,9 +158,11 @@
     "text.workspacedead.fullmetalalchemiser.soundoff":"No Sound",
     "text.workspacedead.fullmetalalchemiser.soundlaser":"Laser Sound",
     "text.workspacedead.fullmetalalchemiser.soundhand":"Hand Sound",
+
     "recipecategory.purification.title":"Purification Crystal",
     "recipecategory.fullmetalalchemiser.title":"Full Metal Alchemiser",
     "recipecategory.saturator.title":"Saturator",
+    "recipecategory.cropmutation.title":"Mutating Farmland",
 
     "item.workspacedead.poop": "Poop",
     "item.workspacedead.poop_seeded": "Seeded Poop",
@@ -172,12 +174,12 @@
     "item.workspacedead.poop_sheep": "Sheep Poop",
     "item.workspacedead.poop_pig": "Pig Poop",
     "item.workspacedead.poop_chicken": "Chicken Poop",
-    "item.workspacedead.poop_golem": "Iron Golem Poop",
+    "item.workspacedead.poop_iron_golem": "Iron Golem Poop",
     "item.workspacedead.poop_spider": "Spider Poop",
     "item.workspacedead.poop_villager": "Villager Poop",
     "item.workspacedead.poop_slime": "Slime Poop",
     "item.workspacedead.poop_dragon": "Dragon Poop",
-    "item.workspacedead.poop_ender": "Ender Poop",
+    "item.workspacedead.poop_enderman": "Enderman Poop",
     "item.workspacedead.poop_blaze": "Blaze Poop",
     "item.workspacedead.poop_witch": "Witch Poop",
     
