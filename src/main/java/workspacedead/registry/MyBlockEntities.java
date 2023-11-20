@@ -8,6 +8,7 @@ import net.minecraftforge.registries.RegistryObject;
 import workspacedead.WorkspaceDead;
 import workspacedead.block.BioMass.BioMassBlockEntity;
 import workspacedead.block.FullMetalAlchemiser.FullMetalAlchemiserBlockEntity;
+import workspacedead.block.KubeJSTable.KubeJSTableBlockEntity;
 import workspacedead.block.MrHanky.MrHankyBlockEntity;
 import workspacedead.block.Saturator.DesaturatorBlockEntity;
 import workspacedead.block.Saturator.SaturatorBlockEntity;
@@ -44,6 +45,10 @@ public class MyBlockEntities {
     public static final RegistryObject<BlockEntityType<DesaturatorBlockEntity>> DESATURATOR_BLOCK_ENTITY = BLOCK_ENTITIES
             .register("desaturator_block_entity", () -> BlockEntityType.Builder
                     .of(DesaturatorBlockEntity::new, MyBlocks.DESATURATOR_BLOCK.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<KubeJSTableBlockEntity>> KUBEJS_TABLE_BLOCK_ENTITY = BLOCK_ENTITIES
+            .register("kubejs_table_block_entity", () -> BlockEntityType.Builder
+                    .of(KubeJSTableBlockEntity::new, MyBlocks.KUBEJS_TABLE_BLOCK.get()).build(null));
 
     public static final RegistryObject<BlockEntityType<BioMassBlockEntity>> BIOMASS_BLOCK_ENTITY = BLOCK_ENTITIES
             .register("biomass_block_entity", () -> BlockEntityType.Builder

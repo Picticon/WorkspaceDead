@@ -7,6 +7,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import workspacedead.WorkspaceDead;
+import workspacedead.block.KubeJSTable.KubeJSTableContainer;
 import workspacedead.block.generators.BasePowergenContainer;
 
 public class MyContainers {
@@ -21,5 +22,9 @@ public class MyContainers {
     public static final RegistryObject<MenuType<BasePowergenContainer>> YELLOW_POWERGEN_CONTAINER = MOD_CONTAINERS
             .register("yellowpowergen", () -> IForgeMenuType.create(
                     (windowId, inv, data) -> new BasePowergenContainer(windowId, data.readBlockPos(), inv, inv.player)));
+
+    public static final RegistryObject<MenuType<KubeJSTableContainer>> KUBEJS_TABLE_CONTAINER = MOD_CONTAINERS
+            .register("kubejs_table_container", () -> IForgeMenuType.create(
+                    (windowId, inv, data) -> new KubeJSTableContainer(windowId, data.readBlockPos(), inv, inv.player)));
 
 }

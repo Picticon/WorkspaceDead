@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "workspacedead:mutating_farmland"
+          "name": "minecraft:dirt"
         }
       ],
       "conditions": [

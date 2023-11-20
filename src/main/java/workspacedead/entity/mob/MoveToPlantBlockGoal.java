@@ -9,9 +9,9 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CropBlock;
+import net.minecraft.world.level.block.NetherWartBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.IPlantable;
-import java.util.Random;
 
 public class MoveToPlantBlockGoal extends MoveToBlockGoal {
 
@@ -19,12 +19,12 @@ public class MoveToPlantBlockGoal extends MoveToBlockGoal {
     // private Object wantsToRaid;
     private int timechanneling;
 
-    private static Random RANDOM = new Random();
+    //private static Random RANDOM = new Random();
 
     public MoveToPlantBlockGoal(GrassyPotato grassypotato) {
         super(grassypotato, 1, 12, 3);
         this.grassyPotato = grassypotato;
-        this.nextStartTick = 120;
+        this.nextStartTick = 60;
     }
 
     @Override
@@ -35,7 +35,8 @@ public class MoveToPlantBlockGoal extends MoveToBlockGoal {
     @Override
     protected boolean isValidTarget(LevelReader pLevel, BlockPos pPos) {
         //var t = 4;
-        if (this.grassyPotato.isInSittingPose() || grassyPotato.getChanneling() == GrassyPotato.CHANNELING_COOLDOWN)
+        if (this.grassyPotato.isInSittingPose() || grassyPotato.getChanneling() == GrassyPotato.CHANNELING_COOLDOWN
+                || this.grassyPotato.isAtMinimumSize())
             return false;
         //if (RANDOM.nextInt(t) < 1) 
         {
@@ -52,6 +53,8 @@ public class MoveToPlantBlockGoal extends MoveToBlockGoal {
                         return bs2.is(Blocks.AIR);
                     }
                 }
+            } else if (blockstate.getBlock() instanceof NetherWartBlock) {
+                return blockstate.getBlock().isRandomlyTicking(blockstate);
             }
         }
         return false;
@@ -75,19 +78,22 @@ public class MoveToPlantBlockGoal extends MoveToBlockGoal {
         return super.canUse();
     }
 
+    @Override
     public void tick() {
         super.tick();
         // this.grassyPotato.getLookControl().setLookAt((double) this.blockPos.getX() +
         // 0.5D, (double) (this.blockPos.getY() + 1), (double) this.blockPos.getZ() +
         // 0.5D, 10.0F, (float) this.grassyPotato.getMaxHeadXRot());
         if (this.isReachedTarget() && this.canUse()) {
-            this.grassyPotato.setPos((this.grassyPotato.getX() + this.blockPos.getX() + .5f) / 2.0f,
-                    this.grassyPotato.getY(), (this.grassyPotato.getZ() + this.blockPos.getZ() + .5f) / 2.0f);
+            this.grassyPotato.setPos(
+                    (this.grassyPotato.getX() + this.blockPos.getX() + .5f) / 2.0f,
+                    (this.grassyPotato.getY() + this.blockPos.getY()) / 2.0f,
+                    (this.grassyPotato.getZ() + this.blockPos.getZ() + .5f) / 2.0f);
             grassyPotato.setChanneling(GrassyPotato.CHANNELING_BONEMEALING);
             timechanneling++;
             var level = this.grassyPotato.level;
             //Chatter.sendToAllPlayers("" + timechanneling + " " + this.nextStartTick);
-            if (timechanneling > 4) {
+            if (timechanneling > 1) {
                 if (!level.isClientSide && level instanceof ServerLevel) {
                     BlockState blockstate = level.getBlockState(this.blockPos);
                     BlockPos.betweenClosed(this.blockPos.offset(-1, -1, -1), blockPos.offset(3, 1, 3))
@@ -107,6 +113,7 @@ public class MoveToPlantBlockGoal extends MoveToBlockGoal {
                             SoundEvents.BONE_MEAL_USE, SoundSource.BLOCKS, 1, 1);
                 }
                 grassyPotato.setChanneling(GrassyPotato.CHANNELING_COOLDOWN);
+                grassyPotato.useBonemeal();
                 stop();
                 //this.nextStartTick = 120;
             }
@@ -123,7 +130,9 @@ public class MoveToPlantBlockGoal extends MoveToBlockGoal {
 
     private void tickCropBlock(ServerLevel level, BlockPos cropPos, BlockState cropState, Block cropBlock) {
         level.scheduleTick(cropPos, cropBlock, (int) (20F));
-        cropState.randomTick(level, cropPos, RANDOM);
+        for (var i = 0; i < 10; i++) {
+            cropState.randomTick(level, cropPos, level.random);
+        }
         level.levelEvent(2005, cropPos, 1);
     }
 

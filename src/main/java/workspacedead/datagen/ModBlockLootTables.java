@@ -79,6 +79,7 @@ public class ModBlockLootTables extends BlockLoot {
         this.dropSelf(MyBlocks.SATURATOR_BLOCK.get());
         this.dropSelf(MyBlocks.DESATURATOR_BLOCK.get());
         this.dropSelf(MyBlocks.FULLMETALALCHEMISER_BLOCK.get());
+        this.dropSelf(MyBlocks.KUBEJS_TABLE_BLOCK.get());
 
         this.dropSelf(MyBlocks.GLOD_BLOCK.get());
         this.dropSelf(MyBlocks.GLOD_SATURATED_BLOCK.get());

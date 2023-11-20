@@ -15,7 +15,7 @@ import workspacedead.block.InventoryEntityBaseBlock;
 import workspacedead.block.generators.CustomEnergyStorage;
 import workspacedead.client.IPowerHUD;
 import workspacedead.gfx.ElectricityGFX;
-import workspacedead.network.EntityInts;
+import workspacedead.network.EntityIntsMessage;
 import workspacedead.network.IHandleClientInt;
 import workspacedead.network.MyMessages;
 import workspacedead.registry.MyBlockEntities;
@@ -62,14 +62,14 @@ public class DesaturatorBlockEntity extends InventoryEntityBaseBlock implements 
     public Component getMessage() {
         _peeticks++;
         if (_peeticks % 40 == 0) {
-            MyMessages.sendToServer(new EntityInts(this.level, this.getBlockPos(), EntityInts.TRIGGER_UPDATEBLOCK, 0));
+            MyMessages.sendToServer(new EntityIntsMessage(this.level, this.getBlockPos(), EntityIntsMessage.TRIGGER_UPDATEBLOCK, 0));
         }
         return new TextComponent(energy.getEnergyStored() + " FE");
     }
 
     @Override
     public void handleClientInt(int controlId, int value) {
-        if (controlId == EntityInts.TRIGGER_UPDATEBLOCK)
+        if (controlId == EntityIntsMessage.TRIGGER_UPDATEBLOCK)
             updateBlock();
     }
 

@@ -7,6 +7,7 @@ import net.minecraftforge.client.gui.OverlayRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import workspacedead.WorkspaceDead;
+import workspacedead.block.KubeJSTable.KubeJSTableScreen;
 import workspacedead.block.generators.BasePowergenScreen;
 import workspacedead.registry.MyContainers;
 
@@ -16,6 +17,7 @@ public class ClientSetup {
     public static void init(FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
             MenuScreens.register(MyContainers.YELLOW_POWERGEN_CONTAINER.get(), BasePowergenScreen::new);
+            /*MenuScreens.register(MyContainers.YELLOW_POWERGEN_CONTAINER.get(), BasePowergenScreen::new);
             MenuScreens.register(MyContainers.YELLOW_POWERGEN_CONTAINER.get(), BasePowergenScreen::new);
             MenuScreens.register(MyContainers.YELLOW_POWERGEN_CONTAINER.get(), BasePowergenScreen::new);
             MenuScreens.register(MyContainers.YELLOW_POWERGEN_CONTAINER.get(), BasePowergenScreen::new);
@@ -29,14 +31,15 @@ public class ClientSetup {
             MenuScreens.register(MyContainers.YELLOW_POWERGEN_CONTAINER.get(), BasePowergenScreen::new);
             MenuScreens.register(MyContainers.YELLOW_POWERGEN_CONTAINER.get(), BasePowergenScreen::new);
             MenuScreens.register(MyContainers.YELLOW_POWERGEN_CONTAINER.get(), BasePowergenScreen::new);
-            MenuScreens.register(MyContainers.YELLOW_POWERGEN_CONTAINER.get(), BasePowergenScreen::new);
-            MenuScreens.register(MyContainers.YELLOW_POWERGEN_CONTAINER.get(), BasePowergenScreen::new);
+            MenuScreens.register(MyContainers.YELLOW_POWERGEN_CONTAINER.get(), BasePowergenScreen::new);*/
+            MenuScreens.register(MyContainers.KUBEJS_TABLE_CONTAINER.get(), KubeJSTableScreen::new);
             //ItemBlockRenderTypes.setRenderLayer(MyBlocks.YELLOW_GENERATOR.get(), RenderType.translucent());
             //PowergenRenderer.register();
         });
 
         // amount of power when hovering over desaturators
-        OverlayRegistry.registerOverlayAbove(ForgeIngameGui.HOTBAR_ELEMENT,"Workspace Dead Block Info", GuiEntityInfoHUD.OVERLAY);
+        OverlayRegistry.registerOverlayAbove(ForgeIngameGui.HOTBAR_ELEMENT, "Workspace Dead Block Info",
+                GuiEntityInfoHUD.OVERLAY);
 
         // MinecraftForge.EVENT_BUS.addListener(KeyInputHandler::onKeyInput);
         // KeyBindings.init();

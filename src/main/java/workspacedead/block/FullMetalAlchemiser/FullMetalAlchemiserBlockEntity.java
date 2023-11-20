@@ -23,7 +23,7 @@ import workspacedead.block.generators.CustomEnergyStorage;
 import workspacedead.recipe.FullMetalAlchemiserRecipe;
 import workspacedead.registry.MySounds;
 import workspacedead.registry.MyBlockEntities;
-import workspacedead.network.EntityInts;
+import workspacedead.network.EntityIntsMessage;
 import workspacedead.network.IHandleClientInt;
 
 public class FullMetalAlchemiserBlockEntity extends BlockEntity implements IHandleClientInt {
@@ -261,7 +261,7 @@ public class FullMetalAlchemiserBlockEntity extends BlockEntity implements IHand
             setRedstoneMode(value);
         if (controlId == 2)
             setPlaySound(value);
-        if (controlId == EntityInts.TRIGGER_UPDATEBLOCK)
+        if (controlId == EntityIntsMessage.TRIGGER_UPDATEBLOCK)
             updateBlock();
     }
 

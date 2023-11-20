@@ -11,11 +11,13 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.BeetrootBlock;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.FarmBlock;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.IPlantable;
@@ -62,6 +64,18 @@ public class MutatingFarmland extends FarmBlock {
                     if ((recipe.getInput1Block().test(desats[i]) && recipe.getInput2Block().test(desats[i + 1]))
                             ||
                             (recipe.getInput1Block().test(desats[i + 1]) && recipe.getInput2Block().test(desats[i]))) {
+                        var fail = false;
+                        for (var z = 0; z < 2; z++) {
+                            if (desats[i + z].getBlock() instanceof CropBlock) {
+                                var cb = (CropBlock) desats[i + z].getBlock();
+                                if (!cb.isMaxAge(desats[i + z])) {
+                                    fail = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (fail)
+                            continue;
                         boolean yea = false;
                         //                        for (var r = 0; r < 5; r++) {
                         if (rand.nextFloat() < recipe.getChance())
@@ -73,6 +87,27 @@ public class MutatingFarmland extends FarmBlock {
                                     UPDATE_ALL_IMMEDIATE | UPDATE_ALL);
                             level.playSound((Player) null, pos, SoundEvents.CHORUS_FLOWER_GROW, SoundSource.BLOCKS,
                                     1.0F, 1.0F);
+                            for (var z = 0; z < 2; z++) {
+                                var block = desats[i + z].getBlock();
+                                Age age = block instanceof CropBlock crop
+                                        ? new Age(crop.getAgeProperty(), crop.getMaxAge())
+                                        : null;
+                                if (age != null) {
+                                    if (desats[i + z].getBlock() instanceof CropBlock) {
+                                        BlockPos pos2;
+                                        if (i + z == 0)
+                                            pos2 = pos.north(1).above(1);
+                                        else if (i + z == 1)
+                                            pos2 = pos.south(1).above(1);
+                                        else if (i + z == 2)
+                                            pos2 = pos.east(1).above(1);
+                                        else
+                                            pos2 = pos.west(1).above(1);
+                                        level.setBlock(pos2, desats[i + z].setValue(age.property, 0),
+                                                Block.UPDATE_ALL);
+                                    }
+                                }
+                            }
                         } else {
                             // level.playSound((Player) null, pos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS,
                             //         1.0F, 1.0F);
@@ -84,6 +119,9 @@ public class MutatingFarmland extends FarmBlock {
                 }
             }
         }
+    }
+
+    private record Age(IntegerProperty property, int maxAge) {
     }
 
     @Override

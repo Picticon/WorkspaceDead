@@ -1,0 +1,13 @@
+{
+    "type": "tconstruct:mob_effect",
+    "effect": "workspacedead:deadinside",
+    "level": {
+      "base": 1,
+      "multiplier": 0
+    },
+    "time": {
+      "base": 20,
+      "multiplier_flat": 20,
+      "multiplier_random": 20
+    }
+  }

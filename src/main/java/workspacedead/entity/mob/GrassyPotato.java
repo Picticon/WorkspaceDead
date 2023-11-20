@@ -24,11 +24,11 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.BreedGoal;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
-import net.minecraft.world.entity.ai.goal.FollowOwnerGoal;
+//import net.minecraft.world.entity.ai.goal.FollowOwnerGoal;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
-import net.minecraft.world.entity.ai.goal.SitWhenOrderedToGoal;
+//import net.minecraft.world.entity.ai.goal.SitWhenOrderedToGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
@@ -64,6 +64,10 @@ public class GrassyPotato extends TamableAnimal implements IAnimatable {
     private static final EntityDataAccessor<Float> SCALESIZE = SynchedEntityData.defineId(GrassyPotato.class,
             EntityDataSerializers.FLOAT);
     private final AnimationFactory factory = GeckoLibUtil.createFactory(this);
+    private static final float GROWSIZE = .05f;
+    private static final float SHRINKSIZE = -.01f;
+    private static final float MINSIZE = .7f;
+    private static final float MAXSIZE = 1.75f;
 
     public GrassyPotato(EntityType<? extends TamableAnimal> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
@@ -73,19 +77,20 @@ public class GrassyPotato extends TamableAnimal implements IAnimatable {
     // private boolean isChanneling;
 
     public static AttributeSupplier setAttributes() {
-        return Animal.createMobAttributes().add(Attributes.MAX_HEALTH, 20.0D).add(Attributes.ATTACK_DAMAGE, 3.0f)//
+        return Animal.createMobAttributes().add(Attributes.MAX_HEALTH, 20.0D).add(Attributes.ATTACK_DAMAGE, 1.0f)//
                 .add(Attributes.ATTACK_SPEED, 2.0f).add(Attributes.MOVEMENT_SPEED, 0.2f).build();
     }
 
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(1, new FloatGoal(this));
-        this.goalSelector.addGoal(2, new SitWhenOrderedToGoal(this));
+        //this.goalSelector.addGoal(2, new SitWhenOrderedToGoal(this));
         this.goalSelector.addGoal(3, new BreedGoal(this, 1.0D));
         this.goalSelector.addGoal(4, new MeleeAttackGoal(this, 1.3D, false));
         this.goalSelector.addGoal(5, new MoveToDirtBlockGoal(this));
         this.goalSelector.addGoal(6, new MoveToPlantBlockGoal(this));
-        this.goalSelector.addGoal(7, new FollowOwnerGoal(this, .5D, 10.0F, 2.0F, false));
+        this.goalSelector.addGoal(7, new MoveToBiomassBlockGoal(this));
+        // this.goalSelector.addGoal(7, new FollowOwnerGoal(this, .5D, 10.0F, 2.0F, false));
         this.goalSelector.addGoal(8, new WaterAvoidingRandomStrollGoal(this, 1.0D));
         this.goalSelector.addGoal(10, new LookAtPlayerGoal(this, Player.class, 8.0F));
         this.goalSelector.addGoal(11, new RandomLookAroundGoal(this));
@@ -100,8 +105,20 @@ public class GrassyPotato extends TamableAnimal implements IAnimatable {
 
     protected void defineSynchedData() {
         super.defineSynchedData();
-        this.entityData.define(SCALESIZE, .7f);
+        this.entityData.define(SCALESIZE, MINSIZE);
         this.entityData.define(CHANNELINGMODE, (byte) 0);
+    }
+
+    public boolean isAtMinimumSize() {
+        return getScale() <= MINSIZE;
+    }
+
+    public boolean isAtOptimalSize() {
+        return getScale() >= ((MAXSIZE - MINSIZE) * .3f) + MINSIZE;
+    }
+
+    public boolean isAtMaximumSize() {
+        return getScale() >= MAXSIZE;
     }
 
     public byte getChanneling() {
@@ -129,9 +146,15 @@ public class GrassyPotato extends TamableAnimal implements IAnimatable {
             return 1 + ((s - 1) * 2.5f);
     }
 
+    public EntityDimensions getDimensions(Pose pPose) {
+        return new EntityDimensions(super.getDimensions(pPose).width * .65f,
+                super.getDimensions(pPose).height * this.getScale(), false);
+        //return super.getDimensions(pPose).scale(this.getScale());
+    }
+
     protected void setScale(float pSize, boolean pResetHealth) {
         // WDServer.send("Setting size to " + pSize);
-        float f = Mth.clamp(pSize, .7f, 1.75f);
+        float f = Mth.clamp(pSize, MINSIZE, MAXSIZE);
         this.entityData.set(SCALESIZE, f);
         // this.debugscale = f;
         this.refreshDimensions();
@@ -160,12 +183,6 @@ public class GrassyPotato extends TamableAnimal implements IAnimatable {
             }
         }
         super.onSyncedDataUpdated(pKey);
-    }
-
-    public EntityDimensions getDimensions(Pose pPose) {
-        return new EntityDimensions(super.getDimensions(pPose).width * .75f,
-                super.getDimensions(pPose).height * this.getScale(), false);
-        //return super.getDimensions(pPose).scale(this.getScale());
     }
 
     public int getMaxHeadXRot() {
@@ -207,7 +224,7 @@ public class GrassyPotato extends TamableAnimal implements IAnimatable {
             // BlockState blockstate = level.getBlockState(this.getOnPos());
             //if (blockstate == null || !blockstate.is(Blocks.DIRT))
             //    return;
-            if (this.tickCount % 5 == 0)
+            if (this.tickCount % 8 == 0)
                 Particleify(level, this.getOnPos(), .9f);
         }
     }
@@ -221,11 +238,11 @@ public class GrassyPotato extends TamableAnimal implements IAnimatable {
                 var y = pos.getY() + .5 + yoffset;
                 var z = pos.getZ() + 0.5d + Math.sin(i) * .9;
                 if (getChanneling() == CHANNELING_PURIFYING)
-                    level.addParticle(ModParticles.PURIFY_PARTICLES.get(), true, x, y, z, Math.cos(i) * -0.11d, -0.05d,
-                            Math.sin(i) * -0.11d);
+                    level.addParticle(ModParticles.PURIFY_PARTICLES.get(), true, x, y, z, Math.cos(i) * -0.05d, -0.05d,
+                            Math.sin(i) * -0.05d);
                 else
-                    level.addParticle(ParticleTypes.COMPOSTER.getType(), true, x, y, z, Math.cos(i) * -0.11d, -0.05d,
-                            Math.sin(i) * -0.11d);
+                    level.addParticle(ParticleTypes.COMPOSTER.getType(), true, x, y, z, Math.cos(i) * -0.05d, -0.05d,
+                            Math.sin(i) * -0.05d);
             }
         }
     }
@@ -290,8 +307,8 @@ public class GrassyPotato extends TamableAnimal implements IAnimatable {
         } else {
             // server things
             if (this.isTame()) {
-                if (itemstack.is(Items.BONE_MEAL)) {
-                    this.setScale(this.getScale() + .05f, true);
+                if (itemstack.is(Items.BONE_MEAL) && !this.isAtMaximumSize()) {
+                    addBonemeal();
                     if (!pPlayer.getAbilities().instabuild) {
                         itemstack.shrink(1);
                     }
@@ -307,7 +324,8 @@ public class GrassyPotato extends TamableAnimal implements IAnimatable {
                     }
                     InteractionResult interactionresult = super.mobInteract(pPlayer, pHand);
                     if ((!interactionresult.consumesAction() || this.isBaby()) && this.isOwnedBy(pPlayer)) {
-                        this.setOrderedToSit(!this.isOrderedToSit());
+                        //this.setOrderedToSit(!this.isOrderedToSit());
+                        this.setOrderedToSit(false);
                         this.jumping = false;
                         this.navigation.stop();
                         this.setTarget((LivingEntity) null);
@@ -324,7 +342,8 @@ public class GrassyPotato extends TamableAnimal implements IAnimatable {
                     this.tame(pPlayer);
                     this.navigation.stop();
                     this.setTarget((LivingEntity) null);
-                    this.setOrderedToSit(true);
+                    //this.setOrderedToSit(true);
+                    this.setOrderedToSit(false);
                     this.level.broadcastEntityEvent(this, (byte) 7);
                 } else {
                     this.level.broadcastEntityEvent(this, (byte) 6);
@@ -396,6 +415,15 @@ public class GrassyPotato extends TamableAnimal implements IAnimatable {
     @Override
     public AgeableMob getBreedOffspring(ServerLevel pLevel, AgeableMob pOtherParent) {
         return null;
+    }
+
+    public void useBonemeal() {
+        this.setScale(this.getScale() + SHRINKSIZE, false);
+    }
+
+    public void addBonemeal() {
+        if (!this.isAtMaximumSize())
+            this.setScale(this.getScale() + GROWSIZE, true);
     }
 
 }

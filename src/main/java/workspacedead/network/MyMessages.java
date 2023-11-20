@@ -17,10 +17,15 @@ public final class MyMessages {
                 s -> true, //
                 s -> true);
 
-        INSTANCE.messageBuilder(EntityInts.class, nextid(), NetworkDirection.PLAY_TO_SERVER) //
-                .decoder(EntityInts::new) //
-                .encoder(EntityInts::toBytes) //
-                .consumer(EntityInts::handleOnServer) //
+        INSTANCE.messageBuilder(EntityIntsMessage.class, nextid(), NetworkDirection.PLAY_TO_SERVER) //
+                .decoder(EntityIntsMessage::new) //
+                .encoder(EntityIntsMessage::toBytes) //
+                .consumer(EntityIntsMessage::handleOnServer) //
+                .add();
+        INSTANCE.messageBuilder(RecipeMessage.class, nextid(), NetworkDirection.PLAY_TO_SERVER) //
+                .decoder(RecipeMessage::new) //
+                .encoder(RecipeMessage::toBytes) //
+                .consumer(RecipeMessage::handleOnServer) //
                 .add();
         // INSTANCE.messageBuilder(EntityInts.class, nextid(), NetworkDirection.PLAY_TO_CLIENT) //
         //         .decoder(EntityInts::new) //

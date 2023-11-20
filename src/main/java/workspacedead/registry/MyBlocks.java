@@ -35,6 +35,7 @@ import workspacedead.block.MutatingFarmland;
 import workspacedead.block.PotatoPortalBlock;
 import workspacedead.block.BioMass.BioMassBlock;
 import workspacedead.block.FullMetalAlchemiser.FullMetalAlchemiserBlock;
+import workspacedead.block.KubeJSTable.KubeJSTableBlock;
 import workspacedead.block.MrHanky.MrHankyBlock;
 import workspacedead.block.PoopLantern.CarvedPoopBlock;
 import workspacedead.block.PoopLantern.PoopBlock;
@@ -75,6 +76,9 @@ public class MyBlocks {
 
     public static final RegistryObject<Block> DESATURATOR_BLOCK = registerBlockAndItem("desaturator_block",
             () -> new DesaturatorBlock(), ModCreativeModeTab.ITEMS_TAB);
+
+    public static final RegistryObject<Block> KUBEJS_TABLE_BLOCK = registerBlockAndItem("kubejs_table_block",
+            () -> new KubeJSTableBlock(), ModCreativeModeTab.ITEMS_TAB);
 
     public static final RegistryObject<Block> BIOMASS_BLOCK = registerBlockWithoutBlockItem("biomass_block", //
             () -> new   BioMassBlock(BlockBehaviour.Properties.of(Material.MOSS).strength(.9f).sound(SoundType.FUNGUS)));

@@ -183,11 +183,32 @@ public class ModBlocksStateProvider extends BlockStateProvider {
         makeFacingBlock(MyBlocks.WHITE_GENERATOR);
         itemFromBlock(MyBlocks.WHITE_GENERATOR);
 
+        makeSimpleBlockAndItem(MyBlocks.KUBEJS_TABLE_BLOCK, models().cubeBottomTop(
+                MyBlocks.KUBEJS_TABLE_BLOCK.getId().getNamespace(),
+                RegLoc(MyBlocks.KUBEJS_TABLE_BLOCK, "_side"),
+                RegLoc(MyBlocks.KUBEJS_TABLE_BLOCK, "_bottom"),
+                RegLoc(MyBlocks.KUBEJS_TABLE_BLOCK, "_top")));
+
         // makeSimpleBlockAndItem(ModBlocks.POTATOBLOCK.get());
         // simpleBlock(ModBlocks.POTATOBLOCK.get(), (a) -> {
         // return "";
         // });
         // itemBlock(ModBlocks.POTATOBLOCK.get());
+    }
+    
+    // This makes BLOCK, BLOCKSTATE, and ITEM(BLOCK)
+    private void makeSimpleBlockAndItem(@NotNull Block block) {
+        simpleBlock(block);
+        itemBlock(block);
+    }
+    private void makeSimpleBlockAndItem(RegistryObject<Block> block, ModelFile model) {
+        simpleBlock(block.get(), model);
+        simpleBlockItem(block.get(), model);
+    }
+
+
+    private ResourceLocation RegLoc(RegistryObject<Block> regBlock, String suffix) {
+        return new ResourceLocation(regBlock.getId().getNamespace(), "block/" + regBlock.getId().getPath() + suffix);
     }
 
     private <T extends Block> void makeFacingBlock(RegistryObject<Block> regBlock) {
@@ -258,12 +279,6 @@ public class ModBlocksStateProvider extends BlockStateProvider {
                 .parent(new ModelFile.UncheckedModelFile("item/generated"))//
                 .texture("layer0", new ResourceLocation(registeredBlock.getId().getNamespace(),
                         "item/" + registeredBlock.getId().getPath()));
-    }
-
-    // This makes BLOCK, BLOCKSTATE, and ITEM(BLOCK)
-    private void makeSimpleBlockAndItem(@NotNull Block block) {
-        simpleBlock(block);
-        itemBlock(block);
     }
 
     private <T extends Block> void fenceBlock(RegistryObject<T> gateBlockObj, RegistryObject<Block> textureBlockObj) {

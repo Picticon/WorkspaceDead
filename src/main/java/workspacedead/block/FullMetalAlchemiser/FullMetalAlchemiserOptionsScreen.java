@@ -16,7 +16,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import workspacedead.WorkspaceDead;
 import workspacedead.gui.ItemButton;
-import workspacedead.network.EntityInts;
+import workspacedead.network.EntityIntsMessage;
 import workspacedead.network.MyMessages;
 
 public class FullMetalAlchemiserOptionsScreen extends Screen {
@@ -85,17 +85,17 @@ public class FullMetalAlchemiserOptionsScreen extends Screen {
         Minecraft minecraft = Minecraft.getInstance();
         _btn_rs_0 = new ItemButton(guiLeft + 10, guiTop + 90, 20, 20, new TextComponent(""), Items.REDSTONE_TORCH,
                 button -> {
-                    MyMessages.sendToServer(new EntityInts(minecraft.player.level, _entity.getBlockPos(), 1, 0));
+                    MyMessages.sendToServer(new EntityIntsMessage(minecraft.player.level, _entity.getBlockPos(), 1, 0));
                 });
         _btn_rs_1 = new ItemButton(guiLeft + 35, guiTop + 90, 20, 20, new TextComponent(""), Items.REDSTONE, button -> {
-            MyMessages.sendToServer(new EntityInts(minecraft.player.level, _entity.getBlockPos(), 1, 1));
+            MyMessages.sendToServer(new EntityIntsMessage(minecraft.player.level, _entity.getBlockPos(), 1, 1));
         });
         _btn_rs_2 = new ItemButton(guiLeft + 60, guiTop + 90, 20, 20, new TextComponent(""), Items.COMPARATOR,
                 button -> {
-                    MyMessages.sendToServer(new EntityInts(minecraft.player.level, _entity.getBlockPos(), 1, 2));
+                    MyMessages.sendToServer(new EntityIntsMessage(minecraft.player.level, _entity.getBlockPos(), 1, 2));
                 });
         _btn_rs_3 = new ItemButton(guiLeft + 85, guiTop + 90, 20, 20, new TextComponent(""), Items.REPEATER, button -> {
-            MyMessages.sendToServer(new EntityInts(minecraft.player.level, _entity.getBlockPos(), 1, 3));
+            MyMessages.sendToServer(new EntityIntsMessage(minecraft.player.level, _entity.getBlockPos(), 1, 3));
         });
         addRenderableWidget(_btn_rs_0);
         addRenderableWidget(_btn_rs_1);
@@ -103,13 +103,13 @@ public class FullMetalAlchemiserOptionsScreen extends Screen {
         addRenderableWidget(_btn_rs_3);
 
         _btn_s_0 = new ItemButton(guiLeft + 10, guiTop + 40, 20, 20, new TextComponent(""), Items.RED_WOOL, button -> {
-            MyMessages.sendToServer(new EntityInts(minecraft.player.level, _entity.getBlockPos(), 2, 0));
+            MyMessages.sendToServer(new EntityIntsMessage(minecraft.player.level, _entity.getBlockPos(), 2, 0));
         });
         _btn_s_1 = new ItemButton(guiLeft + 35, guiTop + 40, 20, 20, new TextComponent(""), Items.NOTE_BLOCK, button -> {
-            MyMessages.sendToServer(new EntityInts(minecraft.player.level, _entity.getBlockPos(), 2, 1));
+            MyMessages.sendToServer(new EntityIntsMessage(minecraft.player.level, _entity.getBlockPos(), 2, 1));
         });
         _btn_s_2 = new ItemButton(guiLeft + 60, guiTop + 40, 20, 20, new TextComponent(""), Items.IRON_HELMET, button -> {
-            MyMessages.sendToServer(new EntityInts(minecraft.player.level, _entity.getBlockPos(), 2, 2));
+            MyMessages.sendToServer(new EntityIntsMessage(minecraft.player.level, _entity.getBlockPos(), 2, 2));
         });
         addRenderableWidget(_btn_s_0);
         addRenderableWidget(_btn_s_1);
@@ -170,7 +170,7 @@ public class FullMetalAlchemiserOptionsScreen extends Screen {
         super.tick();
         if (ctr % 10 == 0)
             MyMessages.sendToServer(
-                    new EntityInts(minecraft.player.level, _entity.getBlockPos(), EntityInts.TRIGGER_UPDATEBLOCK, 0));
+                    new EntityIntsMessage(minecraft.player.level, _entity.getBlockPos(), EntityIntsMessage.TRIGGER_UPDATEBLOCK, 0));
         ctr++;
     }
 

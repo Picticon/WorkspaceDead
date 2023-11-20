@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:dirt"
+          "name": "workspacedead:kubejs_table_block"
         }
       ],
       "conditions": [
